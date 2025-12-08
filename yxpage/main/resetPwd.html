@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>万像综合管理系统</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/main/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/main/css/login.css" media="all" />
+		<style>
+.layui-form-item {
+    margin-bottom: 35px;
+    clear: both;
+}
+</style>
+</head>
+<body>
+	<div class="video_mask"></div>
+	<div class="login">
+	    <h1>修改密码</h1>
+	    	<div class="layui-form-item">
+				<input  type="password" class="layui-input" name="pwd" id="pwd"  placeholder="请输入密码" lay-verify="required" type="text" autocomplete="off">
+		    </div>
+		    
+		    <div class="layui-form-item">
+				<input  type="password" class="layui-input" name="confirmPwd" id="confirmPwd"  placeholder="请确认密码" lay-verify="required" type="password" autocomplete="off">
+		    </div>
+
+			<button class="layui-btn login_btn" id="resetPwd" lay-submit="" lay-filter="confirm">确认</button>
+		
+	</div>
+	<script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/jquery-migrate-3.4.1.min.js"></script>
+	<script type="text/javascript"  src="/js/server.js"></script>
+	<script type="text/javascript" src="resetPwd.js"></script>
+	<script type="text/javascript" src="/main/layui/layui.js"></script>
+	
+</body>
+</html>

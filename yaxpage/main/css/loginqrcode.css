@@ -1,0 +1,30 @@
+body{
+	margin:0;
+}
+
+
+.impowerBox .qrcode{
+	width:295px;
+	margin:0;
+}
+
+.impowerBox .info {
+    width: auto;
+    margin: 0 auto;
+}
+
+.loginPanel .info{
+	display: none;
+}
+.loginPanel .title{
+	display: none;
+}
+@media screen and (max-width: 450px){
+	.impowerBox .qrcode{
+		width:250px;
+		margin:0;
+	}
+	.wrp_code{
+		padding: 10px;
+	}
+}

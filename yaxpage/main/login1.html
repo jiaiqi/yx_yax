@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="/main/layui/css/layui.css" media="all" />
+    <!-- 首页必须的本地图标 -->
+    <link rel="stylesheet" href="/main/css/font-awesome.min.css" media="all" />
+    <link rel="stylesheet" href="/main/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/main/css/login.css" media="all" />
+    <link rel="icon" href="/main/favicon.ico" />
+  </head>
+
+  <style>
+    .login-box {
+       /*  background-image: url(/main/images/login/login_bg_edu.jpg);*/
+      background-size: cover;
+      background-image: url(/main/images/login/background1.png); 
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh;
+      width: 100%;
+      align-items: center;
+      display: flex;
+      position: relative;
+    }
+
+    .center-block {
+      box-sizing: border-box;
+      width: 510px;
+      height: 510px;
+      display: flex;
+      flex-direction: column;
+      background-image: url(/main/images/login/login_box_bg_edu.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      right: 20%;
+      padding: 60px;
+      padding-right: 70px;
+    }
+    .top-header-font{
+        padding-bottom: 30px;
+        text-align: center;
+        /* font-family: '宋体'; */
+    }
+    input:-internal-autofill-selected {
+        background-color: #f5f5f5!important;
+
+    }
+    .input-box{
+        background-color: #f5f5f5!important;
+        border-color: #f6f6f6!important;
+        border-radius: 50px;
+        height: 55px;
+    }
+    .login_btn{
+        border-radius: 50px;
+    }
+    .circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 40px;
+      background: white;
+    }
+
+    .top-font {
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 7px;
+    }
+
+    .right-font-content {
+      padding-top: 7px;
+      padding-left: 27px;
+    }
+
+    .top-header-font {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .welcom-row {
+      color: rgba(174, 174, 178, 1);
+      font-size: 17px;
+      font-weight: 549;
+      margin-top: 10px;
+      /* text-align: left; */
+      font-family: PingFangSC-regular;
+      margin-bottom: 20px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      justify-content: space-between;
+      padding-right: 39px;
+      padding-left: 29px;
+      margin-bottom: 30px;
+    }
+
+    .tab-buttons > .tab-button {
+      color: rgba(77, 95, 204, 1);
+      font-size: 16px;
+      font-weight: 800;
+      padding: 15px 28px;
+      cursor: pointer;
+    }
+
+    .tab-buttons > .tab-button.isActive {
+      border-bottom: 2px solid rgba(77, 95, 204, 1);
+    }
+
+    .tab-buttons > .tab-button:hover {
+      border-bottom: 2px solid rgba(77, 95, 204, 1);
+    }
+
+    .tab-buttons.layui-tab-title {
+      position: unset !important;
+      left: unset !important;
+      height: unset !important;
+      white-space: unset !important;
+      font-size: unset !important;
+      border-bottom: unset !important;
+      transition: unset !important;
+      -webkit-transition: unset !important;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .left {
+        display: none;
+      }
+
+      .welcom-row {
+        display: none;
+      }
+      .login-box{
+        background-image: none;
+      }
+
+      .center-block {
+        width: 100%;
+        height: 100%;
+        background-image: none;
+        right: 0;
+        top: 0;
+        padding: 40px 20px;
+      }
+
+      .top-header-font {
+        display: none;
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  </style>
+
+  <body>
+    <div class="login-box">
+      <div class="center-block">
+        <div class="top-header-font">百想科技SAAS服务管理平台</div>
+        <div>
+          <h1 id="login_title"></h1>
+          <div class="layui-form-item">
+            <input
+              class="layui-input input-box"
+              name="user_no"
+              id="user_no"
+              value=""
+              placeholder="用户名"
+              lay-verify="required"
+              type="text"
+              autocomplete="off"
+            />
+          </div>
+          <div class="layui-form-item">
+            <input
+              class="layui-input input-box"
+              name="pwd"
+              id="pwd"
+              value=""
+              placeholder="密码"
+              lay-verify="required"
+              type="password"
+              autocomplete="off"
+            />
+          </div>
+ 
+          <div
+            class="layui-form-item"
+            style="margin-bottom: 20px; margin-top: 20px"
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <div style="display: flex; align-items: center">
+                <input
+                  style="margin-top: unset; margin-right: 10px"
+                  type="checkbox"
+                  id="ck_rmbUser"
+                  name="remember"
+                  lay-skin="primary"
+                  title="记住密码"
+                />
+                <label
+                  style="margin-top: unset"
+                  for="ck_rmbUser"
+                  class="layui-unselect layui-form-checkbox"
+                  lay-skin="primary"
+                >
+                  <span style="padding: 0; margin-top: unset">记住密码</span>
+                </label>
+              </div>
+<!-- 
+              <a
+                href="forgetpwd.html"
+                id="forget_pwd_id"
+                class="layadmin-user-jump-change layadmin-link"
+                style="margin-left: 20px;color:#333;"
+                >忘记密码</a
+              >
+            </div> -->
+            <a
+            href="./page/ResetPassword.html"
+            id="forget_pwd_id_"
+            class="layadmin-user-jump-change layadmin-link"
+            style="margin-left: 20px;color:#333;padding: 5px 0;"
+            >忘记密码</a
+          >
+            <!-- id="forget_pwd_id"  -->
+          </div>
+                   <button
+            style="background-color: #64d2fe; color: white"
+            class="layui-btn layui-btn-normal login_btn"
+            id="loginbtn"
+            lay-submit=""
+            lay-filter="login"
+          >
+            登录
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/jquery-migrate-3.4.1.min.js"></script>
+  <script src="/js/jquery.cookie.js"></script>
+  <script type="text/javascript" src="/js/crypto-js.min.js"></script>
+  <script language="JavaScript" src="/js/server.js"></script>
+  <script type="text/javascript" src="/js/server_common.js"></script>
+  <script type="text/javascript" src="login.js"></script>
+  <script type="text/javascript" src="login.js"></script>
+  <!-- <script type="text/javascript" src="scanlogin.js"></script> -->
+  <script type="text/javascript" src="./layui/layui.js"></script>
+  <!-- <script
+    type="text/javascript"
+    src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"
+  ></script> -->
+  <script type="text/javascript">
+    layui.use(["layer", "element"], function () {
+      var element = layui.element;
+      var layer = layui.layer;
+    });
+
+    function getUrlParam(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg); //匹配目标参数
+      if (r != null) return unescape(r[2]);
+      return null; //返回参数值
+    }
+    initUrlParams();
+  </script>
+</html>

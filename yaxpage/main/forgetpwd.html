@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>百想科技SAAS服务管理平台</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/main/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/main/css/login.css" media="all" />
+	<style>
+.layui-form-item {
+    margin-bottom: 35px;
+    clear: both;
+}
+</style>
+	
+</head>
+<body>
+	<div class="video_mask"></div>
+	<div class="login layui-form">
+	    <h1>找回密码</h1>
+	    	<div class="layui-form-item">
+				<input class="layui-input" name="mobile_phone" id="mobile_phone"   placeholder="请输入手机号码" type="text" autocomplete="off">
+		    </div>
+		    <div class="layui-form-item form_code">
+				<input class="layui-input" name="code" id="code"  placeholder="请输入短信验证码"  type="password" autocomplete="off">
+				<div class="code"><button class="layui-btn login_btn" id="send"  lay-filter="send" style="margin-top:-1px;">发送验证码</button></div>
+		    </div>
+
+			<button class="layui-btn login_btn" id="validateCode" lay-submit="" lay-filter="confirm">确认</button>
+		
+	</div>
+	<script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/jquery-migrate-3.4.1.min.js"></script>
+	<script type="text/javascript"  src="/js/server.js"></script>
+	<script type="text/javascript" src="forgetpwd.js"></script>
+	<script type="text/javascript" src="/main/layui/layui.js"></script>
+</body>
+</html>

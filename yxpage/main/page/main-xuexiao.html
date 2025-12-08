@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>教育局工作台</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../main/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../css/font-awesome.min.css" media="all" />
+</head>
+<style>
+	html,
+	body {
+
+		padding: 10px;
+
+		background-color: #eee;
+
+		height: calc(100% - 20px);
+
+
+
+	}
+
+	body {
+
+		padding: 10px;
+
+	}
+
+	* ::selection {
+
+		background: #316cc5;
+
+		color: rgb(255, 255, 255) !important;
+
+	}
+
+	.layui-container {
+
+		background-color: transparent;
+
+		border-radius: 20px;
+
+		width: 100%;
+
+		height: 100%;
+
+		color: #000;
+
+	}
+
+	#user-menus {
+
+
+
+		padding: 20px;
+
+		/* display: ; */
+
+		display: grid;
+
+		grid-gap: 10px;
+
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+
+	}
+
+	.tenant-layout {
+
+		display: flex;
+
+		flex-direction: column;
+
+		font-size: 13px;
+
+		height: 120px;
+
+		border: 1px solid #eee;
+
+		border-radius: 10px;
+
+		background-color: rgb(244, 246, 249);
+
+	}
+
+	.tenant-layout.active {
+
+		border-color: #1e9fff;
+
+	}
+
+	.tenant-layout:hover {
+
+		cursor: pointer;
+
+		border-color: #1e9fff;
+
+	}
+
+	.tenant-layout-tag {
+
+		height: 25px;
+
+		display: flex;
+
+		flex-direction: column;
+
+		/* justify-content: space-between; */
+
+		width: max-content;
+
+		align-items: normal;
+
+		padding: 10px 0;
+
+	}
+
+	.tenant-layout-tag span {
+
+
+
+		background-color: #1e9fff;
+
+		color: #fff;
+
+		line-height: 14px;
+
+		padding: 5px 20px;
+
+		height: 24px;
+
+	}
+
+	.avatar {
+
+		width: 40px;
+
+		height: 40px;
+
+		padding: 10px;
+
+		border-radius: 50%;
+
+		/* border: 1px solid #eee; */
+
+	}
+
+	.tenant-layout-app {
+
+		padding: 2px 10px 10px 10px;
+
+		display: flex;
+
+		height: 55px;
+
+		align-items: center;
+
+		flex-direction: row;
+
+	}
+
+	.tenant-layout-app div {
+
+		display: flex;
+
+		flex-direction: column;
+
+	}
+
+	.sub-name-text {
+
+		font-size: 12px;
+
+		color: #b3b3b3;
+
+		border: 1px solid #b3b3b3;
+
+		border-radius: 2px;
+
+		width: max-content;
+
+		padding: 0 5px;
+
+	}
+
+	.name-text {
+
+		font-size: 16px;
+		color: #000;
+
+		font-weight: bold;
+
+	}
+
+	.info-layout {
+
+		padding: 10px;
+
+		background-color: rgba(255, 255, 255, 0.314);
+
+		box-shadow: rgba(183, 215, 247, 0.2) 0px 8px 10px 0px;
+
+		border-radius: 10px;
+
+		min-height: 3rem;
+
+	}
+
+	.info-layout #sys-apps .active {
+
+		border: 1px solid #1e9fff;
+
+		color: #1e9fff;
+
+	}
+
+	.info-layout .layout-title-text {
+
+		color: #000;
+
+	}
+
+	.table th {
+
+		padding: 4px 2px;
+
+	}
+
+	.table tr {
+		width: 100%;
+		display: table;
+		table-layout: fixed;
+		border-bottom: 1px solid rgb(225, 229, 241);
+
+	}
+
+	.table td {
+
+		padding: 4px 2px;
+
+	}
+
+	td.text-truncation {
+		/* 单行显示省略号 */
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		max-width: 8rem;
+	}
+
+	.table>tbody {}
+
+	.table-body {
+		display: block;
+		max-height: 300px;
+		overflow: hidden;
+		overflow-y: auto;
+		height: 300px !important;
+
+	}
+
+	::-webkit-scrollbar {
+		width: 4px;
+
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #ccc;
+		border-radius: 2px;
+	}
+
+	/* .tenant-layout{
+
+            width: ;
+
+        } */
+</style>
+
+<body class="" style="background-image: url('../images/xxlj/bg.jpg');">
+
+	<div class="layui-container" style="display: grid;grid-gap: 10px;grid-template-columns: 280px auto;height:44%;  ">
+
+		<div class="home-page-left" style="width:280px;display: grid;grid-gap: 10px;">
+
+			<div class="user-info info-layout" style="background-color: #ffffff;">
+
+				<div class="layout-title-text" style="font-size: 1rem;line-height: 1.6rem;font-weight: bold;">我的信息</div>
+
+				<div
+					style="display: flex;flex-direction: column; box-sizing: border-box; align-items:center;width: 100%;padding: 10px;height:calc(100% - 9.6rem)">
+
+					<div>
+
+						<img src="../images/xxlj/user.png" alt="" srcset=""
+							style="background-color: #1e9fff;height:3rem;width:3rem;border-radius: 50%;">
+
+					</div>
+
+					<div style="font-size:1rem;text-align: center;padding:10px;">
+
+						<div id="user-name" style="font-size:1.1rem;font-weight: bold;">姓名：</div>
+
+
+
+						<div id="user-no">----</div>
+
+					</div>
+
+				</div>
+
+				<div
+					style="display: flex;flex-direction: column;justify-content: space-around; height:8rem; box-sizing: border-box; align-items:center;width: 100%;padding: 10px;">
+
+					<!-- <button class="layui-btn layui-btn-primary layui-border-blue layui-btn-radius" style="width:80%;">
+
+                    学校信息维护</button> -->
+
+					<button class="layui-btn layui-btn-radius layui-btn-primary" style="margin:0;width:80%;" id="set-password">
+
+						设置密码</button>
+
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+		<div class="home-page-right"
+			style="display: grid;grid-gap: 10px;grid-template-rows:55% auto;background-color: transparent;">
+
+			<div class=" info-layout" style="min-height:2rem ;">
+
+				<div class="layout-title-text" style="font-size: 1rem;line-height: 3rem;font-weight: bold;">
+					<img src="../images/xxlj/tongji.png" alt="" srcset="" style="height:1.2rem;width:1.2rem; padding: 0.2rem;">
+					数据统计
+				</div>
+
+				<div
+					style="display: grid;box-sizing: border-box;grid-template-columns:20% 19% 19% 19% 19%;grid-gap:10px;height:calc(100% - 4rem)">
+
+
+
+					<div
+						style="font-size:1rem;background-color:rgb(212 240 250);border-radius: 10px;padding: 5px;height: 100%;text-align: center;display: flex;flex-direction: row;align-items: center;justify-content: center;">
+
+						<div style="padding: 5px;">
+
+							<img src="../images/xxlj/daibanicon/daiban.png" alt="" srcset="" style="height:3rem;width: 3rem;">
+
+						</div>
+						<div>
+							<div style="font-size: 1rem;line-height: 2rem;" id="todo_cnt">待处理：0</div>
+							<div style="font-size: 1rem;line-height: 2rem;" id="mine_pro_cnt">已处理：0</div>
+
+						</div>
+					</div>
+
+					<div
+						style="font-size:1rem;background-color: #ffffff;border-radius: 10px;padding:5px 20px ;height:100%;text-align: center;display: flex;flex-direction: column;align-items: flex-start;justify-content: center;">
+
+						<div style="font-size: 1rem;line-height: 2rem;">课程发布</div>
+
+						<div>
+							<img src="../images/xxlj/daibanicon/xiazai.png" alt="" srcset="" style="height:1.2rem;width: 1.2rem;">
+
+							<span style="font-size: 1.2rem;" id="cn_con">0</span>
+						</div>
+
+					</div>
+					<div
+						style="font-size:1rem;background-color: #ffffff;border-radius: 10px;padding:5px 20px ;height:100%;text-align: center;display: flex;flex-direction: column;align-items: flex-start;justify-content: center;">
+
+						<div style="font-size: 1rem;line-height: 2rem;">任务发布</div>
+
+						<div>
+							<img src="../images/xxlj/daibanicon/jidi.png" alt="" srcset="" style="height:1.2rem;width: 1.2rem;">
+
+							<span style="font-size: 1.2rem;" id="base_count">0</span>
+						</div>
+
+					</div>
+					<div
+						style="font-size:1rem;background-color: #ffffff;border-radius: 10px;padding:5px 20px ;height:100%;text-align: center;display: flex;flex-direction: column;align-items: flex-start;justify-content: center;">
+
+						<div style="font-size: 1rem;line-height: 2rem;">荣誉卡发出</div>
+
+						<div>
+							<img src="../images/xxlj/daibanicon/xuexiao.png" alt="" srcset="" style="height:1.2rem;width: 1.2rem;">
+
+							<span style="font-size: 1.2rem;" id="school_count">0</span>
+						</div>
+
+					</div>
+					<div
+					style="font-size:1rem;background-color: #ffffff;border-radius: 10px;padding:5px 20px ;height:100%;text-align: center;display: flex;flex-direction: column;align-items: flex-start;justify-content: center;">
+
+					<div style="font-size: 1rem;line-height: 2rem;">荣誉卡记录</div>
+
+					<div>
+						<img src="../images/xxlj/daibanicon/yishen.png" alt="" srcset="" style="height:1.2rem;width: 1.2rem;">
+
+						<span style="font-size: 1.2rem;" id="record_count">0</span>
+					</div>
+
+				</div>
+					<!-- <div
+						style="font-size:1rem;background-color: #ffffff;border-radius: 10px;padding:5px 20px ;height:100%;text-align: center;display: flex;flex-direction: column;align-items: flex-start;justify-content: center;">
+
+						<div style="font-size: 1rem;line-height: 2rem;">待审批</div>
+
+						<div>
+							<img src="../images/xxlj/daibanicon/yishen.png" alt="" srcset="" style="height:1.2rem;width: 1.2rem;">
+
+							<span style="font-size: 1.2rem;" id="mine_pro">0</span>
+						</div>
+
+					</div> -->
+				</div>
+
+			</div>
+
+			<div class="info-layout" style="background-color: #ffffff;">
+
+				<div class="layout-title-text" style="font-size: 1rem;line-height: 1.6rem;font-weight: bold;">
+
+					<img src="../images/xxlj/changyong.png" alt="" srcset=""
+						style="height:1.2rem;width:1.2rem; padding: 0.2rem;">常用功能
+				</div>
+
+				<div id="sys-apps"
+					style="display: grid;grid-gap:5px;grid-template-columns: repeat(6, 6rem);padding: 10px;min-height:5rem;">
+					<div>暂无常用功能</div>
+					<!-- <div style="padding: 5px;line-height: 1.2;height: calc(100% - 0);display: flex;align-items: center;flex-direction: column;justify-content: center;">
+
+                        <img src="../images/appicon/caiwu.png" alt="" srcset="" style="">
+
+                        <span style="font-size: 0.8rem;line-height:2.5rem;color: #000;">督导检查</span>
+
+                    </div>
+					<div style="padding: 5px;line-height: 1.2;height: calc(100% - 0);display: flex;align-items: center;flex-direction: column;justify-content: center;">
+
+                        <img src="../images/appicon/caiwu.png" alt="" srcset="" style="">
+
+                        <span style="font-size: 0.8rem;line-height:2.5rem;color: #000;">基地申请</span>
+
+                    </div>
+					<div style="padding: 5px;line-height: 1.2;height: calc(100% - 0);display: flex;align-items: center;flex-direction: column;justify-content: center;">
+
+                        <img src="../images/appicon/caiwu.png" alt="" srcset="" style="">
+
+                        <span style="font-size: 0.8rem;line-height:2.5rem;color: #000;">科研成果资料</span>
+
+                    </div>
+					<div style="padding: 5px;line-height: 1.2;height: calc(100% - 0);display: flex;align-items: center;flex-direction: column;justify-content: center;">
+
+                        <img src="../images/appicon/caiwu.png" alt="" srcset="" style="">
+
+                        <span style="font-size: 0.8rem;line-height:2.5rem;color: #000;">经费申请</span>
+
+                    </div>
+					<div style="padding: 5px;line-height: 1.2;height: calc(100% - 0);display: flex;align-items: center;flex-direction: column;justify-content: center;">
+
+                        <img src="../images/appicon/caiwu.png" alt="" srcset="" style="">
+
+                        <span style="font-size: 0.8rem;line-height:2.5rem;color: #000;">政策发布</span>
+
+                    </div> -->
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+	<div class="layui-container"
+		style="display: grid;grid-gap: 10px;grid-template-columns: 280px auto;height:44%;margin-top:10px; ">
+
+		<div class="home-page-left" style="width:280px;display: grid;grid-gap: 10px;">
+
+			<div class="user-info info-layout" style="background-image: url('../images/xxlj/tzbg.jpg');">
+
+				<div class="layout-title-text"
+					style="font-size: 1rem;line-height: 1.6rem;font-weight: bold;border-bottom: 2px solid #ff441e;">学校公告
+				</div>
+
+				<div
+					style="display: flex;flex-direction: column; box-sizing: border-box; align-items:center;width: 100%;padding: 10px;max-height:300px;overflow: hidden;overflow-y: auto;">
+
+					<div id="notice-detail" style="width:100%;">
+
+						暂无内容
+
+					</div>
+
+
+
+				</div>
+
+				<div
+					style="display: flex;flex-direction: row;justify-content: start; box-sizing: border-box; align-items:center;width: 100%;padding: 10px;"
+					id="notice-detail-action">
+
+					<!-- <a class="layui-btn layui-btn-primary layui-border-blue layui-btn-radius" style="width:80%;">
+
+                    查看详情</a> -->
+
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+
+
+		<div class="home-page-right" style="display: grid;grid-gap: 10px;grid-template-columns: 60% auto;">
+			<div class=" info-layout" style="background-color: #ffffff;">
+
+				<div class="layout-title-text"
+					style="font-size: 1rem;line-height: 1.6rem;font-weight: bold;display: flex;justify-content: space-between;">
+					<span>
+						<img src="../images/xxlj/renwu.png" alt="" srcset="" style="height:1.2rem;width:1.2rem; padding: 0.2rem;">
+						任务列表
+					</span>
+					<a style="color:#b0b1b1;" url="/vpages/index.html#/list/srvledu_labor_task_sch_count_select" app="ledu"
+						class="task-more">
+
+						更多
+						<i class="fa fa-angle-right fa-1x"></i>
+					</a>
+				</div>
+				<div style="box-sizing: border-box;width: 100%;padding: 10px;" id="task-list">
+					<table class="table" style="width: 100%;text-align: left;">
+
+						<tr class="table-hander" style="background-color: rgb(207, 240, 252);padding:5px;">
+
+							<th style="width:8rem ;">任务名称</th>
+
+							<th>内容</th>
+
+							<th>状态</th>
+
+							<th>负责人</th>
+
+							<th>日期</th>
+
+							<th>操作</th>
+
+						</tr>
+
+						<tr>
+
+							<td colspan="6" style="text-align: center;">暂无数据</td>
+
+						</tr>
+
+
+
+					</table>
+
+				</div>
+
+			</div>
+
+			<div class=" info-layout" style="background-color: #ffffff;">
+
+				<!-- <div class="layout-title-text"  style="font-size: 1rem;line-height: 1.6rem;font-weight: bold;"><img src="../images/appicon/caiwu.png" alt="" srcset="" style="height:1.2rem;width:1.2rem; padding: 0.2rem;">问题追踪记录</div> -->
+
+
+				<div class="layout-title-text"
+					style="font-size: 1rem;line-height: 1.6rem;font-weight: bold;display: flex;justify-content: space-between;">
+					<span>
+						<img src="../images/xxlj/wenti.png" alt="" srcset="" style="height:1.2rem;width:1.2rem; padding: 0.2rem;">
+						教育局公告
+					</span>
+					<a style="color:#b0b1b1;" title="教育局公告" url="/vpages/index.html#/list/srvyxjdsb_apply_notice_xj_select"
+						app="ledu" class="task-more">
+
+						更多
+						<i class="fa fa-angle-right fa-1x"></i>
+					</a>
+				</div>
+				<div style="box-sizing: border-box;width: 100%;padding: 10px;">
+
+
+
+					<table class="table" style="width: 100%;text-align: left;" id="msg-list">
+						<tr>
+							<td style="text-align: center;">暂无内容</td>
+
+						</tr>
+					</table>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+
+
+	<script src="../../js/jquery-3.7.1.min.js"></script>
+	<script src="../../js/jquery-migrate-3.4.1.min.js"></script>
+	<script src="../../js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/server.js"></script>
+	<script type="text/javascript" src="../../js/server_common.js"></script>
+	<script type="text/javascript" src="../js/index.js"></script>
+	<!-- <script type="text/javascript" src="./user/user.js"></script> -->
+	<script>
+		(function () {
+
+			let useApps = [
+				{
+					text: '课程信息',
+					icon: '../images/xxlj/jiaoshi/dangan.png',
+					url: '/vpages/index.html#/list/srvledu_course_select',
+					app: 'ledu'
+				}, {
+					text: '日历课表',
+					icon: '../images/xxlj/jiaoshi/kecheng.png',
+					url: '/vpages/#/timetable',
+					app: 'ledu'
+				}, {
+					text: '劳动任务',
+					icon: '../images/xxlj/jiaoshi/qingdan.png',
+					url: '/vpages/index.html#/list/srvledu_labor_task_select',
+					app: 'ledu'
+				}, {
+					text: '课程评价',
+					icon: '../images/xxlj/jiaoshi/dangan.png',
+					url: '/vpages/index.html#/list/srvledu_class_record_select',
+					app: 'ledu'
+				}, {
+					text: '任务评价',
+					icon: '../images/xxlj/jiaoshi/pingjia.png',
+					url: '/vpages/index.html#/list/srvledu_task_eva_record_select',
+					app: 'ledu'
+				}, {
+					text: '学生档案',
+					icon: '../images/xxlj/jiaoshi/dangan.png',
+					url: '/vpages/index.html#/list/srvledu_semester_evaluate_select',
+					app: 'ledu'
+				}
+			]
+
+			// [
+			// 	{
+			// 		text:'教师培训资料',
+			// 		icon:'../images/xxlj/xuexiao/ziliao.png',
+			// 		url:'/vpages/index.html#/list/srvledu_resource_select',
+			// 		app:'ledu'
+			// 	},{
+			// 		text:'实践活动申报',
+			// 		icon:'../images/xxlj/xuexiao/shenbao.png',
+			// 		url:'/vpages/index.html#/v2/listproc/AA',
+			// 		app:'ledu'
+			// 	},{
+			// 		text:'经费申请',
+			// 		icon:'../images/xxlj/xuexiao/jingfei.png',
+			// 		url:'/vpages/index.html#/v2/listproc/srvledu_grant_apply_select',
+			// 		app:'ledu'
+			// 	},{
+			// 		text:'课程管理',
+			// 		icon:'../images/xxlj/xuexiao/kecheng.png',
+			// 		url:'/vpages/index.html#/list/srvledu_calendar_select',
+			// 		app:'ledu'
+			// 	},{
+			// 		text:'师资管理',
+			// 		icon:'../images/xxlj/xuexiao/shizi.png',
+			// 		url:'/vpages/index.html#/list/srvledu_teacher_select',
+			// 		app:'ledu'
+			// 	}
+			// ]
+
+
+			// 个人信息
+			let userInfo = window.sessionStorage.getItem('current_login_user') ? JSON.parse(window.sessionStorage.getItem('current_login_user')) : {}
+			document.getElementById("user-name").innerText = `姓名：${userInfo.real_name}`
+			document.getElementById("user-no").innerText = `工号：${userInfo.user_no}`
+			let deptInfo = null
+
+			// if(userInfo.hasOwnProperty('_dept_info') && userInfo['_dept_info'] && userInfo['_dept_info'].dept_name){
+			// 	document.getElementById("dept-name").innerText  = `所属机构：${userInfo['_dept_info'].dept_name}`
+			// }else{
+			// 	document.getElementById("dept-name").innerText  = `所属机构：无`
+			// }
+
+
+
+			// 获取菜单app
+			// this.targetTenantFun = function(e){
+			// 	let item = JSON.parse(e.dataset.options)
+			// 	console.log(item)
+			// 	goTenant(item)
+			// }
+			// var menus = JSON.parse(window.sessionStorage.getItem("current_login_user")) ;// 用户租户列表
+			// var apps = JSON.parse(window.sessionStorage.getItem("sys_apps")) ;// 用户app列表
+			// var avtiveTenant = JSON.parse(window.sessionStorage.getItem("current_login_user")).tenant ;// 当前租户
+			// var userType = JSON.parse(window.sessionStorage.getItem("current_login_user")).user_type || '--' ;// 当前用户
+			// menus = menus.hasOwnProperty('otherTenantInfos') ? menus.otherTenantInfos : []
+
+
+			this.pendingList = function () {
+				// 查询待办事项
+				var elementArray = [];
+				let app = 'ledu'
+				let bxReq = {
+					"serviceName": "srvprocess_todo_cnt_select",
+					"colNames": ["*"]
+				}
+				let resList = []
+				var path = top.pathConfig.gateway + "/ledu/select/srvprocess_todo_cnt_select";
+				let listElement = []
+				var callBack = function (res) {
+					if (res.state == "SUCCESS") {
+						resList = res.data
+						if (Array.isArray(resList) && resList.length > 0) {
+							let data = resList[0]
+							console.log(data)
+							document.getElementById("todo_cnt").innerText = `待处理：${data['todo_cnt']}`;
+							document.getElementById("mine_pro_cnt").innerText = `已处理：${data['mine_pro_cnt']}`;
+							document.getElementById("mine_pro").innerText = `${data['mine_pro_cnt']}`;  // 已审批
+						}
+					}
+				}
+				crosAjax(path, "POST", bxReq, callBack);
+			}
+			this.schedueCount = function () {
+				// 课程发布
+				var elementArray = [];
+				let app = 'ledu'
+				let bxReq = {
+					"serviceName": "srvledu_course_schedue_count_select",
+					"colNames": ["*"],
+					// "group":[{
+					// 	colName:"cn_con",
+					// 	type:"count"
+					// }]
+				}
+
+				let resList = []
+				var path = top.pathConfig.gateway + "/ledu/select/srvledu_course_schedue_count_select";
+
+				let listElement = []
+				var callBack = function (res) {
+					if (res.state == "SUCCESS") {
+						resList = res.data
+
+						if (Array.isArray(resList) && resList.length > 0) {
+							let data = resList[0]
+
+							console.log(data)
+							document.getElementById("cn_con").innerText = `${data['mun'] ? data['mun'] : 0}`;
+						}
+					}
+				}
+				crosAjax(path, "POST", bxReq, callBack);
+			}
+			this.applyCount = function () {
+				// 经费
+				var elementArray = [];
+				let app = 'ledu'
+				let bxReq = {
+					"serviceName": "srvledu_labor_task_count_select",
+					"colNames": ["*"],
+					// "group":[{
+					// 	colName:"cn_con",
+					// 	type:"count"
+					// }]
+				}
+
+				let resList = []
+				var path = top.pathConfig.gateway + "/ledu/select/srvledu_labor_task_count_select";
+
+				let listElement = []
+				var callBack = function (res) {
+					if (res.state == "SUCCESS") {
+						resList = res.data
+
+						if (Array.isArray(resList) && resList.length > 0) {
+							let data = resList[0]
+
+							console.log(data)
+							document.getElementById("base_count").innerText = `${data['mun'] ? data['mun'] : 0}`;
+						}
+					}
+				}
+				crosAjax(path, "POST", bxReq, callBack);
+			}
+			this.activityApplyCount = function () {
+				// 活动申报
+				var elementArray = [];
+				let app = 'ledu'
+				let bxReq = {
+					"serviceName": "srvledu_evaluate_index_count_select",
+					"colNames": ["*"],
+					// "group":[{
+					// 	colName:"cn_con",
+					// 	type:"count"
+					// }]
+				}
+
+				let resList = []
+				var path = top.pathConfig.gateway + "/ledu/select/srvledu_evaluate_index_count_select";
+
+				let listElement = []
+				var callBack = function (res) {
+					if (res.state == "SUCCESS") {
+						resList = res.data
+
+						if (Array.isArray(resList) && resList.length > 0) {
+							let data = resList[0]
+
+							console.log(data)
+							document.getElementById("school_count").innerText = `${data['mun'] ? data['mun'] : 0}`;
+						}
+					}
+				}
+				crosAjax(path, "POST", bxReq, callBack);
+			}
+			this.recordCount = function () {
+				// 活动申报
+				var elementArray = [];
+				let app = 'ledu'
+				let bxReq = {
+					"serviceName": "srvledu_honorary_title_record_count_select",
+					"colNames": ["*"],
+					// "group":[{
+					// 	colName:"cn_con",
+					// 	type:"count"
+					// }]
+				}
+
+				let resList = []
+				var path = top.pathConfig.gateway + "/ledu/select/srvledu_honorary_title_record_count_select";
+
+				let listElement = []
+				var callBack = function (res) {
+					if (res.state == "SUCCESS") {
+						resList = res.data
+
+						if (Array.isArray(resList) && resList.length > 0) {
+							let data = resList[0]
+
+							console.log(data)
+							document.getElementById("record_count").innerText = `${data['mun'] ? data['mun'] : 0}`;
+						}
+					}
+				}
+				crosAjax(path, "POST", bxReq, callBack);
+			}
+
+			this.taskList = function () {
+				// 任务列表
+				var elementArray = [];
+				let app = 'ledu'
+				let bxReq = {
+					"serviceName": "srvledu_labor_task_sch_count_select",
+					"colNames": ["*"],
+					"page": {
+						"pageNo": 1,
+						"rownumber": 9
+					}
+				}
+
+				let resList = []
+				var path = top.pathConfig.gateway + "/ledu/select/srvledu_labor_task_sch_count_select";
+
+				let listElement = []
+				var callBack = function (res) {
+					if (res.state == "SUCCESS") {
+						resList = res.data
+
+						if (Array.isArray(resList) && resList.length > 0) {
+							let data = resList
+
+							console.log(data)
+							let elementArray = []
+							elementArray.push(`<table class="table" style="width: 100%;text-align: left;"><tr class="table-hander" style="background-color: rgb(207, 240, 252);padding:5px;">
+					<th style="width:8rem ;">任务名称</th>
+					<th >内容</th>
+					<th  style="width:3rem;">状态</th>
+					<th style="width:4rem;">负责人</th>
+					<th  style="width:6rem;">日期</th>
+					<th style="width:3rem;">操作</th>
+					</tr>`)
+							for (let i = 0; i < resList.length; i++) {
+								let item = resList[i]
+								// task_name/任务名称,description/内容,state/状态,teacher_name/负责人,date/日期
+								let str = `<tr>
+                                <td class="text-truncation"  style="width:8rem;">${item.task_name}</td>
+                                <td class="text-truncation" >${item.description}</td>
+                                <td  class="text-truncation"  style="width:3rem;">${item.state}</td>
+                                <td  class="text-truncation"  style="width:4rem;">${item.teacher_name}</td>
+                                <td  class="text-truncation"   style="width:6rem;">${item.date}</td>
+                                <td style="width:3rem;">
+                                    <a style="height:24px;line-height:24px;padding:0 2px;font-size:10px;" class="layui-btn layui-btn-normal layui-btn-sm to-detail layui-border-blue" _id="${item.id}"  title="${item.task_name}" srv="srvledu_labor_task_select" app="ledu" style="width:80%;">详情</a>
+                                </td>
+
+                                </tr>`
+
+
+								elementArray.push(str)
+							}
+							elementArray.push(`</table>`)
+							document.getElementById("task-list").innerHTML = elementArray.join('')
+
+						}
+					}
+				}
+				crosAjax(path, "POST", bxReq, callBack);
+			}
+			this.msgList = function () {
+				// 公告列表
+				var elementArray = [];
+				let app = 'ledu'
+				let bxReq = {
+					"serviceName": "srvyxjdsb_apply_notice_xj_select",
+					"colNames": ["*"],
+					"page": {
+						"pageNo": 1,
+						"rownumber": 10
+					}
+				}
+
+				let resList = []
+				var path = top.pathConfig.gateway + "/ledu/select/srvyxjdsb_apply_notice_xj_select";
+
+				let listElement = []
+				var callBack = function (res) {
+					if (res.state == "SUCCESS") {
+						resList = res.data
+
+						if (Array.isArray(resList) && resList.length > 0) {
+							let data = resList
+
+							console.log(data)
+
+							let elementArray = []
+							for (let i = 0; i < resList.length; i++) {
+								let item = resList[i]
+								// task_name/任务名称,description/内容,state/状态,teacher_name/负责人,date/日期
+								let str = `<tr>
+                                        <td style="color:#1e9fff;font-weight: bold;width: 9rem;">${item.create_time}</td>
+                                        <td  class="text-truncation">
+                                            <a class="to-detail text-truncation" _id="${item.id}" title="教育局通知" srv="srvyxjdsb_apply_notice_xj_select" app="ledu" style="width:80%;">${item.title}</a>
+                                        </td>
+                                    </tr>`
+
+
+								elementArray.push(str)
+							}
+							document.getElementById("msg-list").innerHTML = elementArray.join('')
+						}
+					} else {
+						console.error('srvyxjdsb_apply_notice_xj_select', res.state, res.resultMessage)
+					}
+				}
+				crosAjax(path, "POST", bxReq, callBack);
+			}
+			this.noticeList = function () {
+				// 学校公告 列表
+				var elementArray = [];
+				let app = 'ledu'
+				let bxReq = {
+					"serviceName": "srvyxjdsb_apply_notice_sc_select",
+					"colNames": ["*"],
+					"page": {
+						"pageNo": 1,
+						"rownumber": 12
+					}
+				}
+
+				let resList = []
+				var path = top.pathConfig.gateway + "/ledu/select/srvyxjdsb_apply_notice_sc_select";
+
+				let listElement = []
+				var callBack = function (res) {
+					if (res.state == "SUCCESS") {
+						resList = res.data
+
+						if (Array.isArray(resList) && resList.length > 0) {
+							let elementArray = []
+							// class_name/班级,class_date/上课日期,time_slot/上课时间,theme/主题
+							elementArray.push(`<ul class="table" style="width: 100%;text-align: left;">`)
+							for (let i = 0; i < resList.length; i++) {
+								let item = resList[i]
+								let str = `
+                                <li>
+                                    <a style="height:24px;line-height:24px;padding:0 2px;font-size:14px;" class="to-detail"  _id="${item.id}"  title="${item.title}" srv="srvyxjdsb_apply_notice_sc_select" app="ledu" style="width:80%;">${item.title}</a>
+                                </li>`
+
+
+								elementArray.push(str)
+							}
+							elementArray.push(`</ul>`)
+							document.getElementById("notice-detail").innerHTML = elementArray.join('')
+
+							// let data = resList[0]
+							// document.getElementById("notice-detail").innerHTML = `${data['context'] ? data['context']: '暂无内容'}`;	
+							// console.log(data)
+							document.getElementById("notice-detail-action").innerHTML = `<a style="color:#ff441e;" url="/vpages/index.html#/list/srvyxjdsb_apply_notice_sc_select" app="ledu" class="task-more">查看更多
+                        </a>`
+
+
+							// `<a class="layui-btn layui-btn-primary to-detail layui-border-blue layui-btn-radius" _id="${data.id}" title="申报须知" srv="srvyxjdsb_apply_notice_sb_select" app="ledu" style="width:80%;">查看更多</a>`;	
+
+						} else {
+
+						}
+					} else {
+						console.error('bxledu_issue_track', res.state, res.resultMessage)
+					}
+				}
+				crosAjax(path, "POST", bxReq, callBack);
+			}
+			// this.noticeList = function(){
+			// 	// 申报须知
+			// 	var elementArray = [];
+			// 	let app = 'ledu' 
+			// 	let bxReq = {
+			// 		"serviceName": "srvyxjdsb_apply_notice_sb_select",
+			// 		"colNames": ["*"]
+			// 	}
+
+			// 	let resList = []
+			// 	var path = top.pathConfig.gateway + "/ledu/select/srvyxjdsb_apply_notice_sb_select";
+
+			// 	let listElement = []	
+			// 	var callBack = function(res) {
+			// 		if (res.state == "SUCCESS") {
+			// 			resList = res.data
+
+			// 			if (Array.isArray(resList)  && resList.length > 0) {
+			// 				let data = resList[0]
+			// 				document.getElementById("notice-detail").innerHTML = `${data['context'] ? data['context'] : '暂无内容'}`;	
+			// 				console.log(data)
+
+			// 				document.getElementById("notice-detail-action").innerHTML = `<a class="to-detail" _id="${data.id}" title="申报须知" srv="srvyxjdsb_apply_notice_sb_select" app="ledu" style="color:#ff441e;">查看详情</a>`;	
+
+			// 			}else{
+
+			// 				document.getElementById("notice-detail").innerHTML = `${'暂无内容'}`;	
+			// 				document.getElementById("notice-detail-action").innerHTML = ``;	
+
+			// 			}
+			// 		}else{
+			//             console.error('bxledu_issue_track',res.state,res.resultMessage)
+			//         }
+			// 	}
+			// 	crosAjax(path, "POST", bxReq, callBack);
+			// }
+			this.reloadApps = function () {
+				// 常用功能 静态渲染
+				let elementArray = []
+				if (Array.isArray(useApps) && useApps.length > 0) {
+					for (let i = 0; i < useApps.length; i++) {
+						let app = useApps[i]
+						let str = `<a class="use-app" url="${app.url}" app="${app.app}" style="padding: 5px;line-height: 1.2;height: calc(100% - 0);display: flex;align-items: center;flex-direction: column;justify-content: center;cursor: pointer;">
+
+							<img src="${app.icon}" alt="" srcset="" style="width:40px;height:40px;">
+
+							<span style="font-size: 0.8rem;line-height:2.5rem;color: #000;">${app.text}</span>
+
+							</a>`
+
+
+						elementArray.push(str)
+					}
+				}
+
+				document.getElementById("sys-apps").innerHTML = elementArray.join('')
+			}
+			$("body").on("click", "a.to-detail  ", function () {
+				// 详情
+
+				let srv = $(this).attr('srv');
+				let app = $(this).attr('app');
+				let id = $(this).attr('_id');
+				let title = $(this).attr('title') || '';
+
+				let page = {
+					app: null,
+					title: title,
+					url: `/vpages/index.html#/detail/${srv}/${id}?srvApp=${app}&isdraft=false`,
+					icon: ''
+				}
+				top.tab.addTab(page);
+			})
+			$("body").on("click", "#set-password  ", function () {
+				// 设置密码
+				let page = {
+					app: null,
+					title: '修改密码',
+					url: 'page/user/changePwd.html',
+					icon: ''
+				}
+				top.tab.addTab(page);
+			})
+
+
+			$("body").on("click", "a.use-app  ", function () {
+				// 点击常用功能打开页面
+				let href = $(this).attr('url');
+				let app = $(this).attr('app');
+				console.log($(this), href, $(this).attr('app'))
+				let page = {
+					app: app,
+					title: $(this).context.outerText,
+					url: href,
+					icon: ''
+				}
+				top.tab.addTab(page);
+				// addTab($(this));
+			})
+			$("body").on("click", "a.task-more  ", function () {
+				let href = $(this).attr('url');
+				let app = $(this).attr('app');
+				let title = $(this).attr('title') || '任务列表';
+
+				// 设置密码
+				let page = {
+					app: app,
+					title: title,
+					url: href,
+					icon: ''
+				}
+				top.tab.addTab(page);
+			})
+
+
+			this.pendingList() // 查询待办
+			this.schedueCount() // 课程发布
+			this.applyCount() // 经费申报
+			this.activityApplyCount() // 活动申报
+			this.noticeList() // 申报须知
+			this.taskList() // 任务列表
+			this.msgList() // 问题追踪
+			this.reloadApps() // 常用应用
+
+
+		})()
+	</script>
+
+</body>
+
+</html>

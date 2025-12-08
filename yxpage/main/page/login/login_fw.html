@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>房屋合同管理系统 - 登录</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0c1b33, #1c3b6a, #3a1c6a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 建筑轮廓背景 */
+    /* .city-background {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(12, 27, 51, 0.9) 0%, transparent 100%);
+            z-index: 0;
+        }
+        
+        .building {
+            position: absolute;
+            bottom: 0;
+            background-color: rgba(20, 40, 80, 0.6);
+            border-left: 2px solid rgba(100, 150, 255, 0.3);
+            border-right: 2px solid rgba(100, 150, 255, 0.3);
+        }
+        
+        .building:nth-child(1) {
+            left: 5%;
+            width: 8%;
+            height: 35%;
+            box-shadow: inset 0 -20px 20px rgba(0, 50, 150, 0.3);
+        }
+        
+        .building:nth-child(2) {
+            left: 15%;
+            width: 6%;
+            height: 50%;
+            box-shadow: inset 0 -30px 30px rgba(0, 50, 150, 0.4);
+        }
+        
+        .building:nth-child(3) {
+            left: 23%;
+            width: 10%;
+            height: 70%;
+            box-shadow: inset 0 -40px 40px rgba(0, 80, 180, 0.4);
+        }
+        
+        .building:nth-child(4) {
+            left: 35%;
+            width: 7%;
+            height: 55%;
+            box-shadow: inset 0 -25px 25px rgba(0, 50, 150, 0.4);
+        }
+        
+        .building:nth-child(5) {
+            left: 44%;
+            width: 12%;
+            height: 75%;
+            box-shadow: inset 0 -45px 45px rgba(0, 80, 180, 0.5);
+        }
+        
+        .building:nth-child(6) {
+            left: 58%;
+            width: 9%;
+            height: 65%;
+            box-shadow: inset 0 -35px 35px rgba(0, 50, 150, 0.4);
+        }
+        
+        .building:nth-child(7) {
+            left: 69%;
+            width: 8%;
+            height: 45%;
+            box-shadow: inset 0 -25px 25px rgba(0, 50, 150, 0.3);
+        }
+        
+        .building:nth-child(8) {
+            left: 79%;
+            width: 11%;
+            height: 80%;
+            box-shadow: inset 0 -50px 50px rgba(0, 80, 180, 0.6);
+        }
+        
+        .building:nth-child(9) {
+            left: 92%;
+            width: 6%;
+            height: 40%;
+            box-shadow: inset 0 -20px 20px rgba(0, 50, 150, 0.3);
+        } */
+
+    /* 增强的建筑轮廓背景 */
+    .city-skyline {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 45%;
+      z-index: 1;
+    }
+
+    .building {
+      position: absolute;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(30, 58, 138, 0.8), rgba(59, 130, 246, 0.4));
+      border-radius: 4px 4px 0 0;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+      animation: buildingGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes buildingGlow {
+      0% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+      }
+
+      100% {
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+      }
+    }
+
+    .building::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 20%;
+      width: 60%;
+      height: 80%;
+      background: repeating-linear-gradient(0deg,
+          transparent,
+          transparent 8px,
+          rgba(59, 130, 246, 0.2) 8px,
+          rgba(59, 130, 246, 0.2) 12px);
+      border-radius: 2px;
+    }
+
+    .building::after {
+      content: '';
+      position: absolute;
+      top: 5%;
+      left: 10%;
+      width: 80%;
+      height: 10%;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.8) 20%,
+          transparent 40%,
+          rgba(255, 255, 255, 0.6) 60%,
+          transparent 80%,
+          rgba(255, 255, 255, 0.4) 100%);
+      border-radius: 2px;
+    }
+
+    .building:nth-child(1) {
+      left: 2%;
+      width: 8%;
+      height: 40%;
+      animation-delay: 0s;
+    }
+
+    .building:nth-child(2) {
+      left: 12%;
+      width: 6%;
+      height: 55%;
+      animation-delay: 0.5s;
+    }
+
+    .building:nth-child(3) {
+      left: 20%;
+      width: 10%;
+      height: 75%;
+      animation-delay: 1s;
+    }
+
+    .building:nth-child(4) {
+      left: 32%;
+      width: 7%;
+      height: 60%;
+      animation-delay: 1.5s;
+    }
+
+    .building:nth-child(5) {
+      left: 41%;
+      width: 12%;
+      height: 85%;
+      animation-delay: 2s;
+    }
+
+    .building:nth-child(6) {
+      left: 55%;
+      width: 9%;
+      height: 70%;
+      animation-delay: 2.5s;
+    }
+
+    .building:nth-child(7) {
+      left: 66%;
+      width: 8%;
+      height: 50%;
+      animation-delay: 3s;
+    }
+
+    .building:nth-child(8) {
+      left: 76%;
+      width: 11%;
+      height: 90%;
+      animation-delay: 3.5s;
+    }
+
+    .building:nth-child(9) {
+      left: 89%;
+      width: 9%;
+      height: 45%;
+      animation-delay: 4s;
+    }
+
+    /* 浮动粒子效果 */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      width: 1000px;
+      height: 600px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+    }
+
+    .left-panel {
+      flex: 1;
+      background: linear-gradient(135deg, rgba(30, 60, 114, 0.9), rgba(42, 82, 152, 0.9));
+      color: white;
+      padding: 50px 40px;
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .right-panel {
+      flex: 1;
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .logo-icon {
+      font-size: 28px;
+      background: rgba(255, 255, 255, 0.2);
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .welcome-text {
+      margin-bottom: 30px;
+    }
+
+    .welcome-text h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+
+    .welcome-text p {
+      font-size: 16px;
+      opacity: 0.9;
+      line-height: 1.6;
+      max-width: 90%;
+    }
+
+    .features {
+      margin-top: 30px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .feature i {
+      background: rgba(255, 255, 255, 0.15);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 18px;
+    }
+
+    .feature-text h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .feature-text p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .decoration {
+      position: absolute;
+      opacity: 0.05;
+      font-size: 200px;
+      bottom: -40px;
+      right: -20px;
+      transform: rotate(15deg);
+    }
+
+    .login-header {
+      margin-bottom: 40px;
+    }
+
+    .login-header h2 {
+      font-size: 28px;
+      color: #1e3c72;
+      margin-bottom: 10px;
+    }
+
+    .login-header p {
+      color: #555;
+      font-size: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #444;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #777;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 15px 15px 15px 45px;
+      border: 2px solid #e0e6f0;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: all 0.3s;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .form-control:focus {
+      border-color: #2a5298;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+      background: white;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+    }
+
+    .remember input {
+      margin-right: 8px;
+      accent-color: #2a5298;
+    }
+
+    .remember label {
+      color: #555;
+    }
+
+    .forgot-password {
+      color: #2a5298;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+      color: #1e3c72;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(30, 60, 114, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-login::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 20px;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(30deg);
+      transition: all 0.6s;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(30, 60, 114, 0.3);
+    }
+
+    .btn-login:hover::after {
+      left: 120%;
+    }
+
+    .divider {
+      text-align: center;
+      margin: 30px 0;
+      position: relative;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 42%;
+      height: 1px;
+      background: #ddd;
+    }
+
+    .divider::before {
+      left: 0;
+    }
+
+    .divider::after {
+      right: 0;
+    }
+
+    .social-login {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border: 1px solid #e0e6f0;
+      color: #555;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      color: #2a5298;
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .signup-link a {
+      color: #2a5298;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 5px;
+      transition: all 0.2s;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+      color: #1e3c72;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        width: 90%;
+        height: auto;
+        flex-direction: column;
+      }
+
+      .left-panel {
+        padding: 30px 20px;
+      }
+
+      .right-panel {
+        padding: 40px 30px;
+      }
+
+      .welcome-text h1 {
+        font-size: 28px;
+      }
+
+      .decoration {
+        display: none;
+      }
+
+      .city-background {
+        height: 20%;
+      }
+    }
+
+    .highlight {
+      color: #ffd166;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 动态背景 -->
+  <!-- <div class="city-background">
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+        <div class="building"></div>
+    </div> -->
+
+  <div class="city-skyline">
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+  </div>
+
+  <!-- 浮动粒子 -->
+  <div
+    class="particles"
+    id="particles"
+  ></div>
+
+  <div class="container">
+    <div class="left-panel">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-home"></i>
+        </div>
+        <div class="logo-text">房屋合同管理</div>
+      </div>
+
+      <div class="welcome-text">
+        <h1>高效管理您的<span class="highlight">房产合同</span></h1>
+        <!-- <p>专业可靠的房屋合同管理系统，帮助您轻松管理租赁合同、业主信息、账单支付等所有事务。</p> -->
+      </div>
+
+      <!-- <div class="features">
+                <div class="feature">
+                    <i class="fas fa-file-contract"></i>
+                    <div class="feature-text">
+                        <h3>合同数字化管理</h3>
+                        <p>所有合同电子化存储，随时随地访问</p>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-bell"></i>
+                    <div class="feature-text">
+                        <h3>到期自动提醒</h3>
+                        <p>合同到期前自动提醒，避免遗漏</p>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="feature-text">
+                        <h3>安全可靠</h3>
+                        <p>银行级加密保护您的数据安全</p>
+                    </div>
+                </div>
+            </div> -->
+
+      <div class="decoration">
+        <i class="fas fa-home"></i>
+      </div>
+
+      <div class="footer">
+        &copy; 2025 房屋合同管理系统 | 专业房地产解决方案
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="login-header">
+        <h2>欢迎回来</h2>
+        <p>请登录您的账户以访问合同管理系统</p>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">用户名</label>
+          <div class="input-with-icon">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              placeholder="请输入用户名"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">密码</label>
+          <div class="input-with-icon">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              placeholder="请输入密码"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="options">
+          <div class="remember">
+            <input
+              type="checkbox"
+              id="remember"
+            >
+            <label for="remember">记住我</label>
+          </div>
+          <a
+            href="./page/ResetPassword.html"
+            class="forgot-password"
+          >忘记密码?</a>
+        </div>
+
+        <button
+          type="submit"
+          class="btn-login"
+        >登录系统</button>
+      </form>
+
+      <!-- <div class="divider">或使用其他方式登录</div>
+            
+            <div class="social-login">
+                <div class="social-btn">
+                    <i class="fab fa-weixin"></i>
+                </div>
+                <div class="social-btn">
+                    <i class="fab fa-qq"></i>
+                </div>
+                <div class="social-btn">
+                    <i class="fab fa-weibo"></i>
+                </div>
+            </div> -->
+
+      <!-- <div class="signup-link">
+                还没有账户? <a href="#">立即注册</a>
+            </div> -->
+    </div>
+  </div>
+
+  <script>
+    // 创建浮动粒子
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+
+        // 随机属性
+        const size = Math.random() * 5 + 2;
+        const posX = Math.random() * 100;
+        const delay = Math.random() * 15;
+        const duration = Math.random() * 10 + 15;
+
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.bottom = `-10px`;
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.animationDuration = `${duration}s`;
+
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // 表单验证
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username === '') {
+        alert('请输入用户名');
+        return;
+      }
+
+      if (password === '') {
+        alert('请输入密码');
+        return;
+      }
+
+      // 显示加载效果
+      const btn = document.querySelector('.btn-login');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 登录中...';
+      btn.disabled = true;
+
+      // 模拟登录过程
+      setTimeout(() => {
+        btn.innerHTML = '登录成功 <i class="fas fa-check"></i>';
+        setTimeout(() => {
+          alert('登录成功！正在跳转至系统...');
+          btn.innerHTML = '登录系统';
+          btn.disabled = false;
+        }, 800);
+      }, 1500);
+    });
+
+    // 添加简单的动画效果
+    const formElements = document.querySelectorAll('.form-group, .btn-login, .social-btn');
+    formElements.forEach((el, index) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 300 + index * 100);
+    });
+
+    // 初始化粒子
+    createParticles();
+
+    // 添加建筑轮廓动画
+    const buildings = document.querySelectorAll('.building');
+    buildings.forEach((building, index) => {
+      building.style.transition = 'transform 0.5s ease';
+      setTimeout(() => {
+        building.style.transform = 'translateY(0)';
+      }, 500 + index * 50);
+    });
+  </script>
+</body>
+
+</html>

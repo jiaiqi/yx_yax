@@ -1,0 +1,666 @@
+:root {
+  /*头部*/
+  /** 头部背景色**/
+  --header-bg-color: #23262e;
+  /** 头部文字颜色**/
+  --header-text-color: #fff;
+  /** 顶部高度**/
+  --header-height: 60px;
+  /** 当前选中app高亮背景颜色**/
+  --active-app-bg-color: #4ae;
+  /** 当前选中app文字颜色**/
+  --active-app-text-color: #000;
+  /** 更多app按钮背景颜色**/
+  --more-app-btn-bg-color: rgba(0, 0, 0, 0.3);
+  /** 更多app下拉菜单背景颜色**/
+  --more-app-box-bg-color: rgba(0, 0, 0, 0.6);
+  /** 鼠标移入app高亮背景颜色**/
+  --hover-app-bg-color: rgba(255, 255, 255, 0.4);
+  /** 鼠标移入app文字颜色**/
+  --hover-app-text-color: #fff;
+  /** 切换租户弹出层背景颜色**/
+  --tenant-switch-popup-bg-color: rgba(35, 38, 46, 0.5);
+  /** 切换租户弹出层文字颜色**/
+  --tenant-switch-popup-text-color: #fff;
+  /** 切换租户菜单鼠标移入背景色**/
+  --tenant-switch-menu-hover-bg-color: rgba(35, 38, 46, 0.9);
+
+  /*侧边菜单*/
+  /** 侧边背景色**/
+  --sidebar-bg-color: #393d49;
+  /** 侧边文字颜色**/
+  --sidebar-text-color: #fff;
+  /** 侧边菜单选中背景色**/
+  --sidebar-active-bg-color: #2196f3;
+  /** 侧边菜单选中文字颜色**/
+  --sidebar-active-text-color: #fff;
+  /** 鼠标移入选中菜单背景色**/
+  --sidebar-active-hover-bg-color: #009688;
+  /** 鼠标移入选中菜单文字颜色**/
+  --sidebar-active-hover-text-color: #fff;
+  /** 侧边菜单底边颜色**/
+  --sidebar-menu-border-bottom-color: rgba(0, 0, 51, 0.3);
+  /** 侧边顶级菜单展开后背景色**/
+  --sidebar-menu-open-bg-color: #2b2e37;
+  /** 侧边二级菜单背景颜色**/
+  --sidebar-child-menu-bg-color: #393d49;
+  /**侧边二级菜单底边颜色**/
+  --sidebar-child-menu-border-bottom-color: #337ab730;
+  /** 侧边二级菜单文字颜色**/
+  --sidebar-menu-text-color: #fff;
+  /** 侧边菜单鼠标移入背景色**/
+  --sidebar-menu-hover-bg-color: #4e5465;
+  /** 侧边菜单鼠标移入文字颜色**/
+  --sidebar-menu-hover-text-color: #fff;
+
+  /*内容区*/
+  /** tab区域背景色**/
+  --tab-area-bg-color: #fff;
+  /** tab区域文字颜色**/
+  --tab-area-text-color: #000;
+  /** tab页上边框颜色**/
+  --tab-border-top-color: #198edc;
+  /** tab页上边框宽度**/
+  --tab-border-top-width: 5px;
+  /** tab页左边框颜色**/
+  --tab-border-left-color: #198edc;
+  /** tab页左边框宽度**/
+  --tab-border-left-width: 2px;
+  /** tab页签默认背景色**/
+  --tab-bg-color: #ffffff;
+  /** tab页签默认文字颜色**/
+  --tab-text-color: #000;
+  /** tab item上边距 **/
+  --tab-item-marging-top: 0px;
+  /** tab item 圆角 **/
+  --tab-item-radius: 0;
+  /** tab页签选中背景色**/
+  --tab-active-bg-color: #198edc;
+  /** tab页签选中文字颜色**/
+  --tab-active-text-color: #fff;
+  /** 页面操作弹出层hover状态背景色**/
+  --tab-popup-menu-hover-bg-color: #5fb878;
+  /** 页面操作弹出层hover状态文字颜色**/
+  --tab-popup-menu-hover-text-color: #fff;
+}
+
+:root body.dark-blue {
+  /*头部*/
+  /** 头部背景色**/
+  --header-bg-color: #13427a;
+  /** 头部文字颜色**/
+  --header-text-color: #fff;
+  /** 顶部高度**/
+  --header-height: 60px;
+
+  /** 当前选中app高亮背景颜色**/
+  --active-app-bg-color: #4ae;
+  /** 当前选中app文字颜色**/
+  --active-app-text-color: #000;
+  /** 更多app按钮背景颜色**/
+  --more-app-btn-bg-color: rgba(0, 0, 0, 0.3);
+  /** 更多app下拉菜单背景颜色**/
+  --more-app-box-bg-color: rgba(12, 48, 92, 0.8);
+  /** 鼠标移入app高亮背景颜色**/
+  --hover-app-bg-color: rgba(255, 255, 255, 0.4);
+  /** 鼠标移入app文字颜色**/
+  --hover-app-text-color: #fff;
+  /** 切换租户弹出层背景颜色**/
+  --tenant-switch-popup-bg-color: rgba(12, 48, 92, 0.5);
+  /** 切换租户弹出层文字颜色**/
+  --tenant-switch-popup-text-color: #fff;
+  /** 切换租户菜单鼠标移入背景色**/
+  --tenant-switch-menu-hover-bg-color: rgba(4, 28, 61, 0.9);
+
+  /*侧边菜单*/
+  /** 侧边背景色**/
+  --sidebar-bg-color: #041c3d;
+  /** 侧边文字颜色**/
+  --sidebar-text-color: #fff;
+  /** 侧边菜单选中背景色**/
+  --sidebar-active-bg-color: #13427a;
+  /** 侧边菜单选中文字颜色**/
+  --sidebar-active-text-color: #fff;
+  /** 鼠标移入选中菜单背景色**/
+  --sidebar-active-hover-bg-color: #44aaee;
+  /** 鼠标移入选中菜单文字颜色**/
+  --sidebar-active-hover-text-color: #fff;
+  /** 侧边菜单底边颜色**/
+  --sidebar-menu-border-bottom-color: #18539a66;
+  /** 侧边顶级菜单展开后背景色**/
+  --sidebar-menu-open-bg-color: #092953;
+  /** 侧边二级菜单背景颜色**/
+  --sidebar-child-menu-bg-color: #041c3d;
+  /**侧边二级菜单底边颜色**/
+  --sidebar-child-menu-border-bottom-color: transparent;
+  /** 侧边二级菜单文字颜色**/
+  --sidebar-menu-text-color: #fff;
+  /** 侧边菜单鼠标移入背景色**/
+  --sidebar-menu-hover-bg-color: #0d2e55;
+  /** 侧边菜单鼠标移入文字颜色**/
+  --sidebar-menu-hover-text-color: #fff;
+
+  /*内容区*/
+  /** tab区域背景色**/
+  --tab-area-bg-color: #0c305c;
+  /** tab区域文字颜色**/
+  --tab-area-text-color: #ffffff;
+  /** tab页上边框颜色**/
+  --tab-border-top-color: #0c305c;
+  /** tab页上边框宽度**/
+  --tab-border-top-width: 1px;
+  /** tab页左边框颜色**/
+  --tab-border-left-color: #0c305c;
+  /** tab页左边框宽度**/
+  --tab-border-left-width: 1px;
+  /** tab页签默认背景色**/
+  --tab-bg-color: #0c305c;
+  /** tab页签默认文字颜色**/
+  --tab-text-color: #fff;
+  /** tab item上边距 **/
+  --tab-item-marging-top: 2px;
+  /** tab item 圆角 **/
+  --tab-item-radius: 5px 5px 0 0;
+  /** tab页签选中背景色**/
+  --tab-active-bg-color: #198edc;
+  /** tab页签选中文字颜色**/
+  --tab-active-text-color: #fff;
+  /** 页面操作弹出层hover状态背景色**/
+  --tab-popup-menu-hover-bg-color: #5fb878;
+  /** 页面操作弹出层hover状态文字颜色**/
+  --tab-popup-menu-hover-text-color: #fff;
+}
+
+:root body.red {
+  /*头部*/
+  /** 头部背景色**/
+  /* --header-bg-color: transparent; */
+  --header-bg-color: #c90405;
+  /** 头部文字颜色**/
+  --header-text-color: #fff;
+  /** 顶部高度**/
+  --header-height: 60px;
+
+  /** 当前选中app高亮背景颜色**/
+  --active-app-bg-color: #c90405;
+  /** 当前选中app文字颜色**/
+  --active-app-text-color: #fff;
+  /** 更多app按钮背景颜色**/
+  --more-app-btn-bg-color: rgba(0, 0, 0, 0.3);
+  /** 更多app下拉菜单背景颜色**/
+  --more-app-box-bg-color: rgba(255, 81, 61, 0.3);
+  /** 鼠标移入app高亮背景颜色**/
+  --hover-app-bg-color: rgba(255, 255, 255, 0.4);
+  /** 鼠标移入app文字颜色**/
+  --hover-app-text-color: #fff;
+  /** 切换租户弹出层背景颜色**/
+  --tenant-switch-popup-bg-color: #fff;
+  /** 切换租户弹出层文字颜色**/
+  --tenant-switch-popup-text-color: #333;
+  /** 切换租户菜单鼠标移入背景色**/
+  --tenant-switch-menu-hover-bg-color: #c90405;
+  --tenant-switch-menu-hover-text-color: #fff;
+
+  /*侧边菜单*/
+  /** 侧边背景色**/
+  --sidebar-bg-color: #c90405;
+  /** 侧边文字颜色**/
+  --sidebar-text-color: #fff;
+  /** 侧边菜单选中背景色**/
+  --sidebar-active-bg-color: #c90405;
+  /** 侧边菜单选中文字颜色**/
+  --sidebar-active-text-color: #fff;
+  /** 鼠标移入选中菜单背景色**/
+  --sidebar-active-hover-bg-color: #c90405;
+  /** 鼠标移入选中菜单文字颜色**/
+  --sidebar-active-hover-text-color: #fff;
+  /** 侧边菜单底边颜色**/
+  --sidebar-menu-border-bottom-color: #c9040566;
+  /** 侧边顶级菜单展开后背景色**/
+  --sidebar-menu-open-bg-color: transparent;
+  /** 侧边二级菜单背景颜色**/
+  --sidebar-child-menu-bg-color: transparent;
+  /**侧边二级菜单底边颜色**/
+  --sidebar-child-menu-border-bottom-color: transparent;
+  /** 侧边二级菜单文字颜色**/
+  --sidebar-menu-text-color: #fff;
+  /** 侧边菜单鼠标移入背景色**/
+  --sidebar-menu-hover-bg-color: #c90405;
+  /** 侧边菜单鼠标移入文字颜色**/
+  --sidebar-menu-hover-text-color: #fff;
+  --sidebar-active-nav-leftbar-color: #fff;
+
+  /*内容区*/
+  /** tab区域背景色**/
+  --tab-area-bg-color: #fff;
+  /** tab区域文字颜色**/
+  --tab-area-text-color: #333;
+  /** tab页上边框颜色**/
+  --tab-border-top-color: #c90405;
+  /** tab页上边框宽度**/
+  --tab-border-top-width: 1px;
+  /** tab页左边框颜色**/
+  --tab-border-left-color: #c90405;
+  /** tab页左边框宽度**/
+  --tab-border-left-width: 1px;
+  /** tab页签默认背景色**/
+  --tab-bg-color: #c90405;
+  /** tab页签默认文字颜色**/
+  --tab-text-color: #fff;
+  /** tab item上边距 **/
+  --tab-item-marging-top: 2px;
+  /** tab item 圆角 **/
+  --tab-item-radius: 5px 5px 0 0;
+  /** tab页签选中背景色**/
+  --tab-active-bg-color: #c90405;
+  /** tab页签选中文字颜色**/
+  --tab-active-text-color: #fff;
+  /** 页面操作弹出层hover状态背景色**/
+  --tab-popup-menu-hover-bg-color: #5fb878;
+  /** 页面操作弹出层hover状态文字颜色**/
+  --tab-popup-menu-hover-text-color: #fff;
+}
+
+/* 棕黄色 */
+:root body.tan {
+  /*头部*/
+  /** 头部背景色**/
+  --header-bg-color: #fbefdc;
+  /** 头部文字颜色**/
+  --header-text-color: #977d6a;
+  /** 顶部高度**/
+  --header-height: 60px;
+
+  /** 当前选中app高亮背景颜色**/
+  --active-app-bg-color: #d5a471;
+  /** 当前选中app文字颜色**/
+  --active-app-text-color: #fff;
+  /** 更多app按钮背景颜色**/
+  --more-app-btn-bg-color: rgba(0, 0, 0, 0.3);
+  /** 更多app下拉菜单背景颜色**/
+  --more-app-box-bg-color: rgba(213, 164, 113, 0.3);
+  /** 鼠标移入app高亮背景颜色**/
+  --hover-app-bg-color: rgba(255, 255, 255, 0.4);
+  /** 鼠标移入app文字颜色**/
+  --hover-app-text-color: #fff;
+  /** 切换租户弹出层背景颜色**/
+  --tenant-switch-popup-bg-color: #fff;
+  /** 切换租户弹出层文字颜色**/
+  --tenant-switch-popup-text-color: #333;
+  /** 切换租户菜单鼠标移入背景色**/
+  --tenant-switch-menu-hover-bg-color: #d5a471;
+  --tenant-switch-menu-hover-text-color: #fff;
+  --user-dropdown-menu-bg-url: url("../images/tan-username-bg.png");
+
+  /*侧边菜单*/
+  /** 侧边背景色**/
+  --sidebar-bg-color: #977d6a;
+  /** 侧边文字颜色**/
+  --sidebar-text-color: #fff;
+  /** 侧边菜单选中背景色**/
+  --sidebar-active-bg-color: #d5a471;
+  /** 侧边菜单选中文字颜色**/
+  --sidebar-active-text-color: #fff;
+  /** 鼠标移入选中菜单背景色**/
+  --sidebar-active-hover-bg-color: #d5a471;
+  /** 鼠标移入选中菜单文字颜色**/
+  --sidebar-active-hover-text-color: #fff;
+  /** 侧边菜单底边颜色**/
+  --sidebar-menu-border-bottom-color: #977d6a66;
+  /** 侧边顶级菜单展开后背景色**/
+  --sidebar-menu-open-bg-color: transparent;
+  /** 侧边二级菜单背景颜色**/
+  --sidebar-child-menu-bg-color: #84654f;
+  /**侧边二级菜单底边颜色**/
+  --sidebar-child-menu-border-bottom-color: transparent;
+  /** 侧边二级菜单文字颜色**/
+  --sidebar-menu-text-color: #fff;
+  /** 侧边菜单鼠标移入背景色**/
+  --sidebar-menu-hover-bg-color: #d5a471;
+  /** 侧边菜单鼠标移入文字颜色**/
+  --sidebar-menu-hover-text-color: #fff;
+  --sidebar-active-nav-leftbar-color: #fff;
+
+  /*内容区*/
+  /** tab区域背景色**/
+  --tab-area-bg-color: #fff;
+  /** tab区域文字颜色**/
+  --tab-area-text-color: #333;
+  /** tab页上边框颜色**/
+  --tab-border-top-color: #d5a471;
+  /** tab页上边框宽度**/
+  --tab-border-top-width: 1px;
+  /** tab页左边框颜色**/
+  --tab-border-left-color: #d5a471;
+  /** tab页左边框宽度**/
+  --tab-border-left-width: 1px;
+  /** tab页签默认背景色**/
+  --tab-bg-color: #d5a471;
+  /** tab页签默认文字颜色**/
+  --tab-text-color: #fff;
+  /** tab item上边距 **/
+  --tab-item-marging-top: 2px;
+  /** tab item 圆角 **/
+  --tab-item-radius: 5px 5px 0 0;
+  /** tab页签选中背景色**/
+  --tab-active-bg-color: #d5a471;
+  /** tab页签选中文字颜色**/
+  --tab-active-text-color: #fff;
+  /** 页面操作弹出层hover状态背景色**/
+  --tab-popup-menu-hover-bg-color: #5fb878;
+  /** 页面操作弹出层hover状态文字颜色**/
+  --tab-popup-menu-hover-text-color: #fff;
+}
+
+:root body.camouflage-green {
+  /*头部*/
+  /** 头部背景色**/
+  --header-bg-color: #174B3B;
+  /** 头部文字颜色**/
+  --header-text-color: #fff;
+  /** 顶部高度**/
+  --header-height: 60px;
+
+  /** 当前选中app高亮背景颜色**/
+  --active-app-bg-color: #265E4D;
+  /** 当前选中app文字颜色**/
+  --active-app-text-color: #fff;
+  /** 更多app按钮背景颜色**/
+  --more-app-btn-bg-color: rgba(0, 0, 0, 0.3);
+  /** 更多app下拉菜单背景颜色**/
+  --more-app-box-bg-color: rgba(38, 94, 77, 0.3);
+  /** 鼠标移入app高亮背景颜色**/
+  --hover-app-bg-color: rgba(255, 255, 255, 0.4);
+  /** 鼠标移入app文字颜色**/
+  --hover-app-text-color: #fff;
+  /** 切换租户弹出层背景颜色**/
+  --tenant-switch-popup-bg-color: #fff;
+  /** 切换租户弹出层文字颜色**/
+  --tenant-switch-popup-text-color: #333;
+  /** 切换租户菜单鼠标移入背景色**/
+  --tenant-switch-menu-hover-bg-color: #265E4D;
+  --tenant-switch-menu-hover-text-color: #fff;
+  /* --user-dropdown-menu-bg-url: url("../images/tan-username-bg.png"); */
+
+  /*侧边菜单*/
+  /** 侧边背景色**/
+  --sidebar-bg-color: #164436;
+  /** 侧边文字颜色**/
+  --sidebar-text-color: #fff;
+  /** 侧边菜单选中背景色**/
+  --sidebar-active-bg-color: #265E4D;
+  /** 侧边菜单选中文字颜色**/
+  --sidebar-active-text-color: #fff;
+  /** 鼠标移入选中菜单背景色**/
+  --sidebar-active-hover-bg-color: #265E4D;
+  /** 鼠标移入选中菜单文字颜色**/
+  --sidebar-active-hover-text-color: #fff;
+  /** 侧边菜单底边颜色**/
+  --sidebar-menu-border-bottom-color: #16443666;
+  /** 侧边顶级菜单展开后背景色**/
+  --sidebar-menu-open-bg-color: transparent;
+  /** 侧边二级菜单背景颜色**/
+  --sidebar-child-menu-bg-color: #1C4538;
+  /**侧边二级菜单底边颜色**/
+  --sidebar-child-menu-border-bottom-color: transparent;
+  /** 侧边二级菜单文字颜色**/
+  --sidebar-menu-text-color: #fff;
+  /** 侧边菜单鼠标移入背景色**/
+  --sidebar-menu-hover-bg-color: #265E4D;
+  /** 侧边菜单鼠标移入文字颜色**/
+  --sidebar-menu-hover-text-color: #fff;
+  --sidebar-active-nav-leftbar-color: #fff;
+
+  /*内容区*/
+  /** tab区域背景色**/
+  --tab-area-bg-color: #265E4D;
+  /** tab区域文字颜色**/
+  --tab-area-text-color: #fff;
+  /**右侧下拉框边框颜色*/
+  --tab-right-border-color: #4a7365;
+  /** tab页上边框颜色**/
+  --tab-border-top-color: #265E4D;
+  /** tab页上边框宽度**/
+  --tab-border-top-width: 1px;
+  /** tab页左边框颜色**/
+  --tab-border-left-color: #265E4D;
+  /** tab页左边框宽度**/
+  --tab-border-left-width: 1px;
+  /** tab页签默认背景色**/
+  --tab-bg-color: #265E4D;
+  /** tab页签默认文字颜色**/
+  --tab-text-color: #fff;
+  /** tab item上边距 **/
+  --tab-item-marging-top: 2px;
+  /** tab item 圆角 **/
+  --tab-item-radius: 5px 5px 0 0;
+  /** tab页签选中背景色**/
+  --tab-active-bg-color: #1c4538;
+  /** tab页签选中文字颜色**/
+  --tab-active-text-color: #fff;
+  /** 页面操作弹出层hover状态背景色**/
+  --tab-popup-menu-hover-bg-color: #5fb878;
+  /** 页面操作弹出层hover状态文字颜色**/
+  --tab-popup-menu-hover-text-color: #fff;
+}
+
+.layui-bg-black {
+  background-color: var(--sidebar-bg-color);
+}
+
+.bg-img {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* 顶部 */
+.sitename0 {
+  box-sizing: border-box;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.sitename0 .logo {
+  color: var(--header-text-color);
+}
+
+.showMenu .sitename0 {
+  min-width: 0;
+}
+
+.showNotice {
+  color: var(--header-text-color);
+}
+
+.applications-header .layui-nav .layui-nav-item>a {
+  color: var(--header-text-color);
+}
+
+.layui-header.header {
+  background-color: var(--header-bg-color);
+  color: var(--header-text-color);
+  height: var(--header-height);
+}
+
+.applications {
+  background-color: var(--more-app-box-bg-color) !important;
+}
+
+.applications>.navbar-nav>li.active a {
+  background-color: var(--active-app-bg-color);
+  color: var(--active-app-text-color);
+}
+
+.applications>.navbar-nav>li.active a h6 {
+  color: var(--active-app-text-color);
+}
+
+.tenant_switch {
+  background-color: var(--tenant-switch-popup-bg-color);
+  color: var(--tenant-switch-popup-text-color) !important;
+}
+
+.tenant_switch_list_item .tenant_switch_list_item_name {
+  color: var(--tenant-switch-popup-text-color) !important;
+}
+
+.tenant_switch .tenant_switch_list_item:hover {
+  background-color: var(--tenant-switch-menu-hover-bg-color) !important;
+  color: var(--tenant-switch-menu-hover-text-color) !important;
+}
+
+.tenant_switch .tenant_switch_list_item:hover .tenant_switch_list_item_name {
+  color: var(--tenant-switch-menu-hover-text-color) !important;
+}
+
+/* 侧边菜单 */
+.layui-side .navBar {
+  background-color: var(--sidebar-bg-color);
+}
+
+.layui-side .navBar.bg-img {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.layui-side .navBar.bg-img .layui-nav.layui-nav-tree {
+  backdrop-filter: blur(1px);
+}
+
+.layui-nav-tree .layui-nav-bar {
+  background-color: var(--sidebar-active-nav-leftbar-color);
+}
+
+.layui-nav.layui-nav-tree {
+  padding-right: 2px;
+}
+
+.layui-nav-tree .layui-nav-item {
+  border-left: 1px solid var(--sidebar-menu-border-bottom-color);
+  border-right: 1px solid var(--sidebar-menu-border-bottom-color);
+  border-bottom-color: var(--sidebar-menu-border-bottom-color) !important;
+}
+
+.layui-nav-tree .layui-nav-item a:hover {
+  background-color: var(--sidebar-menu-hover-bg-color);
+}
+
+.layui-nav-itemed>a {
+  background-color: var(--sidebar-menu-open-bg-color) !important;
+}
+
+.layui-nav .layui-nav-child {
+  padding: 0;
+}
+
+.layui-nav .layui-nav-child a {
+  background-color: var(--sidebar-child-menu-bg-color);
+  color: var(--sidebar-menu-text-color);
+}
+
+.layui-nav.top_menu {
+  background-image: var(--user-dropdown-menu-bg-url);
+  background-size: 100% 100%;
+  background-position: 0 80%;
+}
+
+.top_menu.layui-nav .layui-nav-child a:hover,
+.closeBox.layui-nav .layui-nav-child a:hover {
+  background-color: var(--sidebar-active-hover-bg-color);
+  color: var(--sidebar-active-hover-text-color);
+}
+
+.layui-nav-tree .layui-this>a {
+  background-color: var(--sidebar-active-bg-color);
+}
+
+.layui-nav-tree .layui-nav-child dd.layui-this a:hover {
+  background-color: var(--sidebar-active-hover-bg-color);
+}
+
+.layui-nav-child dd {
+  border-bottom-color: var(--sidebar-child-menu-border-bottom-color) !important;
+}
+
+.layui-nav-tree .layui-nav-child dd.layui-this,
+.layui-nav-tree .layui-this,
+.layui-nav-tree .layui-this>a,
+.layui-nav-tree .layui-this>a:hover {
+  background-color: var(--sidebar-active-bg-color);
+}
+
+.three_this {
+  /* background-color: rgba($color:var(--sidebar-active-bg-color),$alpha:0.5)!important; */
+  background-color: var(--sidebar-active-bg-color) !important;
+}
+
+.layui-nav-tree .layui-nav-child dd.layui-this,
+.layui-nav-tree .layui-this,
+.layui-nav-tree .layui-this>a,
+.layui-nav-tree .layui-this>a:hover {
+  /* background-color: rgba($color:var(--sidebar-active-bg-color),$alpha:0.5)!important; */
+}
+
+/* 内容区 */
+.layui-body {
+  border-top: var(--tab-border-top-width) solid var(--tab-border-top-color);
+  border-left: var(--tab-border-left-width) solid var(--tab-border-left-color);
+  border-raidus: 4px 0 0 0;
+}
+
+.layui-tab-title {
+  padding-left: var(--tab-item-marging-top);
+}
+
+.layui-tab-title li {
+  border-radius: var(--tab-item-radius);
+  margin-top: var(--tab-item-marging-top);
+  box-sizing: border-box;
+  line-height: calc(40px - var(--tab-item-marging-top));
+}
+
+.layui-tab-title li cite {
+  color: var(--tab-text-color, #fff);
+}
+
+.layui-tab-title li:first-child {
+  border-top-left-radius: 0;
+}
+
+.layui-tab-title .layui-this {
+  background-color: var(--tab-active-bg-color);
+  color: var(--tab-active-text-color);
+}
+.layui-tab-title li.layui-this cite{
+  color: var(--tab-active-text-color);
+}
+.layui-tab,
+.layui-tab-content,
+.layui-nav.closeBox {
+  background-color: var(--tab-area-bg-color) !important;
+  color: var(--tab-area-text-color);
+  border-left-color: var(--tab-right-border-color, #e2e2e2) !important;
+  border-bottom-color: var(--tab-right-border-color, #e2e2e2) !important;
+}
+
+.closeBox .layui-nav-item a,
+.closeBox .layui-nav-item a:hover {
+  color: var(--tab-area-text-color);
+}
+
+.layui-nav .layui-anim.layui-anim-upbit a {
+  background-color: #fff;
+  color: #333;
+}
+
+.layui-nav .layui-anim.layui-anim-upbit dd {
+  border-bottom: 1px solid #337ab730 !important;
+}
+
+.layui-nav-child.layui-anim.layui-anim-upbit {
+  overflow: auto;
+  max-height: 80vh;
+}
+
+.hideMenu {
+  background-color: var(--sidebar-bg-color);
+}

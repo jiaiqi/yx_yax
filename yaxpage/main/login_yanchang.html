@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <meta
+    name="description"
+    content="延长石油住房买卖合同管理系统登录页面"
+  >
+  <meta
+    name="keywords"
+    content="延长石油,住房买卖,合同管理,登录"
+  >
+  <title>延长石油住房买卖合同管理系统 - 登录</title>
+
+  <!-- 预加载关键资源 -->
+  <link
+    rel="preload"
+    href="./css/font-awesome.min.css"
+    as="style"
+  >
+  <link
+    rel="preload"
+    href="/js/jquery-3.7.1.min.js"
+    as="script"
+  >
+  <link
+    rel="preload"
+    href="/js/crypto-js.min.js"
+    as="script"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./css/font-awesome.min.css"
+  >
+
+  <style>
+    /* CSS 变量定义 */
+    :root {
+      --primary-color: #1e3c72;
+      --secondary-color: #2a5298;
+      --accent-color: #ffd166;
+      --success-color: #48bb78;
+      --error-color: #f56565;
+      --info-color: #4299e1;
+      --text-primary: #333;
+      --text-secondary: #666;
+      --text-light: #999;
+      --border-color: #e0e6f0;
+      --background-overlay: rgba(255, 255, 255, 0.88);
+      --shadow-light: 0 4px 15px rgba(30, 60, 114, 0.2);
+      --shadow-medium: 0 6px 20px rgba(30, 60, 114, 0.3);
+      --shadow-heavy: 0 15px 50px rgba(0, 0, 0, 0.25);
+      --border-radius: 10px;
+      --border-radius-large: 20px;
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.3s ease;
+      --transition-slow: 0.5s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0c1b33, #1c3b6a, #3a1c6a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* 建筑轮廓背景 - 性能优化 */
+    .city-skyline {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 45%;
+      z-index: 1;
+      will-change: transform;
+    }
+
+    .building {
+      position: absolute;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(30, 58, 138, 0.8), rgba(59, 130, 246, 0.4));
+      border-radius: 4px 4px 0 0;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+      animation: buildingGlow 4s ease-in-out infinite alternate;
+      will-change: box-shadow;
+    }
+
+    @keyframes buildingGlow {
+      0% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+      }
+
+      100% {
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+      }
+    }
+
+    .building::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 20%;
+      width: 60%;
+      height: 80%;
+      background: repeating-linear-gradient(0deg,
+          transparent,
+          transparent 8px,
+          rgba(59, 130, 246, 0.2) 8px,
+          rgba(59, 130, 246, 0.2) 12px);
+      border-radius: 2px;
+    }
+
+    .building::after {
+      content: '';
+      position: absolute;
+      top: 5%;
+      left: 10%;
+      width: 80%;
+      height: 10%;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.8) 20%,
+          transparent 40%,
+          rgba(255, 255, 255, 0.6) 60%,
+          transparent 80%,
+          rgba(255, 255, 255, 0.4) 100%);
+      border-radius: 2px;
+    }
+
+    /* 建筑物位置优化 */
+    .building:nth-child(1) {
+      left: 2%;
+      width: 8%;
+      height: 40%;
+      animation-delay: 0s;
+    }
+
+    .building:nth-child(2) {
+      left: 12%;
+      width: 6%;
+      height: 55%;
+      animation-delay: 0.5s;
+    }
+
+    .building:nth-child(3) {
+      left: 20%;
+      width: 10%;
+      height: 75%;
+      animation-delay: 1s;
+    }
+
+    .building:nth-child(4) {
+      left: 32%;
+      width: 7%;
+      height: 60%;
+      animation-delay: 1.5s;
+    }
+
+    .building:nth-child(5) {
+      left: 41%;
+      width: 12%;
+      height: 85%;
+      animation-delay: 2s;
+    }
+
+    .building:nth-child(6) {
+      left: 55%;
+      width: 9%;
+      height: 70%;
+      animation-delay: 2.5s;
+    }
+
+    .building:nth-child(7) {
+      left: 66%;
+      width: 8%;
+      height: 50%;
+      animation-delay: 3s;
+    }
+
+    .building:nth-child(8) {
+      left: 76%;
+      width: 11%;
+      height: 90%;
+      animation-delay: 3.5s;
+    }
+
+    .building:nth-child(9) {
+      left: 89%;
+      width: 9%;
+      height: 45%;
+      animation-delay: 4s;
+    }
+
+    /* 浮动粒子效果 - 性能优化 */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      animation: float 15s infinite linear;
+      will-change: transform, opacity;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    /* 主容器 */
+    .container {
+      width: min(1000px, 90vw);
+      height: min(600px, 90vh);
+      background: var(--background-overlay);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius-large);
+      box-shadow: var(--shadow-heavy);
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* 左侧面板 */
+    .left-panel {
+      flex: 1;
+      background: linear-gradient(135deg, rgba(30, 60, 114, 0.9), rgba(42, 82, 152, 0.9));
+      color: white;
+      padding: 50px 40px;
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* 右侧面板 */
+    .right-panel {
+      flex: 1;
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Logo 区域 */
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .logo-icon {
+      font-size: 24px;
+      background: rgba(255, 255, 255, 0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      transition: var(--transition-normal);
+    }
+
+    .logo-icon:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+
+    /* 欢迎文本 */
+    .welcome-text {
+      margin-bottom: 30px;
+    }
+
+    .welcome-text h1 {
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 700;
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+
+    .welcome-text p {
+      font-size: 16px;
+      opacity: 0.9;
+      line-height: 1.6;
+      max-width: 90%;
+    }
+
+    .highlight {
+      color: var(--accent-color);
+      font-weight: 700;
+      text-indent: 0;
+      display: block;
+      margin-top: 10px;
+    }
+
+    /* 装饰元素 */
+    .decoration {
+      position: absolute;
+      opacity: 0.05;
+      font-size: 200px;
+      bottom: -40px;
+      right: -20px;
+      transform: rotate(15deg);
+      pointer-events: none;
+    }
+
+    /* 登录头部 */
+    .login-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .login-header h2 {
+      font-size: 28px;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .login-header p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* 表单组件 */
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      transition: var(--transition-fast);
+      z-index: 2;
+    }
+
+    .input-with-icon i.right {
+      position: absolute;
+      left: 0px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 15px 15px 15px 45px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      transition: var(--transition-normal);
+      background: rgba(255, 255, 255, 0.7);
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+      background: white;
+    }
+
+    .form-control:focus+i,
+    .form-group.focused .input-with-icon i {
+      color: var(--secondary-color);
+    }
+
+    /* 密码显示/隐藏按钮 */
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 5px;
+      transition: var(--transition-fast);
+      z-index: 3;
+    }
+
+    .password-toggle:hover {
+      color: var(--secondary-color);
+    }
+
+    /* 选项区域 */
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      font-size: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .remember:hover {
+      color: var(--secondary-color);
+    }
+
+    .remember input {
+      margin-right: 8px;
+      accent-color: var(--secondary-color);
+      cursor: pointer;
+    }
+
+    .remember label {
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .forgot-password {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition-fast);
+      padding: 5px;
+      border-radius: 4px;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+      color: var(--primary-color);
+      background: rgba(42, 82, 152, 0.05);
+    }
+
+    /* 登录按钮 */
+    .btn-login {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-normal);
+      box-shadow: var(--shadow-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-login::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 20px;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(30deg);
+      transition: all 0.6s;
+    }
+
+    .btn-login:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .btn-login:hover:not(:disabled)::after {
+      left: 120%;
+    }
+
+    .btn-login:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-login:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    /* 页脚 */
+    .footer {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 12px;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    /* 消息提示样式 */
+    .message-toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      animation: slideInRight 0.3s ease;
+      max-width: 300px;
+      word-wrap: break-word;
+    }
+
+    .message-error {
+      background: var(--error-color);
+    }
+
+    .message-success {
+      background: var(--success-color);
+    }
+
+    .message-info {
+      background: var(--info-color);
+    }
+
+    /* 动画定义 */
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOutRight {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 加载动画 */
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* 表单验证状态 */
+    .form-group.error .form-control {
+      border-color: var(--error-color);
+      box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.1);
+    }
+
+    .form-group.success .form-control {
+      border-color: var(--success-color);
+      box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.1);
+    }
+
+    .form-group.focused .form-control {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+    }
+
+    /* 响应式设计优化 */
+    @media (max-width: 1024px) {
+      .container {
+        width: 95vw;
+        height: auto;
+        min-height: 80vh;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        width: 95vw;
+        height: auto;
+      }
+
+      .left-panel {
+        padding: 30px 20px;
+        min-height: 200px;
+      }
+
+      .right-panel {
+        padding: 40px 30px;
+      }
+
+      .welcome-text h1 {
+        font-size: 24px;
+      }
+
+      .decoration {
+        display: none;
+      }
+
+      .city-skyline {
+        height: 30%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        background: #fff;
+        overflow-y: auto;
+      }
+
+      .particles,
+      .city-skyline,
+      .left-panel {
+        display: none;
+      }
+
+      .container {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        background: white;
+      }
+
+      .right-panel {
+        padding: 20px;
+        justify-content: flex-start;
+        padding-top: 60px;
+      }
+
+      .login-header {
+        margin-bottom: 30px;
+      }
+
+      .login-header h2 {
+        font-size: 24px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-control {
+        padding: 12px 12px 12px 40px;
+        font-size: 16px;
+        /* 防止iOS缩放 */
+      }
+
+      .btn-login {
+        padding: 14px;
+        font-size: 16px;
+      }
+
+      .message-toast {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+      }
+    }
+
+    @media screen and (max-width: 300px) {
+      .login-header {
+        margin-bottom: 0;
+      }
+
+      .right-panel {
+        padding: 10px;
+        padding-bottom: 0;
+      }
+
+      .right-panel .login-header p {
+        display: none;
+      }
+
+      .form-group {
+        margin-bottom: 5px;
+      }
+    }
+
+    /* 高对比度模式支持 */
+    @media (prefers-contrast: high) {
+      .form-control {
+        border-width: 3px;
+      }
+
+      .btn-login {
+        border: 2px solid white;
+      }
+    }
+
+    /* 减少动画模式支持 */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* 打印样式 */
+    @media print {
+
+      .particles,
+      .city-skyline,
+      .decoration,
+      .btn-login::after {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      .container {
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+    }
+
+    /* 租户选择弹窗样式 */
+    .tenant-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .tenant-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .tenant-modal-content {
+      background: white;
+      border-radius: var(--border-radius-large);
+      box-shadow: var(--shadow-heavy);
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow: hidden;
+      transform: scale(0.8) translateY(50px);
+      transition: all 0.3s ease;
+    }
+    
+    .tenant-modal.show .tenant-modal-content {
+      transform: scale(1) translateY(0);
+    }
+    
+    .tenant-modal-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 25px 30px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .tenant-modal-header h3 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    
+    .tenant-modal-header p {
+      margin: 8px 0 0 0;
+      opacity: 0.9;
+      font-size: 14px;
+    }
+    
+    .tenant-modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 50%;
+      transition: var(--transition-fast);
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .tenant-modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+    
+    .tenant-modal-body {
+      padding: 30px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    
+    .tenant-list {
+      display: grid;
+      gap: 15px;
+    }
+    
+    .tenant-item {
+      border: 2px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.8);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tenant-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(42, 82, 152, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .tenant-item:hover {
+      border-color: var(--secondary-color);
+      box-shadow: var(--shadow-light);
+      transform: translateY(-2px);
+    }
+    
+    .tenant-item:hover::before {
+      left: 100%;
+    }
+    
+    .tenant-item:active {
+      transform: translateY(0);
+    }
+    
+    .tenant-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .tenant-name i {
+      color: var(--secondary-color);
+      font-size: 18px;
+    }
+    
+    .tenant-app {
+      font-size: 14px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .tenant-app i {
+      color: var(--text-light);
+      font-size: 12px;
+    }
+    
+    .tenant-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent-color), #ffb347);
+      color: #8b4513;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: auto;
+    }
+    
+    /* 滚动条样式 */
+    .tenant-modal-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .tenant-modal-body::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 3px;
+    }
+    
+    .tenant-modal-body::-webkit-scrollbar-thumb {
+      background: var(--secondary-color);
+      border-radius: 3px;
+    }
+    
+    .tenant-modal-body::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-color);
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .tenant-modal-content {
+        width: 95%;
+        margin: 20px;
+      }
+      
+      .tenant-modal-header {
+        padding: 20px;
+      }
+      
+      .tenant-modal-body {
+        padding: 20px;
+      }
+      
+      .tenant-item {
+        padding: 15px;
+      }
+    }
+
+    /* 工具类 */
+    .fa {
+      font-style: normal;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 动态背景 -->
+  <div class="city-skyline">
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+    <div class="building"></div>
+  </div>
+
+  <!-- 浮动粒子 -->
+  <div
+    class="particles"
+    id="particles"
+  ></div>
+
+  <!-- 租户选择弹窗 -->
+  <div class="tenant-modal" id="tenantModal">
+    <div class="tenant-modal-content">
+      <div class="tenant-modal-header">
+        <h3>选择要进入的租户</h3>
+        <p>您拥有多个租户权限，请选择要进入的租户</p>
+        <button class="tenant-modal-close" id="tenantModalClose">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="tenant-modal-body">
+        <div class="tenant-list" id="tenantList">
+          <!-- 租户列表将通过JavaScript动态生成 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="left-panel">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fa fa-home"></i>
+        </div>
+        <div class="logo-text">延长石油住房买卖合同管理系统</div>
+      </div>
+
+      <div class="welcome-text">
+        <h1>高效管理您的<span class="highlight">住房买卖合同</span></h1>
+        <!-- <p>专业可靠的房屋合同管理系统，帮助您轻松管理租赁合同、业主信息、账单支付等所有事务。</p> -->
+      </div>
+
+      <div class="decoration">
+        <i
+          class="fa fa-home"
+          aria-hidden="true"
+        ></i>
+      </div>
+
+      <div class="footer">
+        &copy; 2025 延长石油住房买卖合同管理系统
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="login-header">
+        <h2>欢迎回来</h2>
+        <p>请登录您的账户以访问<strong>延长石油住房买卖合同管理系统</strong></p>
+      </div>
+
+      <form
+        id="loginForm"
+        novalidate
+      >
+        <div class="form-group">
+          <label for="username">用户名</label>
+          <div class="input-with-icon">
+            <i
+              class="fa fa-user"
+              aria-hidden="true"
+            ></i>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              placeholder="请输入用户名"
+              autocomplete="username"
+              required
+              aria-describedby="username-error"
+            >
+          </div>
+          <div
+            id="username-error"
+            class="sr-only"
+            role="alert"
+          ></div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">密码</label>
+          <div class="input-with-icon">
+            <i
+              class="fa fa-lock"
+              aria-hidden="true"
+            ></i>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="请输入密码"
+              autocomplete="current-password"
+              required
+              aria-describedby="password-error"
+            >
+            <button
+              type="button"
+              class="password-toggle"
+              id="passwordToggle"
+              aria-label="显示密码"
+              title="显示/隐藏密码"
+            >
+              <i
+                class="fa fa-eye right"
+                aria-hidden="true"
+              ></i>
+            </button>
+          </div>
+          <div
+            id="password-error"
+            class="sr-only"
+            role="alert"
+          ></div>
+        </div>
+
+        <div class="options">
+          <div class="remember">
+            <input
+              type="checkbox"
+              id="remember"
+              name="remember"
+            >
+            <label for="remember">记住我</label>
+          </div>
+          <a
+            href="./page/ResetPassword.html"
+            class="forgot-password"
+          >忘记密码?</a>
+        </div>
+
+        <button
+          type="submit"
+          class="btn-login"
+          id="loginButton"
+        >
+          <span class="btn-text">登录系统</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // 全局配置对象
+    const CONFIG = {
+      PARTICLE_COUNT: 50,
+      ANIMATION_DURATION: 300,
+      MESSAGE_TIMEOUT: 5000,
+      STORAGE_KEYS: {
+        USERNAME: 'saved_username',
+        REMEMBER: 'remember_login'
+      },
+      VALIDATION: {
+        USERNAME_MIN_LENGTH: 3,
+        PASSWORD_MIN_LENGTH: 6
+      }
+    };
+
+    /**
+     * Cookie 操作工具对象 - 增强版本
+     * 提供设置、获取和删除浏览器 Cookie 的便捷方法
+     * 用于在客户端存储用户登录信息、偏好设置等数据
+     */
+    const Cookie = {
+      /**
+       * 设置 Cookie
+       * @param {string} name - Cookie 的名称
+       * @param {string} value - Cookie 的值，如果为空则设置为空字符串
+       * @param {number} [days] - Cookie 的有效期（天数），可选参数
+       *                          如果不传递此参数，Cookie 将在浏览器会话结束时过期
+       * @param {string} path - Cookie 路径（可选，默认为 '/'）
+       * @param {string} domain - Cookie 域名（可选）
+       * @param {boolean} secure - 是否仅在 HTTPS 下传输（可选）
+       * @param {string} sameSite - SameSite 属性（可选，'Strict'、'Lax' 或 'None'）
+       */
+      set: function (name, value, days, path = '/', domain, secure, sameSite = 'Lax') {
+        try {
+          let expires = "";  // 初始化过期时间字符串
+
+          // 如果指定了有效期天数，计算过期时间
+          if (days) {
+            const date = new Date();  // 创建当前时间对象
+            // 设置过期时间为当前时间 + 指定天数（转换为毫秒）
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            // 将过期时间转换为 UTC 格式字符串
+            expires = "; expires=" + date.toUTCString();
+          }
+
+          let cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value || "")}${expires}; path=${path}`;
+
+          if (domain) cookieString += `; domain=${domain}`;
+          if (secure) cookieString += '; secure';
+          if (sameSite) cookieString += `; samesite=${sameSite}`;
+
+          document.cookie = cookieString;
+        } catch (error) {
+          console.error('设置 Cookie 失败:', error);
+        }
+      },
+
+      /**
+       * 获取指定名称的 Cookie 值
+       * @param {string} name - 要获取的 Cookie 名称
+       * @returns {string|null} 返回 Cookie 的值，如果不存在则返回 null
+       */
+      get: function (name) {
+        try {
+          const nameEQ = encodeURIComponent(name) + "=";  // 构造要查找的 Cookie 名称格式
+          const ca = document.cookie.split(';');  // 将所有 Cookie 按分号分割成数组
+
+          // 遍历所有 Cookie 项
+          for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];  // 获取当前 Cookie 项
+
+            // 去除 Cookie 项开头的空格
+            while (c.charAt(0) === ' ') {
+              c = c.substring(1, c.length);
+            }
+
+            // 检查当前 Cookie 项是否以目标名称开头
+            if (c.indexOf(nameEQ) === 0) {
+              // 返回 Cookie 的值部分（去除名称和等号）
+              return decodeURIComponent(c.substring(nameEQ.length, c.length));
+            }
+          }
+
+          // 如果没有找到指定名称的 Cookie，返回 null
+          return null;
+        } catch (error) {
+          console.error('获取 Cookie 失败:', error);
+          return null;
+        }
+      },
+
+      /**
+       * 删除指定名称的 Cookie
+       * 通过设置过期时间为过去的时间来删除 Cookie
+       * @param {string} name - 要删除的 Cookie 名称
+       * @param {string} path - Cookie 路径（可选，默认为 '/'）
+       * @param {string} domain - Cookie 域名（可选）
+       */
+      erase: function (name, path = '/', domain) {
+        try {
+          this.set(name, '', -1, path, domain);
+        } catch (error) {
+          console.error('删除 Cookie 失败:', error);
+        }
+      },
+
+      /**
+       * 检查 Cookie 是否存在
+       * @param {string} name - Cookie 名称
+       * @returns {boolean} 是否存在
+       */
+      exists: function (name) {
+        return this.get(name) !== null;
+      }
+    };
+
+
+    /**
+     * 加密解密工具类
+     * 使用 AES 算法进行数据的加密和解密操作
+     * 采用 CBC 模式和 PKCS7 填充方式
+     */
+    class CryptoUtil {
+      /**
+       * 构造函数
+       * @param {string} aseKey - AES 加密密钥，必须是16位十六进制字符串
+       * @param {string} iv - 初始化向量，必须是16位十六进制字符串，用于增强加密安全性
+       */
+      constructor(aseKey = "0123456789abcdef", iv = "abcdef0123456789") {
+        this.aseKey = aseKey;  // 保存原始密钥字符串
+        this.iv = iv;          // 保存原始初始化向量字符串
+
+        // 将密钥和初始化向量转换为 CryptoJS 可用的格式
+        this.key = CryptoJS.enc.Utf8.parse(aseKey);  // 密钥转换为 UTF8 编码
+        this.ivs = CryptoJS.enc.Utf8.parse(iv);      // 初始化向量转换为 UTF8 编码
+      }
+
+      /**
+       * 加密方法
+       * 使用 AES-CBC 算法对明文进行加密
+       * @param {string} word - 需要加密的明文字符串
+       * @returns {string} 返回加密后的十六进制字符串（大写）
+       */
+      encrypt(word) {
+        // 将明文转换为 UTF8 编码格式
+        const srcs = CryptoJS.enc.Utf8.parse(word);
+
+        // 使用 AES 算法进行加密
+        const encrypted = CryptoJS.AES.encrypt(srcs, this.key, {
+          iv: this.ivs,                        // 使用初始化向量
+          mode: CryptoJS.mode.CBC,             // 使用 CBC 模式
+          padding: CryptoJS.pad.Pkcs7,         // 使用 PKCS7 填充
+        });
+
+        // 返回加密结果的十六进制字符串（转换为大写）
+        return encrypted.ciphertext.toString().toUpperCase();
+      }
+
+      /**
+       * 解密方法
+       * 使用 AES-CBC 算法对密文进行解密
+       * @param {string} word - 需要解密的十六进制密文字符串
+       * @returns {string} 返回解密后的明文字符串，如果输入为空则返回空字符串
+       */
+      decrypt(word) {
+        // 检查输入是否为空
+        if (word) {
+          // 将十六进制字符串转换为 CryptoJS 可处理的格式
+          const encryptedHexStr = CryptoJS.enc.Hex.parse(word);
+
+          // 将十六进制转换为 Base64 格式（CryptoJS 解密需要）
+          const srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+
+          // 使用 AES 算法进行解密
+          const decrypt = CryptoJS.AES.decrypt(srcs, this.key, {
+            iv: this.ivs,                        // 使用相同的初始化向量
+            mode: CryptoJS.mode.CBC,             // 使用 CBC 模式
+            padding: CryptoJS.pad.Pkcs7,         // 使用 PKCS7 填充
+          });
+
+          // 将解密结果转换为 UTF8 字符串
+          const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+
+          // 返回最终的明文字符串
+          return decryptedStr.toString();
+        } else {
+          // 如果输入为空，返回空字符串
+          return "";
+        }
+      }
+
+      /**
+       * 加密方法
+       * 使用 AES-CBC 算法对明文进行加密
+       * @param {string} word - 需要加密的明文字符串
+       * @returns {string} 返回加密后的十六进制字符串（大写）
+       */
+      encode(word) {
+        return this.encrypt(word);
+      }
+
+      /**
+       * 解密方法
+       * 使用 AES-CBC 算法对密文进行解密
+       * @param {string} word - 需要解密的十六进制密文字符串
+       * @returns {string} 返回解密后的明文字符串，如果输入为空则返回空字符串
+       */
+      decode(word) {
+        return this.decrypt(word);
+      }
+    }
+
+    // 简单的加密解密函数（基于Base64）
+    const Crypto = {
+      encode: function (str) {
+        try {
+          return btoa(encodeURIComponent(str));
+        } catch (e) {
+          return str;
+        }
+      },
+      decode: function (str) {
+        try {
+          return decodeURIComponent(atob(str));
+        } catch (e) {
+          return str;
+        }
+      }
+    };
+
+    // 创建浮动粒子
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+
+        // 随机属性
+        const size = Math.random() * 5 + 2;
+        const posX = Math.random() * 100;
+        const delay = Math.random() * 15;
+        const duration = Math.random() * 10 + 15;
+
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.bottom = `-10px`;
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.animationDuration = `${duration}s`;
+
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // 表单验证
+    function validateForm() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (username === '') {
+        showMessage('请输入用户名', 'error');
+        document.getElementById('username').focus();
+        return false;
+      }
+
+      if (password === '') {
+        showMessage('请输入密码', 'error');
+        document.getElementById('password').focus();
+        return false;
+      }
+
+      if (username.length < 2) {
+        showMessage('用户名至少需要2个字符', 'error');
+        document.getElementById('username').focus();
+        return false;
+      }
+
+      if (password.length < 6) {
+        showMessage('密码至少需要6个字符', 'error');
+        document.getElementById('password').focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    // 显示消息提示
+    function showMessage(message, type = 'info') {
+      // 移除已存在的消息
+      const existingMsg = document.querySelector('.message-toast');
+      if (existingMsg) {
+        existingMsg.remove();
+      }
+
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message-toast message-${type}`;
+      messageDiv.innerHTML = `
+        <i class="fa ${type === 'error' ? 'fa-exclamation-circle' : type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i>
+        <span>${message}</span>
+      `;
+
+      // 添加样式
+      messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        color: white;
+        font-size: 14px;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        animation: slideInRight 0.3s ease;
+        background: ${type === 'error' ? '#f56565' : type === 'success' ? '#48bb78' : '#4299e1'};
+      `;
+
+      document.body.appendChild(messageDiv);
+
+      // 3秒后自动移除
+      setTimeout(() => {
+        if (messageDiv.parentNode) {
+          messageDiv.style.animation = 'slideOutRight 0.3s ease';
+          setTimeout(() => messageDiv.remove(), 300);
+        }
+      }, 3000);
+    }
+
+    // 保存登录信息
+    function saveLoginInfo() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const remember = document.getElementById('remember').checked;
+
+      if (remember) {
+        Cookie.set('rmbUser', 'true', 7);
+        Cookie.set('user_no', username, 7);
+        const cryptoUtil = new CryptoUtil();
+        Cookie.set('pwd', cryptoUtil.encrypt(password), 7);
+      } else {
+        Cookie.erase('rmbUser');
+        Cookie.erase('user_no');
+        Cookie.erase('pwd');
+      }
+    }
+
+    // 加载保存的登录信息
+    function loadSavedLoginInfo() {
+      if (Cookie.get('rmbUser') === 'true') {
+        document.getElementById('remember').checked = true;
+        const savedUsername = Cookie.get('user_no');
+        const savedPassword = Cookie.get('pwd');
+
+        if (savedUsername) {
+          document.getElementById('username').value = savedUsername;
+        }
+        const cryptoUtil = new CryptoUtil();
+        if (savedPassword) {
+          try {
+            document.getElementById('password').value = cryptoUtil.decrypt(savedPassword);
+          } catch (error) {
+            Cookie.set('pwd', '', 30);
+            console.error(error)
+          }
+        }
+      }
+    }
+
+    /**
+     * 自定义请求 返回Promise
+     * @param {*} url 
+     * @param {*} method 
+     * @param {*} jsonData 
+     * @returns 
+     */
+    function onFetch(url, method, jsonData) {
+      return new Promise((resolve, reject) => {
+        crosAjax(url, method, jsonData, succFun)
+        function succFun(data) {
+          console.log(data);
+          resolve(data)
+        }
+      })
+    }
+
+    async function fetchApplications() {
+      //查询完整应用列表
+      const backdata = await new Promise((resolve) => {
+        crosAjax(`${top.pathConfig.gateway}/config/select/srvconfig_app_list_select`, "POST", {
+          "serviceName": "srvconfig_app_list_select",
+          "colNames": [
+            "*"
+          ],
+          "condition": [],
+          "relation_condition": {},
+          "page": {
+            "pageNo": 1,
+            "rownumber": 999
+          },
+          "order": []
+        }, function (backdata) {
+          resolve(backdata)
+          // if (backdata.data != undefined && Array.isArray(backdata.data) && backdata.data.length > 0) {
+          //     window.sessionStorage.setItem('applications', JSON.stringify(backdata.data) ) // 保存应用
+          // }
+        })
+      })
+      if (backdata && Array.isArray(backdata.data) && backdata.data.length > 0) {
+        window.sessionStorage.setItem('applications', JSON.stringify(backdata.data)) // 保存应用
+        return backdata.data
+      }
+    }
+
+    function mixStringsAlternately(str1, str2) {
+      let result = '';
+      result += str1.length + ',' + str2.length + ',';
+      let i = 0;
+      while (i < str1.length || i < str2.length) {
+        if (i < str1.length) {
+          result += str1.charAt(i);
+        }
+        if (i < str2.length) {
+          result += str2.charAt(i);
+        }
+        i++;
+      }
+      return btoa(result);
+    }
+
+
+    let loginEncry = '否'
+    function auth2Login() {
+      var user_no = $("#username").val();
+      var pwd = $("#password").val();
+      const bxReq = {
+        "user_no": user_no,
+        "pwd": pwd,
+      }
+      if (loginEncry) {
+        bxReq.enc = '是'
+        bxReq.pwd = mixStringsAlternately(user_no, pwd)
+      }
+      const urlParams = getUrlParams(top.location.href)
+      if (typeof urlParams === 'object' && Object.keys(urlParams).length > 0) {
+        // 将url参数添加到bxReq中
+        Object.keys(urlParams).forEach(key => {
+          bxReq[key] = urlParams[key];
+        });
+      }
+      const url = `${top.pathConfig.gateway}/sso/oauth2/login`
+      async function callBack(data) {
+        if (data.redirect_uri) {
+          var resp = data
+          var bx_auth_ticket = resp.response.bx_auth_ticket;
+          var current_login_user = resp.response.login_user_info;
+          saveLoginInfo();
+          sessionStorage.setItem("bx_auth_ticket", bx_auth_ticket);
+          sessionStorage.setItem("logined", true);
+          sessionStorage.setItem(
+            "current_login_user",
+            JSON.stringify(current_login_user)
+          );
+          top.user = current_login_user;
+          if (top.user.tenant_name) {
+            top.document.title = top.user.tenant_name;
+          }
+          await fetchApplications()
+          if (resp.redirect_uri) {
+            // 登录后跳转到重定向地址
+            window.location.href = resp.redirect_uri;
+          }
+        }
+      }
+      crosAjax(url, "POST", bxReq, callBack);
+    }
+
+    // 登录处理
+    async function loginProc() {
+      if (!validateForm()) {
+        return;
+      }
+      const urlObj = new URL(top.location.href)
+      if (urlObj.searchParams.get('redirect_uri') && urlObj.searchParams.get('appid')) {
+        return auth2Login()
+      }
+
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const btn = document.querySelector('.btn-login');
+      const originalText = btn.innerHTML;
+      let oldUser = window.sessionStorage.getItem("current_login_user");
+      oldUser = oldUser ? JSON.parse(oldUser) : oldUser;
+      if (top.layer && oldUser && username !== oldUser.user_no) {
+        if (window.location.href != window.parent.window.location.href) {
+          sessionStorage.setItem("current_login_user", null);
+          top.layer.confirm(
+            "当前账号与已登录帐号不同，是否需要切换帐号重新登录？",
+            {
+              btn: ["确认", "取消"], //按钮
+            },
+            function () {
+              //切换到登录页面
+              reLogin();
+            },
+            function () { }
+          );
+        }
+      }
+
+      // 显示加载效果
+      btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> 登录中...';
+      btn.disabled = true;
+
+      try {
+        const loginData = {
+          user_no: username,
+          pwd: password,
+          terminal_type: 'PC'
+        };
+        const req = [{
+          "serviceName": "srvuser_login",
+          "data": [{ "user_no": username, "pwd": password, "terminal_type": "PC" }]
+        }]
+        const path = `${top.pathConfig.gateway}/${top.pathConfig.sso_app || 'sso'}/operate/srvuser_login`
+        const data = await onFetch(path, 'POST', req)
+        if (data?.resultCode === 'SUCCESS') {
+          // 登录成功
+          btn.innerHTML = '登录成功 <i class="fa fa-check"></i>';
+          showMessage('登录成功！正在跳转至系统...', 'success');
+          await new Promise(resolve => setTimeout(resolve, 500));
+          btn.innerHTML = originalText;
+          const resp = data.response?.[0]
+          if (resp?.response?.login_user_info) {
+            const bx_auth_ticket = resp?.response?.bx_auth_ticket;
+            const current_login_user = resp?.response?.login_user_info
+            // 保存登录信息
+            saveLoginInfo();
+            sessionStorage.setItem("bx_auth_ticket", bx_auth_ticket);
+            sessionStorage.setItem("current_login_user", JSON.stringify(current_login_user));
+            sessionStorage.setItem('logined', true)
+            top.user = current_login_user;
+            if (top.user.tenant_name) {
+              top.document.title = top.user.tenant_name;
+            }
+            await fetchApplications()
+            if (resp.redirect_uri) {
+              // 登录后跳转到重定向地址
+              window.location.href = resp.redirect_uri;
+            } else if (sessionStorage.login_redirect_url) {
+              // 从别的页面跳过来的
+              const url = sessionStorage.login_redirect_url;
+              window.location.href = url;
+              sessionStorage.removeItem('login_redirect_url');
+              return;
+            }
+
+            // 有多个租户，显示选择弹窗
+            if (current_login_user && Array.isArray(current_login_user.otherTenantInfos) && current_login_user.otherTenantInfos.length > 1) {
+              showTenantSelector(current_login_user.otherTenantInfos);
+              return;
+            }
+
+            const address = top.window.location;
+            if (address.pathname?.endsWith("/main/index.html")
+            ) {
+              if (sessionStorage.getItem("need_main_refresh")) {
+                var indexpage = getMainAddress();
+                address.href = "/" + indexpage;
+                sessionStorage.removeItem("need_main_refresh");
+              } else {
+                //1.不用刷新 页面当前已经在主页面
+              }
+            } else {
+              var indexpage = getMainAddress();
+              address.href = "/" + indexpage;
+              let menu = [];
+              window.sessionStorage.setItem("menu", JSON.stringify(menu));
+              window.sessionStorage.setItem("curmenu", "");
+            }
+            //主页面地址
+            if (top.layer) {
+              top.layer.closeAll();
+            }
+            if (layer) {
+              layer.closeAll();
+            }
+          }
+        } else if (data?.resultMessage) {
+          showMessage(data?.resultMessage, 'error');
+        } else {
+          showMessage('登录失败，请联系管理员', 'error');
+        }
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      } catch (error) {
+        console.error('登录错误:', error);
+        // showMessage('登录失败，请检查用户名和密码', 'error');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
+    }
+
+    function switchTenant(data) {
+      let { tenantNo, tenantName, appNo, applicationName } = data || {};
+      if (tenantNo && appNo) {
+        var indexpage = getMainAddress();
+        const href = `/${indexpage}?an=${appNo}&tn=${tenantNo}&tname=${tenantName}`
+        top.window.location.href = href
+        return
+      }
+    }
+
+    // 表单提交事件
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      loginProc();
+    });
+
+    // 回车键登录
+    document.addEventListener('keydown', function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        loginProc();
+      }
+    });
+
+    // 输入框焦点效果
+    function setupInputEffects() {
+      const inputs = document.querySelectorAll('.form-control');
+      inputs.forEach(input => {
+        input.addEventListener('focus', function () {
+          this.parentNode.parentNode.classList.add('focused');
+        });
+
+        input.addEventListener('blur', function () {
+          if (this.value === '') {
+            this.parentNode.parentNode.classList.remove('focused');
+          }
+        });
+
+        // 如果输入框有值，保持焦点样式
+        if (input.value !== '') {
+          input.parentNode.parentNode.classList.add('focused');
+        }
+      });
+    }
+
+    // 添加动画样式
+    function addAnimationStyles() {
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideInRight {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes slideOutRight {
+          from {
+            transform: translateX(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+        }
+        
+        .form-group.focused .form-control {
+          border-color: #2a5298;
+          box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+        }
+        
+      `;
+      document.head.appendChild(style);
+    }
+
+    /**
+     * 显示租户选择弹窗
+     * @param {Array} tenants - 租户信息数组
+     */
+    function showTenantSelector(tenants) {
+      const modal = document.getElementById('tenantModal');
+      const tenantList = document.getElementById('tenantList');
+      
+      // 清空现有内容
+      tenantList.innerHTML = '';
+      
+      // 生成租户列表
+      tenants.forEach((tenant, index) => {
+        const tenantItem = document.createElement('div');
+        tenantItem.className = 'tenant-item';
+        tenantItem.innerHTML = `
+          <div class="tenant-name">
+            <i class="fa fa-building"></i>
+            ${tenant.tenant_name || '未命名租户'}
+            ${index === 0 ? '<span class="tenant-badge">推荐</span>' : ''}
+          </div>
+          <div class="tenant-app">
+            <i class="fa fa-cube"></i>
+            应用：${tenant.application_name || tenant.application || '默认应用'}
+          </div>
+        `;
+        
+        // 添加点击事件
+        tenantItem.addEventListener('click', () => {
+          selectTenant(tenant);
+        });
+        
+        tenantList.appendChild(tenantItem);
+      });
+      
+      // 显示弹窗
+      modal.classList.add('show');
+      
+      // 添加键盘事件
+      document.addEventListener('keydown', handleTenantModalKeydown);
+    }
+    
+    /**
+     * 选择租户并跳转
+     * @param {Object} tenant - 选中的租户信息
+     */
+    function selectTenant(tenant) {
+      const modal = document.getElementById('tenantModal');
+      
+      // 添加选择动画
+      const selectedItem = event.currentTarget;
+      selectedItem.style.borderColor = 'var(--success-color)'
+      selectedItem.style.color = 'white';
+      selectedItem.style.transform = 'scale(0.95)';
+      
+      // 延迟跳转，让用户看到选择效果
+      setTimeout(() => {
+        hideTenantSelector();
+        switchTenant({
+          tenantNo: tenant.tenant_no,
+          tenantName: tenant.tenant_name,
+          appNo: tenant.application,
+          applicationName: tenant.application_name,
+        });
+      }, 300);
+    }
+    
+    /**
+     * 隐藏租户选择弹窗
+     */
+    function hideTenantSelector() {
+      const modal = document.getElementById('tenantModal');
+      modal.classList.remove('show');
+      document.removeEventListener('keydown', handleTenantModalKeydown);
+      const btn = document.querySelector('.btn-login');
+      if (btn) {
+        btn.disabled = false;
+      }
+    }
+    
+    /**
+     * 处理弹窗键盘事件
+     * @param {KeyboardEvent} event - 键盘事件
+     */
+    function handleTenantModalKeydown(event) {
+      if (event.key === 'Escape') {
+        hideTenantSelector();
+      }
+    }
+
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', function () {
+      const closeBtn = document.getElementById('tenantModalClose');
+      const modal = document.getElementById('tenantModal');
+    
+      if (closeBtn) {
+        closeBtn.addEventListener('click', hideTenantSelector);
+      }
+      
+      // 点击背景关闭弹窗
+      // if (modal) {
+      //   modal.addEventListener('click', function(event) {
+      //     if (event.target === modal) {
+      //       hideTenantSelector();
+      //     }
+      //   });
+      // }
+
+      // 添加动画样式
+      addAnimationStyles();
+
+      // 加载保存的登录信息
+      loadSavedLoginInfo();
+
+      // 设置输入框效果
+      setupInputEffects();
+
+      // 初始化粒子
+      createParticles();
+
+      // 设置密码显示/隐藏功能
+      setupPasswordToggle();
+
+      // 添加简单的动画效果
+      const formElements = document.querySelectorAll('.form-group, .btn-login');
+      formElements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 300 + index * 100);
+      });
+
+      // 添加建筑轮廓动画
+      const buildings = document.querySelectorAll('.building');
+      buildings.forEach((building, index) => {
+        building.style.transition = 'transform 0.5s ease';
+        setTimeout(() => {
+          building.style.transform = 'translateY(0)';
+        }, 500 + index * 50);
+      });
+    });
+
+    // 设置密码显示/隐藏功能
+    function setupPasswordToggle() {
+      const passwordToggle = document.getElementById('passwordToggle');
+      const passwordInput = document.getElementById('password');
+
+      if (passwordToggle && passwordInput) {
+        passwordToggle.addEventListener('click', function () {
+          const icon = this.querySelector('i');
+
+          if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.className = 'fa fa-eye-slash right';
+            this.setAttribute('aria-label', '隐藏密码');
+            this.setAttribute('title', '隐藏密码');
+          } else {
+            passwordInput.type = 'password';
+            icon.className = 'fa fa-eye right';
+            this.setAttribute('aria-label', '显示密码');
+            this.setAttribute('title', '显示密码');
+          }
+        });
+      }
+    }
+  </script>
+</body>
+<script src="/js/jquery-3.7.1.min.js"></script>
+<script src="/js/jquery-migrate-3.4.1.min.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<script
+  type="text/javascript"
+  src="/js/crypto-js.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="/js/server.js"
+></script>
+<script
+  type="text/javascript"
+  src="/js/server_common.js"
+></script>
+
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <meta
+    name="description"
+    content="三秦学子圣地行管理平台登录页面"
+  >
+  <meta
+    name="keywords"
+    content="三秦学子圣地行管理平台,登录"
+  >
+  <title>三秦学子圣地行管理平台 - 选择入口</title>
+
+  <!-- 预加载关键资源 -->
+  <link
+    rel="preload"
+    href="./css/font-awesome.min.css"
+    as="style"
+  >
+  <link
+    rel="preload"
+    href="/js/jquery-3.7.1.min.js"
+    as="script"
+  >
+  <link
+    rel="preload"
+    href="/js/crypto-js.min.js"
+    as="script"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./css/font-awesome.min.css"
+  >
+
+  <style>
+    /* CSS 变量定义 */
+    :root {
+      --primary-color: #1e3c72;
+      --secondary-color: #2a5298;
+      --accent-color: #ffd166;
+      --success-color: #48bb78;
+      --error-color: #f56565;
+      --info-color: #4299e1;
+      --text-primary: #333;
+      --text-secondary: #666;
+      --text-light: #999;
+      --border-color: #e0e6f0;
+      --background-overlay: rgba(255, 255, 255, 0);
+      --shadow-light: 0 4px 15px rgba(30, 60, 114, 0.2);
+      --shadow-medium: 0 6px 20px rgba(30, 60, 114, 0.3);
+      --shadow-heavy: 0 15px 50px rgba(0, 0, 0, 0.25);
+      --border-radius: 10px;
+      --border-radius-large: 25px;
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.3s ease;
+      --transition-slow: 0.5s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      /* 使用整页背景图：100% 撑满，不裁剪 */
+      background-image: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.06)), url('./images/beijing.png');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+      min-height: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* 顶部细线分割 */
+    .top-divider {
+      position: fixed;
+      top: 107px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(214, 46, 46, 0.6);
+      box-shadow: 0 0 0 1px rgba(214, 46, 46, 0.12) inset;
+      pointer-events: none;
+    }
+
+    /* 左上角盒模型（仅图片，无文字） */
+    .top-left-brand {
+      position: absolute;
+      top: 13px;
+      left: 37px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: transparent;
+    }
+
+    .top-left-brand img {
+      display: block;
+      height: 80px;
+      width: 324px;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* 居中容器 */
+    .container {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 两列选择区 */
+    .entry-grid {
+      width: auto;
+      display: grid;
+      grid-template-columns: 544px 544px;
+      column-gap: 295px; /* 两卡片之间的水平间距 */
+      row-gap: 0;
+      align-items: start;
+    }
+
+    /* 卡片 */
+    .entry-card {
+      position: relative;
+      width: 544px;
+      height: 583px;
+      padding: 0;
+      border-radius: var(--border-radius-large);
+      background: transparent;
+      box-shadow: 0 15px 50px rgba(220, 135, 116, 0.35);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+      display: flex;
+      align-items: center; /* 水平垂直居中图片 */
+      justify-content: center;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .entry-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(220, 135, 116, 0.45);
+    }
+
+    /* Logo 图片 */
+    .entry-logo {
+      object-fit: contain;
+      image-rendering: -webkit-optimize-contrast;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.18));
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* 指定左右卡片 Logo 尺寸 */
+    .entry-card.left .entry-logo { width: 237px; height: 270px; }
+    .entry-card.right .entry-logo { width: 240px; height: 240px; }
+
+    /* 上边距控制：左 114px，右 119px */
+    .entry-card.left { margin-top: 114px; }
+    .entry-card.right { margin-top: 119px; }
+
+    /* 卡片底部标题（文本） */
+    .entry-caption {
+      margin-top: 56px;
+      font-size: 36px;
+      font-weight: 700;
+      color: #333333;
+      letter-spacing: 1px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    /* 响应式 */
+         /* 1024px 及以下 - 平板横屏 */
+     @media (max-width: 1024px) {
+       .entry-grid { 
+         grid-template-columns: 400px 400px; 
+         column-gap: 120px; 
+         row-gap: 0; 
+       }
+       .entry-card { 
+         width: 400px; 
+         height: 380px;
+         margin-left: auto; 
+         margin-right: auto; 
+       }
+       .entry-card.left, .entry-card.right { 
+         margin-top: 80px; 
+       }
+       .entry-card.left .entry-logo { 
+         width: 160px; 
+         height: 180px; 
+       }
+       .entry-card.right .entry-logo { 
+         width: 160px; 
+         height: 160px; 
+       }
+       .entry-caption {
+         font-size: 28px;
+         margin-top: 28px;
+       }
+       .top-left-brand img {
+         height: 60px;
+         width: 240px;
+       }
+     }
+
+     /* 768px 及以下 - 平板竖屏 */
+     @media (max-width: 768px) {
+       .entry-grid { 
+         grid-template-columns: 1fr; 
+         column-gap: 0; 
+         row-gap: 28px; 
+       }
+       .entry-card { 
+         width: 360px; 
+         height: 380px;
+         margin-left: auto; 
+         margin-right: auto; 
+       }
+       .entry-card.left, .entry-card.right { 
+         margin-top: 50px; 
+       }
+       .entry-card.left .entry-logo { 
+         width: 140px; 
+         height: 160px; 
+       }
+       .entry-card.right .entry-logo { 
+         width: 140px; 
+         height: 140px; 
+       }
+       .entry-caption {
+         font-size: 26px;
+         margin-top: 28px;
+       }
+       .top-left-brand {
+         top: 8px;
+         left: 20px;
+       }
+       .top-left-brand img {
+         height: 50px;
+         width: 200px;
+       }
+       .top-divider {
+         top: 80px;
+       }
+     }
+
+     /* 480px 及以下 - 手机 */
+     @media (max-width: 480px) {
+       .entry-grid { 
+         grid-template-columns: 1fr; 
+         column-gap: 0; 
+         row-gap: 20px; 
+         padding: 0 16px;
+       }
+       .entry-card { 
+         width: 100%; 
+         max-width: 280px;
+         height: 320px;
+         margin-left: auto; 
+         margin-right: auto; 
+       }
+       .entry-card.left, .entry-card.right { 
+         margin-top: 30px; 
+       }
+       .entry-card.left .entry-logo { 
+         width: 100px; 
+         height: 120px; 
+       }
+       .entry-card.right .entry-logo { 
+         width: 100px; 
+         height: 100px; 
+       }
+       .entry-caption {
+         font-size: 22px;
+         margin-top: 20px;
+       }
+       .top-left-brand {
+         top: 6px;
+         left: 12px;
+       }
+       .top-left-brand img {
+         height: 40px;
+         width: 160px;
+       }
+       .top-divider {
+         top: 60px;
+       }
+     }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="top-left-brand">
+    <img src="./images/Group3815.png" alt="品牌标识">
+  </div>
+
+  <div class="container">
+    <div class="entry-grid">
+      <a class="entry-card left" href="http://yxsj.sneducloud.com/html/#/" aria-label="入口一">
+        <img class="entry-logo" src="./images/logo3.png" alt="入口一Logo">
+        <div class="entry-caption">中小学研学实践</div>
+      </a>
+      <a class="entry-card right" id="tohome" aria-label="入口二">
+        <img class="entry-logo" src="./images/logo2.png" alt="入口二Logo">
+        <div class="entry-caption">到延安去-三秦学子圣地行</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="top-divider"></div>
+
+  <script>
+    window.addEventListener('load', function () {
+      var rightCard = document.getElementById('tohome');
+      if (!rightCard) return;
+
+      rightCard.addEventListener('click', function (e) {
+        e.preventDefault();
+        try {
+          var path = (typeof getMainAddress === 'function') ? getMainAddress() : 'main/index.html';
+          var origin = window.location.origin.replace(/\/$/, '');
+          path = String(path || '').replace(/^\//, '');
+          var url = origin + '/' + path;
+          window.location.href = url;
+        } catch (err) {
+          window.location.href = '/main/index.html';
+        }
+      });
+    });
+  </script>
+</body>
+<script src="/js/jquery-3.7.1.min.js"></script>
+<script src="/js/jquery-migrate-3.4.1.min.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<script
+  type="text/javascript"
+  src="/js/crypto-js.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="/js/server.js"
+></script>
+<script
+  type="text/javascript"
+  src="/js/server_common.js"
+></script>
+
+</html>

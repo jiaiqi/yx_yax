@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="layui/css/layui.css" media="all" />
+  <link rel="stylesheet" href="css/font_tnyc012u2rlwstt9.css" media="all" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" media="all" />
+  <link rel="stylesheet" href="css/main.css" media="all" />
+  <link rel="stylesheet" href="css/theme.css">
+  <style>
+    .three_down_arrow {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid dashed dashed;
+      border-color: #c2c2c2 transparent transparent;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all .2s;
+      -webkit-transition: all .2s;
+      position: absolute;
+      top: 20px;
+      right: 10px;
+      border-width: 6px;
+    }
+
+    .three_up_arrow {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid dashed dashed;
+      border-color: #c2c2c2 transparent transparent;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all .2s;
+      -webkit-transition: all .2s;
+      position: absolute;
+      top: 28px;
+      right: 3px;
+      border-width: 6px;
+    }
+
+    .apps_box {
+      height: calc(100% - 20px);
+      padding: 10px;
+
+    }
+
+    .apps_box .layui-form {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .apps_box .layui-layer-setwin {
+      top: -30px;
+    }
+
+    .sitename0 {
+      position: relative;
+
+
+    }
+
+    .sitename0 .rightIcon {
+      display: inline-block;
+      margin-left: 10px;
+      transform: rotate(90deg);
+      transition: all 0.3s ease;
+    }
+
+    .tenant_switch {
+      position: absolute;
+      left: 30px;
+      z-index: 9999;
+      min-width: 100%;
+      background-color: rgba(35, 38, 46, 0.5);
+      background-color: var(--tenant-switch-popup-bg-color);
+      color: var(--tenant-switch-popup-text-color);
+      /* background-color: #000; */
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      width: 200px;
+
+      /* display: none; */
+      max-height: 0;
+      overflow: hidden;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      color: #fff;
+    }
+
+    .tenant_switch .tenant_switch_text {
+      font-weight: bold;
+      padding: 0 10px;
+    }
+
+    .tenant_switch .tenant_switch_list {
+      margin-top: 10px;
+
+
+    }
+
+    .tenant_switch .tenant_switch_list_item {
+      padding: 8px 10px;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .tenant_switch_list_item .tenant_switch_list_item_app {
+      font-weight: bold;
+      font-size: 16px;
+
+    }
+
+    .tenant_switch_list_item .tenant_switch_list_item_name {
+      font-size: 12px;
+      color: #eee;
+    }
+
+    .tenant_switch .tenant_switch_list_item:hover {
+      background-color: rgba(0, 0, 0, 0.9);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      background-color: var(--tenant-switch-menu-hover-bg-color);
+
+    }
+
+    .tenant_switch .tenant_switch_list_item .svg-icon {
+      width: 24px;
+      height: 24px;
+      right: 10px;
+      top: 10px;
+      z-index: 99;
+      transition: all 0.2s ease;
+
+
+    }
+
+    .tenant_switch .tenant_switch_list_item .svg-icon:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+
+    .sitename0:hover .tenant_switch {
+      display: block;
+      max-height: 1000px;
+      padding: 10px 0 0;
+
+    }
+
+    .sitename0:hover .rightIcon {
+      display: inline-block;
+      transform: rotate(-90deg);
+    }
+  </style>
+</head>
+
+<body class="main_body">
+  <div class="layui-layout layui-layout-admin">
+    <!-- 顶部 -->
+    <div class="layui-header header">
+      <div class="layui-main" style="display: flex;">
+        <div class="" id="sitename">
+          <span class="logo" id="main_title"></span>
+          <span class="version" id="version"></span>
+        </div>
+        <!-- 显示/隐藏菜单 -->
+        <div style="flex: 1;" class="applications-header">
+          <a href="javascript:;" class="iconfont hideMenu">
+            <i id="menu-hide-icon" class="fa fa-outdent" aria-hidden="true"></i>
+          </a>
+          <div class="applications">
+            <ul class="nav navbar-nav" id="apps">
+            </ul>
+          </div>
+          <ul class="layui-nav top_menu">
+            <a class="layui-nav-item showNotice"
+              data-url='/vpages/index.html#/list/srvsso_info_user_select?operate_params=%7B%22serviceName%22%3A%22srvsso_info_user_select%22%2C%22condition%22%3A%5B%7B%22colName%22%3A%22type%22%2C%22ruleType%22%3A%22eq%22%2C%22value%22%3A%22myinfo%22%7D%5D%7D&menuapp=sso&srvApp=sso'
+              id="showNotice" pc>
+              <span class="" id="notice-badge"></span>
+              <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
+              <cite style="display: none;">我的消息</cite>
+              <div class="audio-container" style="display: none !important;"> </div>
+            </a>
+            </li>
+            <li class="layui-nav-item" pc>
+              <a href="javascript:;">
+                <cite>你好！
+                  <span class="userName"></span>, 欢迎登录</cite>
+              </a>
+              <dl class="layui-nav-child" id="sysoperate">
+                <dd>
+                  <a href="javascript:;" data-url="page/user/changePwd.html">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                    <cite>修改密码</cite>
+                  </a>
+                </dd>
+                <dd>
+                  <a class="signOut">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                    <cite>退出</cite>
+                  </a>
+                </dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="layui-side layui-bg-black">
+      <div class="navBar layui-side-scroll">
+      </div>
+    </div>
+    <!-- 右侧内容 -->
+    <div class="layui-body layui-form">
+      <div class="layui-tab marg0" lay-filter="bodyTab" id="top_tabs_box">
+        <ul class="layui-tab-title top_tab" id="top_tabs">
+          <li class="layui-this" lay-id="">
+            <i class="fa fa-home"></i>
+            <cite>工作台</cite>
+          </li>
+        </ul>
+        <ul class="layui-nav closeBox">
+          <li class="layui-nav-item">
+            <a href="javascript:;">
+              <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>页面操作</a>
+            <dl class="layui-nav-child" id="tab-buttons">
+              <dd>
+                <a href="javascript:;" class="refresh refreshThis">
+                  <i class="layui-icon">&#x1002;</i> 刷新当前</a>
+              </dd>
+              <dd>
+                <a href="javascript:;" class="closePageOther">
+                  <i class="fa fa-minus-square-o" aria-hidden="true"></i>关闭其他</a>
+              </dd>
+              <dd>
+                <a href="javascript:;" class="closePageAll">
+                  <i class="fa fa-times-circle" aria-hidden="true"></i> 关闭全部</a>
+              </dd>
+
+              <!-- <dd>
+									<a href="javascript:;" class="cutover_menu">
+										<i class="layui-icon">&#x1002;</i> 切换菜单模式</a>
+								</dd> -->
+            </dl>
+          </li>
+        </ul>
+        <div class="layui-tab-content clildFrame">
+          <div class="layui-tab-item layui-show">
+            <iframe id="mainpage"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 移动导航 -->
+  <div class="site-tree-mobile layui-hide">
+    <i class="layui-icon">&#xe602;</i>
+  </div>
+  <div class="site-mobile-shade"></div>
+  <script src="../js/jquery-3.7.1.min.js"></script>
+  <script src="../js/jquery-migrate-3.4.1.min.js"></script>
+  <script src="../js/jquery.cookie.js"></script>
+  <script type="text/javascript" src="layui/layui.js"></script>
+  <script type="text/javascript" src="../js/server.js"></script>
+  <script type="text/javascript" src="../js/server_common.js"></script>
+  <script type="text/javascript" src="js/leftNav.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/appBtns.js"></script>
+  <script type="text/javascript">
+    function switchTenant(params, target) {
+      if (params?.stopPropagation) {
+        // 阻止冒泡
+        params?.stopPropagation?.()
+      }
+      let { tenantNo, tenantName, appNo, applicationName } = params?.target?.dataset || params?.dataset || {};
+      if (tenantNo && appNo) {
+        // localStorage.setItem('current_tenant_no', tenantNo)
+        // localStorage.setItem('current_tenant_app', appNo)
+        // const tenantInfo = {
+        //   tenant_no: tenantNo,
+        //   tenant_name: tenantName || '',
+        //   application: appNo || '',
+        //   application_name: applicationName || '',
+        // }
+        // const href =  `${top.location.origin}${top.location.pathname}?ti=${encodeURIComponent(JSON.stringify(tenantInfo))}`
+        const href = `${top.location.origin}${top.location.pathname}?an=${appNo}&tn=${tenantNo}&tname=${tenantName}`
+        if (target && target === '_blank') {
+          // 切换租户时将当前页面在新窗口打开 将租户信息保存到新打开页面的sessionStorage中
+          // const switchTenantReq = [
+          //   {
+          //     serviceName: "srvuser_app_tenant_swh_login",
+          //     data: [
+          //       {
+          //         tenant_no: tenantNo,
+          //         tenant_name: tenantName,
+          //         application: appNo
+          //       },
+          //     ],
+          //   },
+          // ];
+          const _target = window.open(href);
+          // _target.sessionStorage.setItem('current_tenant_name', tenantName)
+          // _target.sessionStorage.setItem("switchTenantReq", JSON.stringify(switchTenantReq));
+          if (tenantName) {
+            setTimeout(() => {
+              _target.document.title = tenantName
+            }, 500);
+          }
+
+        } else {
+          top.window.location.href = href
+          return
+          const bxReq = [
+            {
+              serviceName: "srvuser_app_tenant_swh_login",
+              data: [
+                {
+                  tenant_no: tenantNo,
+                  tenant_name: tenantName,
+                  application: appNo,
+                },
+              ],
+            },
+          ];
+          const path = top.pathConfig.gateway + "/sso/operate/srvuser_app_tenant_swh_login";
+
+          const callBack = function (data) {
+            if (data.state == "SUCCESS") {
+              const res = data.response;
+              if (res.length > 0) {
+                const resList = res[0].response;
+                window.sessionStorage.setItem('bx_auth_ticket', resList.bx_auth_ticket)
+                window.sessionStorage.setItem('current_login_user', JSON.stringify(resList.login_user_info))
+                top.window.location.reload()
+                if (tenantName) {
+                  sessionStorage.setItem('current_tenant_name', tenantName)
+                  setTimeout(() => {
+                    document.title = tenantName
+                  }, 2000);
+                }
+              }
+            }
+          }
+          crosAjax(path, "POST", bxReq, callBack)
+        }
+      }
+    }
+    //刷新当前
+    $(document).ready(function () {
+      const urlObj = new URL(top.location.href)
+      if (urlObj.searchParams.get('an') && urlObj.searchParams.get('tn')) {
+        let appNo = urlObj.searchParams.get('an')
+        let tenantNo = urlObj.searchParams.get('tn')
+        let tenantName = urlObj.searchParams.get('tname') || ''
+        var obj = {
+          tenant: urlObj.searchParams.get('tn'),
+          application: urlObj.searchParams.get('an'),
+          tenant_name: urlObj.searchParams.get('tname'),
+        }
+        sessionStorage.setItem("_tenant_info", JSON.stringify(obj));
+        top._tenant_info = obj;
+        if (top.user?.tenant != tenantNo || top.user?.application !== appNo) {
+          const callBack = function (data) {
+            if (data.state == "SUCCESS") {
+              var res = data.response;
+              if (res.length > 0) {
+                var resList = res[0].response;
+                top.sessionStorage.setItem('bx_auth_ticket', resList.bx_auth_ticket)
+                top.sessionStorage.setItem('current_login_user', JSON.stringify(resList.login_user_info))
+                top.location.reload()
+                top.user = resList.login_user_info
+                setTimeout(() => {
+                  top.document.title = top.user.tenant_name
+                }, 50);
+              }
+            }
+          }
+          var bxReq = [
+            {
+              serviceName: "srvuser_app_tenant_swh_login",
+              data: [
+                {
+                  tenant_no: tenantNo,
+                  tenant_name: tenantName,
+                  application: appNo,
+                },
+              ],
+            },
+          ];
+          var path = top.pathConfig.gateway + "/sso/operate/srvuser_app_tenant_swh_login";
+          crosAjax(path, "POST", bxReq, callBack)
+          return
+        } else if (top.user.tenant_name) {
+          setTimeout(() => {
+            top.document.title = top.user.tenant_name
+          }, 50);
+        }
+      }
+      let loginUser = sessionStorage.getItem('current_login_user')
+      try {
+        loginUser = JSON.parse(loginUser)
+        if (loginUser.theme && loginUser.theme.theme) {
+          switch (loginUser.theme.theme) {
+            case '红色':
+              $('body').addClass('red')
+              break;
+            case '蓝色':
+              $('body').addClass('dark-blue')
+              break;
+            case '棕黄色':
+              $('body').addClass('tan')
+            case '迷彩绿':
+            case '橄榄绿':
+              $('body').addClass('camouflage-green')
+              const themInfo = {
+                "name": '迷彩绿',
+                "primary-color": "#265e4d",
+                "header-bg-color": "#174b3b",
+                "menu-bg-color": "#265e4d",
+                "menu-bg-light-color": "#ddebe6",
+                "menu-light-border-color": "#4a7365",
+                "menu-text-color": "#ffffff",
+                "menu-active-bg-color": "#235646",
+                "menu-hover-bg-color": "#235646",
+                "menu-active-text-color": "#ffffff",
+                "menu-hover-text-color": "#ffffff"
+              }
+              sessionStorage.setItem('theme', JSON.stringify(themInfo))
+              break;
+              case '延安红':
+              $('body').addClass('yanx-red')
+              const themInfo1 = {
+                "name": '延安红',
+                "primary-color": "#C41E3A",
+                "header-bg-color": "#C41E3A",
+                "menu-bg-color": "#C41E3A",
+                "menu-bg-light-color": "#F6EEEE",
+                "menu-light-border-color": "#E2C8C8",
+                "menu-text-color": "#fff",
+                "menu-active-bg-color": "#C41E3A",
+                "menu-hover-bg-color": "#C41E3A",
+                "menu-active-text-color": "#ffffff",
+                "menu-hover-text-color": "#ffffff"
+              }
+              sessionStorage.setItem('theme', JSON.stringify(themInfo1))
+              break;
+          }
+          const getImageUrl = (fileNo) => {
+            return `${top.pathConfig.gateway}/file/download?bx_auth_ticket=${sessionStorage.getItem("bx_auth_ticket")}&fileNo=${fileNo}`
+          }
+          if (loginUser.theme.top_left_img) {
+            //  左上角背景图
+            $('#sitename').addClass('bg-img')
+            $('#sitename').css('background-image', 'url(' + getImageUrl(loginUser.theme.top_left_img) + ')')
+          }
+          if (loginUser.theme.left_menu_img) {
+            // 侧边菜单背景图
+            $('.layui-side .navBar').addClass('bg-img')
+            $('.layui-side .navBar').css('background-image', 'url(' + getImageUrl(loginUser.theme.left_menu_img) + ')')
+          }
+          if (loginUser.theme.top_app_img) {
+            // 顶部应用背景图
+            $('.applications-header').addClass('bg-img')
+            $('.applications-header').css('background-image', 'url(' + getImageUrl(loginUser.theme.top_app_img) + ')')
+          }
+        }
+      } catch (error) {
+
+      }
+
+      // const urlObj = new URL(top.location.href)
+      // if (urlObj.searchParams.get('an') && urlObj.searchParams.get('tn')) {
+      //   let appNo = urlObj.searchParams.get('an')
+      //   let tenantNo = urlObj.searchParams.get('tn')
+      //   let tenantName = urlObj.searchParams.get('tname') || ''
+      //   if (top.user?.tenant != tenantNo || top.user?.application !== appNo) {
+      //     const callBack = function (data) {
+      //       if (data.state == "SUCCESS") {
+      //         var res = data.response;
+      //         if (res.length > 0) {
+      //           var resList = res[0].response;
+      //           top.sessionStorage.setItem('bx_auth_ticket', resList.bx_auth_ticket)
+      //           top.sessionStorage.setItem('current_login_user', JSON.stringify(resList.login_user_info))
+      //           top.location.reload()
+      //           top.user = resList.login_user_info
+      //           setTimeout(() => {
+      //             top.document.title = top.user.tenant_name
+      //           }, 50);
+      //         }
+      //       }
+      //     }
+      //     var bxReq = [
+      //       {
+      //         serviceName: "srvuser_app_tenant_swh_login",
+      //         data: [
+      //           {
+      //             tenant_no: tenantNo,
+      //             tenant_name: tenantName,
+      //             application: appNo,
+      //           },
+      //         ],
+      //       },
+      //     ];
+      //     var path = top.pathConfig.gateway + "/sso/operate/srvuser_app_tenant_swh_login";
+      //     crosAjax(path, "POST", bxReq, callBack)
+      //     return
+      //   } else if (top.user.tenant_name) {
+      //     setTimeout(() => {
+      //       top.document.title = top.user.tenant_name
+      //     }, 50);
+      //   }
+      // }
+      // if (sessionStorage.getItem("switchTenantReq")) {
+      //   // 切换租户时将当前页面在新窗口打开 将租户信息保存到新打开页面的sessionStorage中 页面加载时如果有保存的租户信息则进行租户登录
+      //   let bxReq = JSON.parse(sessionStorage.getItem("switchTenantReq"))
+      //   sessionStorage.removeItem("switchTenantReq")
+      //   const callBack = function (data) {
+      //     if (data.state == "SUCCESS") {
+      //       var res = data.response;
+      //       if (res.length > 0) {
+      //         var resList = res[0].response;
+      //         window.sessionStorage.setItem('bx_auth_ticket', resList.bx_auth_ticket)
+      //         window.sessionStorage.setItem('current_login_user', JSON.stringify(resList.login_user_info))
+      //         top.window.location.reload()
+      //       }
+      //     }
+      //   }
+      //   var path = top.pathConfig.gateway + "/sso/operate/srvuser_app_tenant_swh_login";
+      //   crosAjax(path, "POST", bxReq, callBack)
+      //   return
+      // }
+
+      initUrlParams();
+
+
+      if (!window.sessionStorage.getItem("pages_attribute")) {
+
+        var path = top.pathConfig.gateway + "/config/select/srvconfig_page_attribute_select";
+        var bxReq = {
+          "serviceName": "srvconfig_page_attribute_select",
+          "colNames": ["*"],
+          "condition": []
+        };
+        // //指定应用
+        // var assignApp = sessionStorage.getItem("assignApp");
+        // if (assignApp) {
+        // 	bxReq.condition.push({
+        // 		"colName": "application",
+        // 		"ruleType": "eq",
+        // 		"value": assignApp
+        // 	});
+        // }
+        // //指定端口
+        // var assignPort = sessionStorage.getItem("assignPort");
+        // if (assignPort) {
+        // 	bxReq.condition.push({
+        // 		"colName": "port",
+        // 		"ruleType": "eq",
+        // 		"value": assignPort + "端"
+        // 	});
+        // }
+
+
+        crosAjax(path, "POST", bxReq, function (backdata) {
+          var datas = backdata.data;
+          var page_attr = {};
+          window.sessionStorage.setItem("childPagination", true); // 默认子表显示分页
+          for (var item of datas) {
+            let attr_value;
+            page_attr[item.attr_key] = item.attr_value;
+          }
+          // if (page_attr.theme) {
+          //   switch (page_attr.theme) {
+          //     case '深蓝':
+          //       document.body.classList.add('dark-blue');
+          //       break;
+          //     default:
+          //       break;
+          //   }
+          // }
+          window.sessionStorage.setItem("pages_attribute", JSON.stringify(page_attr));
+          var timeout_login = '1' // 默认需要
+          window.sessionStorage.setItem("timeout_login", timeout_login)
+        })
+
+      }
+
+
+
+
+
+
+
+      if (sessionStorage.getItem("bx_auth_ticket") == "" || sessionStorage.getItem("bx_auth_ticket") == null) {
+        reLogin();
+      }
+
+
+      if (top.user && top.user.applications) {
+        for (var item of top.user.applications) {
+          if (item.application == top.user.application) {
+            let title = item.application_name;
+            if (top.user.tenant) {
+              var tenant_name = null;
+              for (var item of top.user.tenantInfos) {
+                if (item.tenant_no == top.user.tenant) {
+
+                  if ("m" != top.user.login_port_type) {
+                    title = item.tenant_name;
+                  }
+                }
+              }
+            }
+            $("#main_title").text(title);
+            top.document.title = title;
+            break;
+          }
+        }
+
+        if (!top.user.roles.includes("admin")) {
+
+          $(".cutover_menu").hide();
+
+        }
+
+        if (top.user.application == 'portal') {
+          let applications = sessionStorage.getItem("applications");
+          try {
+            applications = JSON.parse(applications);
+          } catch (error) {
+
+          }
+          if (Array.isArray(applications) && applications.length > 1) {
+            // 顶部应用大于一的时候才默认隐藏菜单栏
+            $(".layui-layout-admin").toggleClass("showMenu");
+            $("#menu-hide-icon").toggleClass("fa-outdent fa-indent");
+          }
+        }
+
+
+
+      } else {
+        $("#main_title").text("生鲜智链云平台");
+      }
+      if (Array.isArray(top.user.otherTenantInfos) && top.user.otherTenantInfos.length > 0) {
+        const element = document.createElement('div');
+        element.classList.add('tenant_switch')
+        element.id = 'tenant_switch'
+        let switchList = ''
+        for (let index = 0; index < top.user.otherTenantInfos.length; index++) {
+          const item = top.user.otherTenantInfos[index];
+          switchList += `
+							<div class="tenant_switch_list_item" data-tenant-no="${item.tenant_no}" data-application-name="${item.application_name}" data-app-no="${item.application}" data-tenant-name="${item.tenant_name}" onclick="switchTenant(this)">
+								<div>
+									<div class="tenant_switch_list_item_app">${item.application_name}</div>
+									<div class="tenant_switch_list_item_name">${item.tenant_name}</div>
+								</div>
+								<div title="从新标签页打开" class="svg-icon" >
+									<svg title=""  viewBox="0 0 48 48" fill="none"" data-tenant-no="${item.tenant_no}" data-app-no="${item.application}" data-application-name="${item.application_name}" data-tenant-name="${item.tenant_name}" onclick="switchTenant(event,'_blank')">
+										<path d="M28 6H42V20" stroke="#eee" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+										<path d="M42 29.4737V39C42 40.6569 40.6569 42 39 42H9C7.34315 42 6 40.6569 6 39V9C6 7.34315 7.34315 6 9 6L18 6" stroke="#eee" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+										<path d="M25.7998 22.1999L41.0998 6.8999" stroke="#eee" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</div>
+							</div>`
+        }
+        element.innerHTML = `
+							<span class="tenant_switch_text">选择应用</span>
+							<div class="tenant_switch_list">
+								${switchList}
+							</div>
+					`
+        const rightIcon = document.createElement('span');
+        rightIcon.classList.add('rightIcon')
+        rightIcon.innerHTML = `
+							<i class="layui-icon">&#xe602;</i>
+					`
+        document.querySelector('#sitename').appendChild(element)
+        document.querySelector('#sitename').style.cursor = 'pointer'
+        document.querySelector('#main_title').appendChild(rightIcon)
+      }
+      $("#sitename").addClass("sitename0");
+      $("body").appboxs();
+      if (sessionStorage.getItem("current_login_user") != null) {
+        var current_login_user = JSON.parse(sessionStorage.getItem("current_login_user"));
+        $(".userName").text(current_login_user.user_disp);
+        if (top.user.otherTenantInfos && top.user.otherTenantInfos.length > 1) {
+          for (var item of top.user.otherTenantInfos) {
+            if (item.tenant_no != top.user.tenant) {
+              $("#sysoperate").append(`<dd><a href="javascript:" onclick="switchTenant(event)"><cite  data-tenant-no="${item.tenant_no}" data-app-no="${item.application}" data-application-name="${item.application_name}" data-tenant-name="${item.tenant_name}" >切换到${item.application_name}【${item.tenant_name}】</cite></a></dd>`);
+            }
+          }
+        }
+        var authorized_users = current_login_user.authorized_users;
+        if (authorized_users) {
+          for (var auuser of authorized_users) {
+            $("#sysoperate").append('<dd><a href="javascript:" onclick="switchLogin(\'' + auuser
+              .authorized_user + '\')"><cite>切换到用户【' + auuser.authorized_user_name +
+              '】</cite></a></dd>');
+          }
+        }
+      }
+      var pages_attribute_str = sessionStorage.getItem("pages_attribute");
+      var current_app = top.user.application;
+
+      if (pages_attribute_str) {
+        var main_page = JSON.parse(pages_attribute_str)[`${current_app}@main_page`];
+        if (top.user?.theme?.main_page) {
+          main_page = top.user.theme.main_page
+        }
+        if (main_page) {
+          $('#mainpage').attr('src', main_page);
+        } else {
+          $('#mainpage').attr('src', 'page/main.html');
+        }
+      }
+
+
+
+      if (top.hasOwnProperty('user') && top.user && top.user.hasOwnProperty('user_type') && ['KF'].includes(top.user.user_type)) {
+        let buttons = `
+								<dd>
+								<a href="javascript:;" class="refresh refreshThis">
+									<i class="layui-icon">&#x1002;</i> 刷新当前</a>
+							</dd>
+							<dd>
+								<a href="javascript:;" class="closePageOther">
+									<i class="fa fa-minus-square-o" aria-hidden="true"></i>关闭其他</a>
+							</dd>
+							<dd>
+								<a href="javascript:;" class="closePageAll">
+									<i class="fa fa-times-circle" aria-hidden="true"></i> 关闭全部</a>
+							</dd>
+					
+							<dd>
+								<a href="javascript:;" class="cutover_menu">
+									<i class="layui-icon">&#x1002;</i> 切换菜单模式</a>
+							</dd>
+							<dd>
+												<a href="javascript:;" class=" hot_reload_btn">
+													<i class="layui-icon">&#x1002;</i> 热加载</a>
+											</dd>
+							`
+        document.getElementById("tab-buttons").innerHTML = buttons
+      }
+    });
+  </script>
+</body>
+
+</html>

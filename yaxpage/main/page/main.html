@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>应用导航</title>
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="stylesheet" href="../../main/layui/css/layui.css" media="all" />
+</head>
+<style>
+  html,
+  body {
+    padding: 10px;
+    background-color: #eee;
+    height: calc(100% - 20px);
+    overflow-y: auto;
+  }
+
+  body {
+    padding: 10px;
+  }
+
+  .layui-container {
+    background-color: #ffffff;
+    border-radius: 20px;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  #user-menus {
+    padding: 20px;
+    /* display: ; */
+    display: grid;
+    grid-gap: 10px;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  }
+
+  .tenant-layout {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    height: 120px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background-color: rgb(244, 246, 249);
+    position: relative;
+  }
+
+  .tenant-layout.active {
+    border-color: #1e9fff;
+  }
+
+  .tenant-layout:hover {
+    cursor: pointer;
+    border-color: #1e9fff;
+  }
+
+  .tenant-layout .svg-icon {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 99;
+    transition: all 0.2s ease;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
+  .tenant-layout-tag {
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    width: max-content;
+    align-items: normal;
+    padding: 10px 0;
+  }
+
+  .tenant-layout-tag span {
+    background-color: #1e9fff;
+    color: #fff;
+    line-height: 14px;
+    padding: 5px 20px;
+    height: 24px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 50%;
+    /* border: 1px solid #eee; */
+  }
+
+  .tenant-layout-app {
+    padding: 2px 10px 10px 10px;
+    display: flex;
+    height: 55px;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .tenant-layout-app div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sub-name-text {
+    font-size: 12px;
+    color: #b3b3b3;
+    border: 1px solid #b3b3b3;
+    border-radius: 2px;
+    width: max-content;
+    padding: 0 5px;
+  }
+
+  .name-text {
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+  }
+</style>
+
+<body class="">
+  <div class="layui-container">
+    <div class="tenant-title" style="padding: 20px">
+      <div style="font-size: 30px; color: #000; font-weight: bold">
+        应用选择
+      </div>
+      <div style="font-size: 16px; color: #777">请选择你要登录的</div>
+    </div>
+    <div id="user-menus"></div>
+  </div>
+
+  <script src="../../js/jquery-3.7.1.min.js"></script>
+  <script src="../../js/jquery-migrate-3.4.1.min.js"></script>
+  <script src="../../js/jquery.cookie.js"></script>
+  <script type="text/javascript" src="../layui/layui.js"></script>
+  <script type="text/javascript" src="../../js/server.js"></script>
+  <script type="text/javascript" src="../../js/server_common.js"></script>
+  <script>
+    (function () {
+      this.targetTenantFun = function (e, target) {
+        e?.stopPropagation?.();
+        let item = JSON.parse(e?.target?.dataset?.options || e?.dataset?.options);
+        const applicationName = item.application_name
+        console.log(item);
+        // const tenantInfo = {
+        //   tenant_no: item.tenant_no||'',
+        //   tenant_name: item.tenant_name||'',
+        //   application: item.application||'',
+        //   application_name: item.application_name||'',
+        // }
+        // const href = `${top.location.origin}${top.location.pathname}?ti=${encodeURIComponent(JSON.stringify(tenantInfo))}`
+        const href = `${top.location.origin}${top.location.pathname}?an=${item.application}&tn=${item.tenant_no}&tname=${item.tenant_name}`
+
+        if (target && target === '_blank') {
+          // 切换租户时将当前页面在新窗口打开 将租户信息保存到新打开页面的sessionStorage中
+          // const switchTenantReq = [
+          //   {
+          //     serviceName: "srvuser_app_tenant_swh_login",
+          //     data: [
+          //       {
+          //         tenant_no: item.tenant_no,
+          //         tenant_name: item.tenant_name,
+          //         application: item.application,
+          //         application_name: item.application_name,
+          //       },
+          //     ],
+          //   },
+          // ];
+          const _target = window.open(href);
+          // _target.sessionStorage.setItem("switchTenantReq", JSON.stringify(switchTenantReq));
+          if (item.tenant_name) {
+            _target.sessionStorage.setItem("current_tenant_name", item.tenant_name);
+            setTimeout(() => {
+              _target.document.title = item.tenant_name
+            }, 500);
+          }
+        } else {
+          top.location.href = href;
+          if (item.tenant_name) {
+            setTimeout(() => {
+              _target.document.title = item.tenant_name
+            }, 500);
+          }
+          // goTenant(item);
+        }
+      };
+      var menus = JSON.parse(
+        window.sessionStorage.getItem("current_login_user")
+      ); // 用户租户列表
+      var avtiveTenant = JSON.parse(
+        window.sessionStorage.getItem("current_login_user")
+      ).tenant; // 当前租户
+      var userType =
+        JSON.parse(window.sessionStorage.getItem("current_login_user"))
+          .user_type || "--"; // 当前用户
+      menus = menus.hasOwnProperty("otherTenantInfos")
+        ? menus.otherTenantInfos
+        : [];
+      console.log("otherTenantInfos", menus);
+      // menus = [
+      //        {
+      //            "tenant_name": "正运物流",
+      //            "application_name": "物流",
+      //            "application": "lgs",
+      //            "tenant_no": "CR2302270003",
+      //            "user_no": "230301B0UG"
+      //        },
+      //        {
+      //            "tenant_name": "西安饭庄食材",
+      //            "application_name": "商家",
+      //            "application": "mer",
+      //            "tenant_no": "S010015",
+      //            "user_no": "230301B0UG"
+      //        },
+      //        {
+      //            "tenant_name": "金汇冷鲜商城",
+      //            "application_name": "园区",
+      //            "application": "park",
+      //            "tenant_no": "PK00004",
+      //            "user_no": "230301B0UG"
+      //        },
+      //        {
+      //            "tenant_name": "高新区市场监督",
+      //            "application_name": "政府",
+      //            "application": "govt",
+      //            "tenant_no": "0101",
+      //            "user_no": "230301B0UG"
+      //        }
+      //    ]
+      var elementArray = [];
+      for (let i = 0; i < menus.length; i++) {
+        let classVal = "tenant-layout";
+        if (menus[i].tenant_no == avtiveTenant) {
+          classVal = "tenant-layout active";
+        }
+        let str = `
+				<div class="${classVal}" data-options='${JSON.stringify(menus[i])}' onclick="targetTenantFun(this)">
+					<div title="从新标签页打开" class="svg-icon">
+						<svg title=""  viewBox="0 0 48 48" fill="none"" data-options='${JSON.stringify(menus[i])}' onclick="targetTenantFun(event,'_blank')">
+							<path d="M28 6H42V20" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M42 29.4737V39C42 40.6569 40.6569 42 39 42H9C7.34315 42 6 40.6569 6 39V9C6 7.34315 7.34315 6 9 6L18 6" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M25.7998 22.1999L41.0998 6.8999" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+					<div class="tenant-layout-tag">
+						<span style="border-radius: 0 3px 3px 0;">${menus[i].application_name}</span>
+					</div>
+					<div class="tenant-layout-app">
+						<div><img class="avatar" src="../images/avatar.jpeg"/></div>
+						<div style="padding: 10px;">
+							<div class="name-text" style="font-size: 18px;color: #000;">${menus[i].tenant_name}</div>
+							<!-- <div class="sub-name-text">${userType}</div> -->
+						</div>
+					</div>
+				</div>`;
+        elementArray.push(str);
+      }
+      document.getElementById("user-menus").innerHTML = elementArray.join("");
+      this.goTenant = function (req) {
+        console.log("----", req);
+        let bxReq = [
+          {
+            serviceName: "srvuser_app_tenant_swh_login",
+            data: [
+              {
+                tenant_no: req.tenant_no,
+                tenant_name: req.tenant_name,
+                application: req.application,
+                application_name: req.application_name || '',
+              },
+            ],
+          },
+        ];
+        window.sessionStorage.setItem("current_app", req.application);
+        // 切换租户后保存当前租户编号
+        // sessionStorage.setItem("current_tenant_no", req.tenant_no);
+        // sessionStorage.setItem("current_tenant_app", req.application);
+        // localStorage.setItem('current_tenant_name', req.tenant_name)
+        var resList = [];
+        if (!req) {
+          console.errer("切换租户信息错误");
+        } else {
+          top.location.href = `${top.location.origin}${top.location.pathname}?an=${req.application}&tn=${req.tenant_no}`
+          return
+          // var path =
+          //   top.pathConfig.gateway +
+          //   "/sso/operate/srvuser_app_tenant_swh_login";
+          // var callBack = function (data) {
+          //   if (data.state == "SUCCESS") {
+          //     var res = data.response;
+          //     if (res.length > 0) {
+          //       resList = res[0].response;
+          //       window.sessionStorage.setItem(
+          //         "bx_auth_ticket",
+          //         resList.bx_auth_ticket
+          //       );
+          //       window.sessionStorage.setItem(
+          //         "current_login_user",
+          //         JSON.stringify(resList.login_user_info)
+          //       );
+          //       // let user = resList.login_user_info
+          //       // if (user && user.theme && user.theme.main_page) {
+          //       //   location.href = user.theme.main_page;
+          //       // } else {
+          //       // top.window.location.reload();
+          //       top.location.href = `${top.location.origin}${top.location.pathname}?an=${req.application}&tn=${req.tenant_no}`
+          //       // }
+          //       // console.log(resList);
+
+          //     } else {
+          //     }
+          //   } else {
+          //     window.top.layer.alert(data.resultMessage, {
+          //       skin: "layui-layer-molv", //样式类名
+          //       closeBtn: 0,
+          //     });
+          //     //FAILURE
+          //   }
+          // };
+          // crosAjax(path, "POST", bxReq, callBack);
+        }
+      };
+      top.window.goTenant = this.goTenant;
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>修改密码</title>
+  <meta
+    name="renderer"
+    content="webkit"
+  >
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge,chrome=1"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1"
+  >
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+  >
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+  <meta
+    name="format-detection"
+    content="telephone=no"
+  >
+  <link
+    rel="stylesheet"
+    href="../../layui/css/layui.css"
+    media="all"
+  />
+  <link
+    rel="stylesheet"
+    href="../../css/font-awesome.min.css"
+  >
+  <link
+    rel="stylesheet"
+    href="../../css/user.css"
+    media="all"
+  />
+  <link
+    rel="stylesheet"
+    href="../../css/theme.css"
+  >
+  <style>
+    /* 优化后的样式 */
+    .childrenBody {
+      background: var(--tab-area-bg-color, linear-gradient(135deg, #667eea 0%, #007AFF 100%));
+      color: var(--tab-area-text-color, #fff);
+      /* min-height: 100vh; */
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      height: calc(100vh - 60px);
+    }
+
+    .changePwd {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      width: 100%;
+      max-width: 450px;
+      position: relative;
+      /* overflow: hidden; */
+      margin: 0;
+    }
+
+    .changePwd::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: var(--tab-active-bg-color, linear-gradient(90deg, #667eea, #007AFF));
+      border-radius: 8px 8px 0 0;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .form-header h2 {
+      color: var(--tab-area-text-color, #333);
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .form-header p {
+      color: #666;
+      font-size: 14px;
+      margin: 8px 0 0 0;
+    }
+
+    .layui-form-item {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .layui-form-label {
+      width: 60px;
+      padding: 12px 15px;
+      color: #555;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .layui-input-block {
+      margin-left: 110px;
+      position: relative;
+    }
+
+    .layui-input.pwd,
+    .layui-input.account {
+      height: 45px;
+      border: 2px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 0 45px 0 15px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: #fafafa;
+    }
+
+    .layui-input.account {
+      padding: 0 15px;
+    }
+
+    .layui-input.pwd:focus,
+    .layui-input.account:focus {
+      border-color: var(--tab-active-bg-color, #667eea) !important;
+      background: #fff;
+      outline: none;
+      outline: none;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #999;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .password-toggle:hover {
+      color: var(--tab-active-bg-color);
+    }
+
+    .password-strength {
+      margin-top: 8px;
+      height: 6px;
+      background: #e8e8e8;
+      border-radius: 42px;
+      overflow: visible;
+      /* display: none; */
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+    }
+
+    .password-strength-bar {
+      height: 100%;
+      width: 0%;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+
+    .password-strength-text {
+      position: absolute;
+      left: -35px;
+      top: -7px;
+      font-size: 11px;
+      color: #999;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    /* 根据满足规则数量的颜色 */
+    .strength-level-0 {
+      background: #e8e8e8;
+      width: 0%;
+    }
+
+    .strength-level-1 {
+      background: #dc3545;
+      width: 20%;
+    }
+
+    .strength-level-2 {
+      background: #ff6b7a;
+      width: 40%;
+    }
+
+    .strength-level-3 {
+      background: #ffc107;
+      width: 60%;
+    }
+
+    .strength-level-4 {
+      background: #aee233;
+      width: 80%;
+    }
+
+    .strength-level-5 {
+      background: #28a745;
+      width: 100%;
+    }
+
+    /* 强度文字颜色 */
+    .strength-text-0 {
+      color: #999;
+    }
+
+    .strength-text-1 {
+      color: #dc3545;
+    }
+
+    .strength-text-2 {
+      color: #ff6b7a;
+    }
+
+    .strength-text-3 {
+      color: #ffc107;
+    }
+
+    .strength-text-4 {
+      color: #aee233;
+    }
+
+    .strength-text-5 {
+      color: #28a745;
+    }
+
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .layui-btn {
+      height: 45px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      flex: 1;
+      transition: all 0.3s ease;
+    }
+
+    .layui-btn[lay-submit] {
+      background: var(--sidebar-active-bg-color,linear-gradient(135deg, #667eea 0%, #007AFF 100%));
+      color: var(--sidebar-active-text-color, #fff);
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .layui-btn[lay-submit]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .layui-btn[lay-submit]:active {
+      transform: translateY(0);
+    }
+
+    .layui-btn-primary {
+      background: var(--tab-area-bg-color);
+      border: 2px solid var(--sidebar-menu-border-bottom-color);
+      color: var(--sidebar-text-color);
+    }
+
+    .layui-btn-primary:hover {
+      background: #e9ecef;
+      border-color: #dee2e6;
+      transform: translateY(-1px);
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .security-tips {
+      background: #f8f9ff;
+      border: 1px solid #e8e8ff;
+      border-radius: 8px;
+      padding: 12px 15px;
+      margin-bottom: 0;
+      /* margin-top: 8px; */
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translate(100%, -50%);
+      width: 350x;
+      /* transform: translateX(100%); */
+    }
+
+    .security-tips h4 {
+      color: var(--tab-active-bg-color, #667eea);
+      font-size: 13px;
+      margin: 0 0 6px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .security-tips h4 .fa {
+      margin-right: 6px;
+      font-size: 14px;
+    }
+
+    .security-tips ul {
+      margin: 0;
+      padding-left: 0;
+      color: #666;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .security-tips ul li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .requirement-icon {
+      margin-right: 6px;
+      font-size: 12px;
+      width: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .requirement-text {
+      transition: all 0.3s ease;
+    }
+
+    /* 优化表单项间距 */
+    .layui-form-item {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    /* 减少按钮组上方间距 */
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    /* 优化表单底部 */
+    .form-footer {
+      text-align: center;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+
+    .requirement-icon {
+      margin-right: 8px;
+      font-size: 14px;
+      width: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .requirement-text {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+
+<body class="childrenBody">
+  <div class="layui-form changePwd">
+    <div class="form-header">
+      <h2>修改密码</h2>
+      <p>为了您的账户安全，请定期更换密码</p>
+    </div>
+
+    <!-- 账号字段 - 仅在密码过期时显示 -->
+    <div
+      class="layui-form-item"
+      id="accountField"
+      style="display: none;"
+    >
+      <label class="layui-form-label">账号</label>
+      <div class="layui-input-block">
+        <input
+          type="text"
+          value=""
+          placeholder="请输入账号"
+          id="userNo"
+          class="layui-input account"
+        >
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">旧密码</label>
+      <div class="layui-input-block">
+        <input
+          type="password"
+          value=""
+          placeholder="请输入旧密码"
+          lay-verify="required|oldPwd"
+          id="oldPwd"
+          class="layui-input pwd"
+        >
+        <i
+          class="fa fa-eye-slash password-toggle"
+          onclick="togglePassword('oldPwd')"
+        ></i>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">新密码</label>
+      <div class="layui-input-block">
+        <input
+          type="password"
+          value=""
+          placeholder="请输入新密码"
+          lay-verify="required|newPwd"
+          id="newPwd"
+          class="layui-input pwd"
+          onkeyup="checkPasswordStrength(this.value); checkPasswordRequirements(this.value);"
+        >
+        <i
+          class="fa fa-eye-slash password-toggle"
+          onclick="togglePassword('newPwd')"
+        ></i>
+        <div
+          class="password-strength"
+          id="passwordStrength"
+        >
+          <div
+            class="password-strength-bar"
+            id="strengthBar"
+          ></div>
+          <span
+            class="password-strength-text"
+            id="strengthText"
+          ></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">确认密码</label>
+      <div class="layui-input-block">
+        <input
+          type="password"
+          value=""
+          placeholder="请确认密码"
+          lay-verify="required|confirmPwd"
+          id="confirmPwd"
+          class="layui-input pwd"
+        >
+        <i
+          class="fa fa-eye-slash password-toggle"
+          onclick="togglePassword('confirmPwd')"
+        ></i>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <div class="btn-group">
+          <button
+            class="layui-btn"
+            lay-submit=""
+            lay-filter="changePwd"
+          >
+            <i class="fa fa-check"></i> 立即修改
+          </button>
+          <button
+            type="reset"
+            onclick="resetcontent()"
+            class="layui-btn layui-btn-primary"
+          >
+            <i class="fa fa-refresh"></i> 重置
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <p style="color: #999; font-size: 12px; margin: 0;">
+        <i class="fa fa-info-circle"></i>
+        修改密码后需要重新登录
+      </p>
+    </div>
+
+    <!-- 密码安全要求提示 - 移动到表单外部 -->
+    <div class="security-tips">
+      <h4><i class="fa fa-lock"></i>密码安全要求</h4>
+      <ul id="passwordRequirements">
+        <li id="req-length">
+          <i
+            class="fa fa-times requirement-icon"
+            style="color: #ff4757;"
+          ></i>
+          <span
+            class="requirement-text"
+            style="color: #ff4757;"
+          >密码长度至少8位</span>
+        </li>
+        <li id="req-lowercase">
+          <i
+            class="fa fa-times requirement-icon"
+            style="color: #ff4757;"
+          ></i>
+          <span
+            class="requirement-text"
+            style="color: #ff4757;"
+          >必须包含至少一个小写字母（a-z）</span>
+        </li>
+        <li id="req-uppercase">
+          <i
+            class="fa fa-times requirement-icon"
+            style="color: #ff4757;"
+          ></i>
+          <span
+            class="requirement-text"
+            style="color: #ff4757;"
+          >必须包含至少一个大写字母（A-Z）</span>
+        </li>
+        <li id="req-number">
+          <i
+            class="fa fa-times requirement-icon"
+            style="color: #ff4757;"
+          ></i>
+          <span
+            class="requirement-text"
+            style="color: #ff4757;"
+          >必须包含至少一个数字（0-9）</span>
+        </li>
+        <li id="req-special">
+          <i
+            class="fa fa-times requirement-icon"
+            style="color: #ff4757;"
+          ></i>
+          <span
+            class="requirement-text"
+            style="color: #ff4757;"
+          >必须包含至少一个特殊字符（如：!@#$%^&*等）</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <script src="/js/jquery-3.7.1.min.js"></script>
+  <script src="/js/jquery-migrate-3.4.1.min.js"></script>
+  <script src="/../js/jquery.cookie.js"></script>
+  <script type="text/javascript" src="../../layui/layui.js"></script>
+  <script
+    type="text/javascript"
+    src="/../js/server.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="../../../js/server_common.js"
+  ></script>
+  <!-- 设置主题 -->
+  <script
+    type="text/javascript"
+    src="../../js/theme.js"  
+  ></script>
+  <script
+    type="text/javascript"
+    src="user.js"
+  ></script>
+
+  <script>
+    // 获取URL参数的函数
+    function getUrlParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // 页面加载时检查URL参数
+    window.addEventListener('DOMContentLoaded', function () {
+      const type = getUrlParam('type');
+      const userNo = getUrlParam('user_no');
+
+      const accountField = document.getElementById('accountField');
+      const userNoInput = document.getElementById('userNo');
+
+      // 如果type=pwd_expire，显示账号字段
+      if (type === 'pwd_expire') {
+
+        // 显示账号字段
+        accountField.style.display = 'block';
+
+        // 设置必填校验
+        userNoInput.setAttribute('lay-verify', 'required');
+
+        // 如果URL中有user_no参数，设置到输入框中
+        if (userNo) {
+          userNoInput.value = decodeURIComponent(userNo);
+        }
+
+        // 更新表单标题和提示
+        const formHeader = document.querySelector('.form-header h2');
+        const formDesc = document.querySelector('.form-header p');
+        formHeader.textContent = '密码已过期';
+        formDesc.textContent = '您的密码已过期，请立即修改密码以继续使用系统';
+
+        const securityTips = document.querySelector('.security-tips');
+        securityTips.parentNode.insertBefore(expireNotice, securityTips);
+      } else {
+        // 确保隐藏状态下移除校验
+        accountField.style.display = 'none';
+        userNoInput.removeAttribute('lay-verify');
+      }
+    });
+
+    // 密码显示/隐藏切换
+    function togglePassword(inputId) {
+      const input = document.getElementById(inputId);
+      const icon = input.nextElementSibling;
+
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fa fa-eye password-toggle';
+      } else {
+        input.type = 'password';
+        icon.className = 'fa fa-eye-slash password-toggle';
+      }
+    }
+
+    // 检查密码要求
+    function checkPasswordRequirements(password) {
+      // 检查长度
+      updateRequirement('req-length', password.length >= 8);
+
+      // 检查小写字母
+      updateRequirement('req-lowercase', /[a-z]/.test(password));
+
+      // 检查大写字母
+      updateRequirement('req-uppercase', /[A-Z]/.test(password));
+
+      // 检查数字
+      updateRequirement('req-number', /\d/.test(password));
+
+      // 检查特殊字符
+      updateRequirement('req-special', /[^\w\s]/.test(password));
+    }
+
+    // 更新单个要求的显示状态
+    function updateRequirement(elementId, isValid) {
+      const element = document.getElementById(elementId);
+      const icon = element.querySelector('.requirement-icon');
+      const text = element.querySelector('.requirement-text');
+
+      if (isValid) {
+        icon.className = 'fa fa-check requirement-icon';
+        icon.style.color = '#2ed573';
+        text.style.color = '#2ed573';
+      } else {
+        icon.className = 'fa fa-times requirement-icon';
+        icon.style.color = '#ff4757';
+        text.style.color = '#ff4757';
+      }
+    }
+
+    // 密码强度检测
+    function checkPasswordStrength(password) {
+      const strengthBar = document.getElementById('strengthBar');
+      const strengthContainer = document.getElementById('passwordStrength');
+      const strengthText = document.getElementById('strengthText');
+
+      // 定义强度文字提示
+      const strengthTexts = [
+        '',           // 0个规则
+        '极弱',       // 1个规则
+        '较弱',       // 2个规则
+        '一般',       // 3个规则
+        '较强',       // 4个规则
+        '极强'        // 5个规则
+      ];
+
+      if (password.length === 0) {
+        // strengthContainer.style.display = 'none';
+        // 重置所有要求为红色
+        const requirements = ['req-length', 'req-lowercase', 'req-uppercase', 'req-number', 'req-special'];
+        requirements.forEach(req => updateRequirement(req, false));
+        const satisfiedRules = 0;
+        // 移除所有强度等级类
+        strengthBar.className = 'password-strength-bar';
+        strengthText.className = 'password-strength-text';
+
+        // 根据满足的规则数量设置对应的强度等级
+        strengthBar.classList.add(`strength-level-${satisfiedRules}`);
+        strengthText.classList.add(`strength-text-${satisfiedRules}`);
+
+        // 设置强度文字
+        strengthText.textContent = strengthTexts[satisfiedRules];
+        return;
+      }
+
+      strengthContainer.style.display = 'block';
+
+      // 检查每个密码规则
+      const rules = [
+        password.length >= 8,           // 长度至少8位
+        /[a-z]/.test(password),         // 包含小写字母
+        /[A-Z]/.test(password),         // 包含大写字母
+        /[0-9]/.test(password),         // 包含数字
+        /[^A-Za-z0-9]/.test(password)   // 包含特殊字符
+      ];
+      // 计算满足的规则数量
+      const satisfiedRules = rules.filter(rule => rule).length;
+
+      // 移除所有强度等级类
+      strengthBar.className = 'password-strength-bar';
+      strengthText.className = 'password-strength-text';
+
+      // 根据满足的规则数量设置对应的强度等级
+      strengthBar.classList.add(`strength-level-${satisfiedRules}`);
+      strengthText.classList.add(`strength-text-${satisfiedRules}`);
+
+      // 设置强度文字
+      strengthText.textContent = strengthTexts[satisfiedRules];
+    }
+
+    // 增强重置功能
+    function resetcontent() {
+      const userNoInput = document.getElementById('userNo');
+      const type = getUrlParam('type');
+      const userNo = getUrlParam('user_no');
+
+      // 重置密码字段
+      document.getElementById('oldPwd').value = '';
+      document.getElementById('newPwd').value = '';
+      document.getElementById('confirmPwd').value = '';
+
+      // 如果是密码过期场景，保持账号字段的值
+      if (type === 'pwd_expire' && userNo) {
+        userNoInput.value = decodeURIComponent(userNo);
+      } else if (userNoInput) {
+        userNoInput.value = '';
+      }
+
+      // 隐藏密码强度指示器
+      // document.getElementById('passwordStrength').style.display = 'none';
+
+      // 重置所有密码输入框为密码类型
+      const passwordInputs = document.querySelectorAll('.pwd');
+      const passwordIcons = document.querySelectorAll('.password-toggle');
+
+      passwordInputs.forEach(input => {
+        input.type = 'password';
+      });
+
+      passwordIcons.forEach(icon => {
+        icon.className = 'fa fa-eye-slash password-toggle';
+      });
+    }
+  </script>
+</body>
+
+</html>

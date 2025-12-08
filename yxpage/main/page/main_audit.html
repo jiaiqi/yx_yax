@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>应用导航</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../main/layui/css/layui.css" media="all" />
+</head>
+<style>
+	/* 弹出层设置圆角需要对三层都设置 */
+	body .layui-layer-content {
+		border-radius: 20px !important;
+		overflow: hidden;
+	}
+
+	body .layui-layer-content iframe {
+		border-radius: 20px !important;
+	}
+
+	body .layui-layer {
+		border-radius: 20px !important;
+	}
+
+	html,
+	body {
+		padding: 0;
+		margin: 0;
+		background-color: #f6f7fb;
+	}
+
+	* {
+		user-select: none;
+		-webkit-user-drag: none;
+	}
+
+	.page-wrap {
+		height: calc(100vh - 20px);
+		box-sizing: border-box;
+		padding: 20px;
+		display: flex;
+	}
+
+	.text-blue {
+		color: #2791f4;
+	}
+
+	.text-bold {
+		font-weight: bold;
+	}
+
+	.flex {
+		display: flex;
+	}
+
+	.flex-1 {
+		flex: 1;
+	}
+
+	.flex-column {
+		flex-direction: column;
+	}
+
+	.margin-bottom {
+		margin-bottom: 20px;
+	}
+
+	.margin-top {
+		margin-top: 20px;
+	}
+
+	.margin-top-xs {
+		margin-top: 10px;
+	}
+
+	.margin-right {
+		margin-right: 20px;
+	}
+
+	.margin-right-xs {
+		margin-right: 10px;
+	}
+
+	.items-center {
+		align-items: center;
+	}
+
+	.justify-center {
+		justify-content: center;
+	}
+
+	.justify-between {
+		justify-content: space-between;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	.padding-right-0 {
+		padding-right: 0 !important;
+	}
+
+	.cursor-pointer {
+		cursor: pointer;
+	}
+
+	.card-item {
+		background-color: #fff;
+		border-radius: 10px;
+		box-shadow: 0px 8px 10px 0px rgba(183, 215, 247, 0.2);
+		padding: 20px;
+		box-sizing: border-box;
+	}
+
+	.card-1 {
+		width: 488px;
+		/* height: 390px; */
+	}
+
+	.card-3-content th {
+		word-break: keep-all;
+	}
+
+	.card-3-content td {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		max-width: 300px;
+		min-width: 50px;
+	}
+
+	.card-4 {
+		width: 488px;
+		/* height: 390px; */
+	}
+
+	.card-5 {
+		width: 366px;
+		height: 350px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.card-title {
+		font-size: 20px;
+		font-weight: bold;
+		margin-bottom: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.card-title .blue-btn {
+		font-weight: normal;
+		font-size: 14px;
+		background-color: #e5f4ff;
+		border-radius: 4px;
+		height: 30px;
+		width: 109px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+
+	.card-title .blue-btn .icon {
+		width: 18px;
+		height: 28px;
+	}
+
+	.card-6 .card-title {
+		font-size: unset;
+		justify-content: flex-start;
+		align-items: flex-end;
+		border-bottom: 1px solid #a0bcd9;
+		margin-bottom: 10px;
+	}
+
+	.card-6 .card-title .text {
+		margin-right: 10px;
+		cursor: pointer;
+		padding-bottom: 10px;
+	}
+
+	.card-6 .card-title .active {
+		font-size: 20px;
+		border-bottom: 4px solid #2791f4;
+	}
+
+	.card-6 .card-content li {
+		display: flex;
+	}
+
+	.card-6 .card-content li span {
+		flex: 1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.card-title .text {
+		display: flex;
+		align-items: center;
+	}
+
+	.card-title .icon {
+		width: 28px;
+		height: 28px;
+		margin-right: 5px;
+	}
+
+	.card-title .more {
+		color: #c1c6d5;
+		font-weight: normal;
+		cursor: pointer;
+	}
+
+	.static-item {
+		height: 132px;
+	}
+
+	.static-item .label {
+		height: 54px;
+		line-height: 54px;
+		font-size: 16px;
+		text-align: center;
+	}
+
+	.static-item .value {
+		font-size: 28px;
+	}
+
+	.static-item .value .unit {
+		font-size: 14px;
+	}
+
+	.static-item:first-child {
+		background-color: #ffe7ba;
+	}
+
+	.static-item:first-child .value {
+		background-color: #fff7e6;
+	}
+
+	.static-item:nth-child(2) {
+		background-color: #b5f5d7;
+
+	}
+
+	.static-item:nth-child(2) .value {
+		background-color: #e0fbf0;
+	}
+
+	.static-item:nth-child(3) {
+		background-color: #d4e3fc;
+
+	}
+
+	.static-item:nth-child(3) .value {
+		background-color: #eef5ff;
+	}
+
+	.card-content li {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.card-content .grid-item {
+		cursor: pointer;
+	}
+
+	.card-content .grid-item .icon {
+		width: 72px;
+		height: 72px;
+	}
+
+	.card-content .grid-item .label {
+		text-align: center;
+	}
+
+	.layui-tab-brief>.layui-tab-title .layui-this {
+		color: #007aff;
+	}
+
+	.layui-tab-brief>.layui-tab-more li.layui-this:after,
+	.layui-tab-brief>.layui-tab-title .layui-this:after {
+		border-bottom-color: #007aff;
+	}
+
+	.layui-tab-item .content-item .title {
+		margin-right: 10px;
+		width: 12px;
+		height: 12px;
+		display: inline-block;
+		background-color: #007aff;
+		margin-top: 2px;
+	}
+
+	.layui-tab-item .content-item:nth-child(1) .title {
+		background-color: #ff4d4f;
+	}
+
+	.layui-tab-item .content-item:nth-child(2) .title {
+		background-color: #f8c478;
+	}
+
+	.layui-tab-item .content-item:nth-child(3) .title {
+		background-color: #f8c478;
+	}
+
+	.layui-tab-item .content-item {
+		padding: 10px 0;
+		/* font-size: 18px; */
+	}
+
+	.layui-tab-item .content-item .text {
+		display: inline-block;
+		max-width: 90%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.layui-tab-item .content-item .status {
+		display: inline-block;
+		background-color: rgba(0, 122, 255, 0.1);
+		color: rgba(0, 122, 255, 1);
+		font-size: 12px;
+		border-radius: 20px;
+		padding: 2px 5px;
+		margin-left: 10px;
+	}
+
+	.layui-tab-item .content-item .date {
+		color: #2791f4;
+	}
+
+	.layui-table td,
+	.layui-table th {
+		font-size: 16px;
+	}
+
+	.layui-table thead tr {
+		background-color: #eef5ff;
+	}
+
+	.btn {
+		display: inline-block;
+		line-height: 1;
+		white-space: nowrap;
+		cursor: pointer;
+		background: #fff;
+		border: 1px solid #dcdfe6;
+		color: #606266;
+		-webkit-appearance: none;
+		text-align: center;
+		box-sizing: border-box;
+		outline: none;
+		margin: 0;
+		transition: .1s;
+		font-weight: 500;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		padding: 12px 20px;
+		font-size: 14px;
+		border-radius: 4px;
+	}
+
+	.btn-sm {
+		padding: 4px 8px;
+	}
+
+	.btn-blue-light {
+		color: #409eff;
+		background: #ecf5ff;
+		border-color: #ecf5ff;
+	}
+
+	.card-content {
+		/* font-size: 18px; */
+	}
+
+	.card-content-item {
+		padding: 5px 0;
+	}
+
+	.card-content-item .text {
+		max-width: 70%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.card-content-item .date {
+		color: #409eff;
+	}
+
+	.notice-box {
+		background-size: 100% 100%;
+		background-image: url(../images/aiAudit/notice-bg.png);
+		background-color: transparent;
+	}
+
+	.notice-box .card-content li {
+		max-width: 300px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		padding: 5px 0;
+		position: relative;
+		padding-left: 25px;
+
+		&::before {
+			content: '';
+			position: absolute;
+			display: inline-block;
+			width: 6px;
+			height: 6px;
+			border-radius: 5px;
+			background-color: #333;
+			top: calc(50% - 3px);
+			left: 10px;
+		}
+	}
+
+	.notice-box li {
+		list-style: none;
+	}
+
+	.link {
+		/* font-size: 18px; */
+		color: #007aff;
+		display: inline-block;
+		margin-left: 10px;
+		cursor: pointer;
+		padding: 20px 0;
+	}
+
+	.user-info .text-center {
+		padding: 5px 0;
+	}
+
+	.user-info {
+		position: relative;
+
+	}
+
+	.user-info .long-btn {
+		background-color: #e4f6fb;
+		/* font-size: 18px; */
+		text-align: center;
+		border-radius: 20px;
+		padding: 6px 10px;
+		width: 100%;
+		cursor: pointer;
+
+		&:active {
+			transform: translate(1px, 1px);
+		}
+	}
+
+	.avatar {
+		width: 117px;
+		height: 117px;
+	}
+
+	.user-info .check {
+		position: absolute;
+		top: 80px;
+		right: 110px;
+		width: 29px;
+		height: 29px;
+	}
+
+	.text-ellipsis {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+</style>
+
+<body class="">
+	<div class="page-wrap" id="app">
+		<div class="left-box flex flex-column flex-1 margin-right">
+			<div class="left-box-top flex margin-bottom flex-1">
+				<div class="card-1 card-item margin-right flex flex-column">
+					<div class="flex-1">
+						<div class="card-title">
+							<div class="text">日常处理情况统计</div>
+						</div>
+						<div class="card-content flex">
+							<div class="static-item flex-1 flex flex-column" :class="{'margin-right-xs':index!==2}"
+								v-for="(item,index) in statisList">
+								<div class="label" v-text="item.name"></div>
+								<div class="value flex-1 flex items-center justify-center"><span
+										v-text="item.number"></span> <span class="unit">个</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex-1 margin-top">
+						<div class="card-title">
+							<div class="text">常用功能</div>
+							<div class="blue-btn" @click="showChart"><img class="icon"
+									src="./img//iconPark-chart-graph.png" alt="" srcset="">业务流程图</div>
+						</div>
+						<div class="card-content flex ">
+							<div class="grid-item flex-1 text-center " v-for="item in menus"
+								@click="toPages(item.url,item.name,'aud')">
+								<img :src="item.icon" :alt="item.name" class="icon">
+								<div class="label margin-top-xs" v-text="item.name"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-2 card-item flex-1">
+					<div class="card-title">
+						<div class="text"> <img class="icon" src="../images/aiAudit/todo.png"> 我已处理</div>
+						<div @click="toMore('todo')"><span class="more">更多</span><img src="../images/aiAudit/more.png"
+								alt="" srcset="" class="icon"></div>
+					</div>
+					<div class="layui-tab layui-tab-brief" lay-filter="tabs">
+						<ul class="layui-tab-title">
+							<li @click="changeTab(index)" :class="{'layui-this':index===curTab}"
+								v-for="(item,index) in tabs">
+								<span v-text="item.name"></span>
+							</li>
+						</ul>
+						<div class="layui-tab-content">
+							<div class="layui-tab-item" :class="{'layui-show':index===curTab}"
+								v-for="(item,index) in tabs">
+								<div class="content-item flex justify-between items-center cursor-pointer"
+									v-for="(content,cIndex) in item.list" v-if="cIndex<6"
+									@click.stop="toDetail(content.id,'todo',content.vehicleid)">
+									<div class="flex items-center flex-1">
+										<span class="title"></span>
+										<span class="text" v-text="getText(content)" :title="getText(content)"></span>
+										<span v-if="content.status" class="status" v-text="content.status"></span>
+									</div>
+									<span class="date" v-text="content.date"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="left-box-bottom flex flex-1">
+				<div class="card-3 card-item flex-1 ">
+					<div class="card-title">
+						<div class="text"> <img src="../images/aiAudit/file-copy.png" alt="" class="icon"> 待处理嫌疑车辆</div>
+						<div @click="toMore('waitCar')"><span class="more">更多</span><img
+								src="../images/aiAudit/more.png" alt="" srcset="" class="icon"></div>
+					</div>
+					<div class="card-3-content">
+						<table class="layui-table" lay-skin="nob">
+							<colgroup>
+								<col width="150">
+								<col width="120">
+								<col width="120">
+							</colgroup>
+							<thead>
+								<tr>
+									<th>车牌号</th>
+									<th>车牌颜色</th>
+									<th>车型</th>
+									<th>嫌疑类型</th>
+									<th>疑似度</th>
+									<th>交易金额</th>
+									<!-- <th>失效时间</th> -->
+									<th>通行类型</th>
+									<th>通行介质</th>
+									<th>入口收费站</th>
+									<th>出口收费站</th>
+									<!-- <th>说明</th> -->
+									<th class="padding-right-0">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for=" item in waitCarList">
+									<td class="">
+										<div v-text="item.vehicleplate_no||'-'" class="text-ellipsis"
+											style="max-width: 150px;">
+										</div>
+									</td>
+									<td v-text="item._vehicleplate_color_disp||'-'">-</td>
+									<td v-text="item._vehicletype_disp||'-'">-</td>
+									<td v-text="item._suspecttype_disp||'-'">-</td>
+									<td v-text="item.susdegree_disp||'-'">-</td>
+									<td v-text="item.fee_disp||'0.00'">-</td>
+									<td >
+										<span v-if="item.passtype=='1'">本省通行</span>
+										<span v-if="item.passtype=='2'">跨省通行</span>
+									</td>
+									<!-- <td v-text="item._passtype_disp||'-'">-</td> -->
+									<td v-text="item._mediatype_disp||'-'">-</td>
+									<!-- <td v-text="item.remark||'-'" :title="item.remark">-</td> -->
+									<td v-text="item.enstationname||'-'" :title="item.enstationname">-</td>
+									<td v-text="item.enstationname||'-'" :title="item.enstationname">-</td>
+									<!-- <td><span v-if="item.create_time">{{item.create_time.slice(0,10)}}</span></td> -->
+									<td class="padding-right-0 flex justify-between">
+										<button type="button" class="btn btn-sm btn-blue-light margin-right-xs"
+											@click="toDetail(item.id,'waitCar',item.title)">详情</button>
+										<!-- <button type="button" class="btn btn-sm btn-blue-light"
+											@click="downloadPolicyFile(item,'waitCar')">附件</button> -->
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- <div class="left-box-bottom flex flex-1">
+				<div class="card-3 card-item flex-1 ">
+					<div class="card-title">
+						<div class="text"> <img src="../images/aiAudit/file-copy.png" alt="" class="icon"> 收费稽核政策</div>
+						<div @click="toMore('policy')"><span class="more">更多</span><img src="../images/aiAudit/more.png"
+								alt="" srcset="" class="icon"></div>
+					</div>
+					<div class="card-3-content">
+						<table class="layui-table" lay-skin="nob">
+							<colgroup>
+								<col width="300">
+								<col>
+								<col width="120">
+								<col width="120">
+							</colgroup>
+							<thead>
+								<tr>
+									<th>政策内容</th>
+									<th>发布机构</th>
+									<th>日期</th>
+									<th class="padding-right-0">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for=" item in policyList">
+									<td class="flex">
+										<div v-text="item.title||'-'" class="text-ellipsis" style="max-width: 300px;">
+										</div>
+									</td>
+									<td v-text="item.publishorgan_ch||'-'">-</td>
+									<td><span v-if="item.create_time">{{item.create_time.slice(0,10)}}</span></td>
+									<td class="padding-right-0 flex justify-between">
+										<button type="button" class="btn btn-sm btn-blue-light"
+											@click="toDetail(item.id,'policy',item.title)">详情</button>
+										<button type="button" class="btn btn-sm btn-blue-light"
+											@click="downloadPolicyFile(item)">附件</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div> -->
+				<!-- <div class="card-4 card-item ">
+					<div class="card-title">
+						<div class="text"> <img src="../images/aiAudit/archive.png" alt="" class="icon">学习材料</div>
+						<div @click="toMore('materia')"><span class="more">更多</span><img
+								src="../images/aiAudit/more.png" alt="" srcset="" class="icon"></div>
+					</div>
+					<div class="card-content">
+						<div class="card-content-item flex items-center justify-between cursor-pointer"
+							v-for="item in materialList" @click="toDetail(item.id,'materia',item.title)">
+							<img src="../images/aiAudit/folder.png" alt="" class="icon margin-right-xs">
+							<div class=" text items-center flex-1">
+								<span class="" v-text="item.title">
+								</span>
+							</div>
+							<span class="date" v-text="item.create_time?item.create_time.slice(0,10):''"></span>
+						</div>
+					</div>
+
+				</div> -->
+			</div>
+		</div>
+		<div class="right-box flex flex-column">
+			<div class="card-5 card-item margin-bottom">
+				<div class="card-title">
+					<div class="text">稽核人员信息</div>
+				</div>
+				<div class="card-content user-info  text-center flex-1 flex flex-column items-center">
+					<img src="../images/aiAudit/avatar.png" alt="" srcset="" class="avatar" />
+					<img src="../images/aiAudit/check.png" class="check" alt="">
+					<div class="flex-1 flex flex-column justify-center" v-if="loginUser">
+						<div class="user-name text-center text-blue text-bold" v-text="loginUser.real_name"></div>
+						<div class="user-no text-center" v-text="loginUser.user_no"></div>
+					</div>
+					<div class="long-btn" @click="toPages('page/user/changePwd.html','修改密码')">
+						密码设置
+					</div>
+				</div>
+			</div>
+			<div class="card-6 card-item flex-1 notice-box flex flex-column">
+				<div class="card-title">
+					<div class="text" :class="{active:activeNoticeTab==='notice'}"
+						@click="activeNoticeTab='notice',getNotice()">
+						通知公告</div>
+					<div class="text" :class="{active:activeNoticeTab==='policy'}" @click="activeNoticeTab='policy'">
+						稽核政策</div>
+					<div class="text" :class="{active:activeNoticeTab==='materia'}" @click="activeNoticeTab='materia'">
+						学习资料</div>
+				</div>
+				<ul class="card-content flex-1" v-if="activeNoticeTab==='notice'">
+					<li v-for="item in noticeList" v-if="item.title" @click="toDetail(item.id,'notice',item.title)"
+						class="cursor-pointer">
+						<span v-text="item.title" :title="item.title"></span>
+						<button type="button" class="btn btn-sm btn-blue-light"
+							@click.stop="downloadPolicyFile(item)">附件</button>
+					</li>
+				</ul>
+				<ul class="card-content flex-1" v-if="activeNoticeTab==='policy'">
+					<li v-for="item in policyList" @click="toDetail(item.id,'policy',item.title)"
+						class="cursor-pointer">
+						<span v-text="item.title" :title="item.title"></span>
+						<button type="button" class="btn btn-sm btn-blue-light"
+							@click.stop="downloadPolicyFile(item)">附件</button>
+					</li>
+				</ul>
+				<ul class="card-content flex-1" v-if="activeNoticeTab==='materia'">
+					<li v-for="item in materialList" @click="toDetail(item.id,'materia',item.title)"
+						class="cursor-pointer">
+						<span v-text="item.title" :title="item.title"></span>
+						<button type="button" class="btn btn-sm btn-blue-light"
+							@click.stop="downloadPolicyFile(item)">附件</button>
+					</li>
+				</ul>
+				<a href="" class="link" @click="toMore(activeNoticeTab)">查看更多</a>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="../../js/jquery-3.7.1.min.js"></script>
+	<script src="../../js/jquery-migrate-3.4.1.min.js"></script>
+	<script src="../../js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/server.js"></script>
+	<script type="text/javascript" src="../../js/server_common.js"></script>
+	<script type="text/javascript" src="../js/index.js"></script>
+	<script src="../../js/vue/vue.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer', 'element'], function () {
+			var element = layui.element;
+			var layer = layui.layer;
+		});
+	</script>
+	<script type="module">
+		import { getTodoNum, getTotoList, todoService, getNotice, noticeService, getMateria, materiaService, getPolicy, policyService, downloadPolicyFile, getWaitCar, waitCarService } from "./api/main.js";
+		var app = new Vue({
+			el: '#app',
+			computed: {
+				loginUser() {
+					return sessionStorage.getItem('current_login_user') ? JSON.parse(sessionStorage.getItem('current_login_user')) : {}
+				}
+			},
+			data() {
+				return {
+					activeNoticeTab: 'notice',
+					noticeShowMore: false,
+					menus: [
+						{
+							name: '节点校准',
+							icon: '../images/aiAudit/a.png',
+							url: '/vpages/#/bmap/check'
+						},
+						{
+							name: '异常路径',
+							icon: '../images/aiAudit/b.png',
+							url: '/vpages/index.html#/list/srvaud_susvehicle_select?menuapp=aud'
+
+						},
+						{
+							name: '证据图片',
+							icon: '../images/aiAudit/c.png',
+							url: '/vpages/index.html#/list/srvaud_sect_m_img_data_select?menuapp=aud'
+						},
+						{
+							name: '稽核工单',
+							icon: '../images/aiAudit/d.png',
+							url: '/vpages/index.html#/list/srvaud_susvehpass_todo_select?menuapp=aud'
+						}
+					],
+					statisList: [
+						{
+							name: '待处理工单',
+							number: 0
+						},
+						{
+							name: '已处理工单',
+							number: 0
+						},
+						{
+							name: '最新信息',
+							number: 0
+						}
+					],
+					curTab: 0,
+					tabs: [{
+						name: '全部',
+						list: []
+					}, {
+						name: '已推送',
+						list: [
+						]
+					}, {
+						name: '已驳回',
+						list: [
+						]
+					}]
+					,
+					materialList: [
+					],
+					waitCarList: [],//待处理嫌疑车辆
+					noticeList: [
+					],
+					policyList: []
+				}
+			},
+			methods: {
+				showChart() {
+					var layer = layui.layer;
+					layer.open({
+						type: 2,
+						title: false,
+						closeBtn:1,
+						// title: 'iframe 任意 URL',
+						shadeClose: true,
+						maxmin: false, //开启最大化最小化按钮
+						area: ['1600px', '700px'],
+						content: ['/main/page/audit/flow.html', 'no']
+					});
+				},
+				getText(item = {}) {
+					let text =  `${item._vehicletype_disp || ''}${item.vehicleplate_no || ''}`
+					if(item._vehicleplate_color_disp){
+						text += `_${item._vehicleplate_color_disp || ''}`
+					}
+					if(item._passtype_disp){
+						text += `,${item._passtype_disp || ''}`
+					}
+					if(item._suspecttype_disp){
+						text += `,疑似逃费类型为：${item._suspecttype_disp || ''}`
+					}
+					if(item._handle_result_disp){
+						text += `,${item._handle_result_disp}`
+					}
+					return text
+				},
+				downloadPolicyFile(item, type) {
+					if (type === 'waitCar') {
+
+					} else {
+						downloadPolicyFile(item)
+					}
+				},
+				toPages(url, title, app) {
+					if (!url) {
+						return
+					}
+					let page = {
+						app: app || null,
+						title: title || '',
+						url: url,
+						icon: ''
+					}
+					top.tab.addTab(page);
+				},
+				changeTab(index) {
+					this.curTab = index
+				},
+				toDetail(id, type, title) {
+					let page = {
+						app: 'aud',
+						title: '',
+						url: '',
+						icon: ''
+					}
+					switch (type) {
+						case 'materia':
+							page.title = `${title || '学习材料'}(${id})`
+							page.url = `/vpages/#/detail/${materiaService}/${id}`
+							break;
+						case 'policy':
+							page.title = `${title || '收费稽核政策'}(${id})`
+							page.url = `/vpages/#/detail/${policyService}/${id}`
+							break;
+						case 'notice':
+							page.title = `${title || '通知公告'}(${id})`
+							page.url = `/vpages/#/detail/${noticeService}/${id}`
+							break;
+						case 'waitCar':
+							page.title = `${title || '待处理嫌疑车辆'}(${id})`
+							page.url = `/vpages/#/detail/${waitCarService}/${id}`
+							break;
+						case 'todo':
+							page.title = `${title || '嫌疑车辆'}(${id})`
+							page.url = `/vpages/#/detail/${todoService}/${id}`
+							// page.url = `/vpages/#/detail/${todoService}/${id}`
+							break;
+					}
+					if (id && page.url) {
+						top.tab.addTab(page);
+					}
+				},
+				toMore(type) {
+					let page = {
+						app: 'aud',
+						title: '',
+						url: '',
+						icon: ''
+					}
+					switch (type) {
+						case 'materia':
+							page.title = '学习材料'
+							page.url = `/vpages/#/list/${materiaService}`
+							break;
+						case 'policy':
+							page.title = '收费稽核政策'
+							page.url = `/vpages/#/list/${policyService}`
+							break;
+						case 'notice':
+							page.title = '通知公告'
+							page.url = `/vpages/#/list/${noticeService}`
+							break;
+						case 'waitCar':
+							page.title = '待处理嫌疑车辆'
+							page.url = `/vpages/#/list/srvaud_susvehpass_todo_select`
+							// page.url = `/vpages/#/list/${waitCarService}`
+							break;
+						case 'todo':
+							page.title = '历史嫌疑车辆处理'
+							page.url = `/vpages/#/list/srvaud_susvehpass_his_select`
+							// page.url = `/vpages/#/list/${todoService}`
+							break;
+					}
+					if (page.url) {
+						top.tab.addTab(page);
+					}
+				},
+				getNotice() {
+					// 通知公告
+					getNotice().then(res => {
+						if (res.state === 'SUCCESS' && Array.isArray(res.data)) {
+							this.noticeList = res.data
+							if (res.page.total > 8) {
+								this.todolist = true
+							}
+						}
+					})
+				},
+			},
+			created() {
+				getTodoNum().then(res => {
+					if (res.state === 'SUCCESS' && Array.isArray(res.data) && res.data?.length) {
+						const todoNums = {
+							wait: 0,
+							done: 0,
+							notice: 0
+						}
+						res.data.forEach(item=>{
+							if(item.pro_result==='未处理'){
+								todoNums.wait += item.pro_cnt
+							}else if(item.pro_result==='最新信息'){
+								todoNums.notice += item.pro_cnt
+							}else{
+								todoNums.done += item.pro_cnt
+							}
+						})
+						// res.data.forEach(item => {
+						// 	if (item.handle_result && item.id) {
+						// 		todoNums.done += item.id
+						// 	} else if (!item.handle_result && item.id) {
+						// 		todoNums.wait += item.id
+						// 	}
+						// });
+						this.$set(this.statisList[0], 'number', todoNums.wait)
+						this.$set(this.statisList[1], 'number', todoNums.done)
+						this.$set(this.statisList[2], 'number', todoNums.notice)
+					}
+				})
+				this.getNotice()
+
+				// 我的待办-全部
+				getTotoList().then(res => {
+					if (res.state === 'SUCCESS' && Array.isArray(res.data)) {
+						this.$set(this.tabs[0], 'list', res.data)
+					}
+				})
+				getTotoList('已推送').then(res => {
+					if (res.state === 'SUCCESS' && Array.isArray(res.data)) {
+						this.$set(this.tabs[1], 'list', res.data)
+					}
+				})
+				getTotoList('已驳回').then(res => {
+					if (res.state === 'SUCCESS' && Array.isArray(res.data)) {
+						this.$set(this.tabs[2], 'list', res.data)
+					}
+				})
+				getPolicy().then(res => {
+					if (res.state === 'SUCCESS' && Array.isArray(res.data)) {
+						this.policyList = res.data
+					}
+				})
+				getWaitCar().then(res => {
+					if (res.state === 'SUCCESS' && Array.isArray(res.data)) {
+						this.waitCarList = res.data
+					}
+				})
+				getMateria().then(res => {
+					if (res.state === 'SUCCESS' && Array.isArray(res.data)) {
+						this.materialList = res.data
+					}
+				})
+			},
+		})
+	</script>
+</body>
+
+</html>
