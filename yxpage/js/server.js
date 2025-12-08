@@ -2,15 +2,17 @@
 var pathConfig;
 (function () {
   var obj = {};
-//   obj.gateway_protocol='http'; //协议
-//   obj.gateway_ip="yxsj.sneducloud.com"; //ip
-//   obj.port = ""; //端口号
-//   obj.suffix = "/bxapi"; //后缀 拼在协议://ip:端口之后
-
-  obj.gateway_protocol='http'; //协议
-  obj.gateway_ip="192.168.0.196"; //ip
+  // 生产环境
+  obj.gateway_protocol = 'http'; //协议
+  obj.gateway_ip = "yxsj.sneducloud.com"; //ip
   obj.port = ""; //端口号
   obj.suffix = "/yxapi"; //后缀 拼在协议://ip:端口之后
+
+  // dev环境
+  // obj.gateway_protocol='http'; //协议
+  // obj.gateway_ip="192.168.0.196"; //ip
+  // obj.port = ""; //端口号
+  // obj.suffix = "/yxapi"; //后缀 拼在协议://ip:端口之后
 
   //网关地址
   obj.gateway =
