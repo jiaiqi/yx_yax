@@ -1,3 +1,4 @@
+const pagePrefix = 'yx';
 //跨域ajax
 function crosAjax(url, method, jsonData, succFun, asyncFlag) {
 
@@ -173,7 +174,7 @@ function getLoginAddress() {
   var bx_auth_ticket = sessionStorage.getItem("bx_auth_ticket");
 
 
-  var address = "yx/main/login.html";
+  var address = pagePrefix + "/main/login.html";
   // if (app) {
   // 	address = address + "?app=" + app;
   // 	if (tenant) {
@@ -196,7 +197,7 @@ function getLoginAddress() {
 
 function getMainAddress() {
 
-  var address = "yx/main/index.html";
+  var address = pagePrefix + "/main/index.html";
 
   var app = sessionStorage.getItem("assignApp");
   //指定端口
@@ -222,7 +223,7 @@ function getMainAddress() {
 
 function getIndexAddress(selectApp) {
 
-  var address = "yx/index.html";
+  var address = pagePrefix + "/index.html";
 
   var app = sessionStorage.getItem("assignApp");
   if (selectApp) {

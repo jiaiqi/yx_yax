@@ -62,6 +62,9 @@ $(function () {
   $("#loginbtn").on("click", function () {
     loginProc();
   });
+  $("#regBtn").on('click', function () {
+      window.location.href = '/vpages/#/register'
+  });
 
   // 切换到租户登录
   function goTenant(current_login_user) {
