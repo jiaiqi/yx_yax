@@ -288,7 +288,7 @@ layui.config({
   //退出
   $(".signOut").click(function () {
 
-    var login_page = getIndexAddress();
+    var login_page = getLoginAddress();
     if (sessionStorage.loginAddress) {
       login_page = '/' + sessionStorage.loginAddress;
     }
@@ -297,7 +297,7 @@ layui.config({
     crosAjax(path, "POST", strJson, function (data) {
 
       localStorage.clear()
-      window.location.href = login_page;
+      window.location.href = '/' + login_page;
     });
   })
   $("#lock").on("click", function () {

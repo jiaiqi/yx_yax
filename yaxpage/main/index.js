@@ -283,7 +283,7 @@ layui.config({
         crosAjax(path, "POST", strJson, function (data) {
 
 			localStorage.clear()
-            window.location.href = login_page;
+            window.location.href ='/'+ login_page;
         });
     })
     $("#lock").on("click", function () {
